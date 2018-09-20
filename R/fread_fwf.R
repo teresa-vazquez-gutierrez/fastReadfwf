@@ -1,6 +1,6 @@
 #' @title Fast read a fixed-width file
 #'
-#' @description \code{fread_fwf} takes as basic input a fixed-width filename and its schema and 
+#' @description \code{fread_fwf} takes as basic input a fixed-width filename and its schema and
 #' wraps around \code{\link[data.table]{fread}} from package \linkS4class{data.table} to provide the
 #' contents of the file.
 #'
@@ -19,10 +19,10 @@
 #' @param schema \code{Character} vector with names of the output variables.
 #'
 #' @param perl Logical vector of length 1 indicating whether Perl is installed in the system or not.
-#' 
-#' @param encoding Character vector of length 1 with default value is "unknown". Other possible 
-#' options are "UTF-8" and "Latin-1". 
-#' NB: it is not used to re-encode the input but to enable handling of encoded strings in their 
+#'
+#' @param encoding Character vector of length 1 with default value is "unknown". Other possible
+#' options are "UTF-8" and "Latin-1".
+#' NB: it is not used to re-encode the input but to enable handling of encoded strings in their
 #' native encoding.
 #'
 #' @return Returns a \linkS4class{data.table} with the contents of the file.
@@ -32,30 +32,39 @@
 #' @seealso \code{\link[data.table]{fread}}
 #'
 #' @import data.table
-#' 
+#'
 #' @importFrom stringi stri_sub
 #'
 #' @export
-fread_fwf<-function(file, schema) {
-  
-  sc <- read.table(file= schema, header= FALSE, sep= ";") #schema fwf
-  variables <- as.character(sc[, 1])  ##Variables
-  start_col <- sc[,2] ##Posicion inicial
-  end_col <- sc[,3] ##Posicion inicial
-  start_end <- cbind(start_col, end_col) 
-  
-  dt<-  fread(file=file,     
-              colClasses = "character", 
-              sep = "\n", 
-              header = FALSE)
-  
-  extrae<-function(x) {
+setGeneric("fread_fwf", function(filename, schema) {standardGeneric("fread_fwf")})
+
+#' @rdname fread_fwf
+#'
+#' @include StfwfSchema-class.R
+#'
+#' @export
+setMethod(f = "fread_fwf",
+          signature = c("character", "StfwfSchema"),
+          function(filename, schema){
+
+    sc <- read.table(file= schema, header= FALSE, sep= ";") #schema fwf
+    variables <- as.character(sc[, 1])  ##Variables
+    start_col <- sc[,2] ##Posicion inicial
+    end_col <- sc[,3] ##Posicion inicial
+    start_end <- cbind(start_col, end_col)
+
+    dt <-  fread(file = file,
+                 colClasses = "character",
+                 sep = "\n",
+                 header = FALSE)
+
+    extrae <- function(x) {
     apply(start_end, 1, function(y) stringi::stri_sub(x, y[1], y[2]))}
-  
-  dt[, (variables) := data.table((lapply(dt, extrae))$V1)] [,V1:=NULL]
-  
-  rm(extrae)
-  
-  return(dt)
-}
-  
+
+    dt[, (variables) := data.table((lapply(dt, extrae))$V1)] [, V1 := NULL]
+
+    rm(extrae)
+
+    return(dt)
+})
+

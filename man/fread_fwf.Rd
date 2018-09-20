@@ -42,4 +42,3 @@ the package \linkS4class{data.table}, adapted to the structure of object \linkS4
 \seealso{
 \code{\link[data.table]{fread}}
 }
-

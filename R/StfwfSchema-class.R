@@ -21,37 +21,50 @@
 #'
 #' @examples
 #' # An empty ObsErrorSTDMLEParam object:
-#' new(Class = 'ObsErrorSTDMLEParam')
-#'
 #'
 #'
 #' @export
 setClass(Class = "StfwfSchema",
-         representation = c(Schemadf = 'data.frame'),
-         prototype = data.frame(variable = character(0),
-                                length = integer(0),
-                                initialPos = integer(0),
-                                finalPos = integer(0),
-                                valueRegExp = character(0),
-                                description = character(0)),
+         representation = list(df = 'data.frame'),
+         prototype = list(df = data.frame(variable = character(0),
+                                          length = integer(0),
+                                          initialPos = integer(0),
+                                          finalPos = integer(0),
+                                          valueRegExp = character(0),
+                                          description = character(0))),
          validity = function(object){
 
-           if (dim(object)[1] == 0) {
+           df <- slot(object, 'df')
+           if (dim(df)[1] == 0) {
 
              warning('[StfwfSchema:: validity StfwfSchema] The schema data.frame has 0 rows.\n')
 
            }
 
            # Column names
-           if (!all(names(object) ==
+           if (!all(names(df) ==
                     c('variable', 'length', 'initialPos',
                       'finalPos', 'valueRegExp', 'description'))) {
 
              stop('[StfwfSchema:: validity StfwfSchema] The schema data.frame has wrong column names.\n')
 
            }
+           # finPos >= iniPos
+           diffPos <- df$finalPos - df$initialPos
+           errorDiffPos <- df$variable[diffPos < 0]
+           if (length(errorDiffPos) > 0) {
 
+             stop(paste0('[StfwfSchema:: validity StfwfSchema] The following variables have incoherent positions:', paste0(errorDiffPos, collapse = ' , '), '.\n'))
+
+           }
            # length = finPos - iniPos + 1
+           diff <- df$finalPos - df$initialPos + 1
+           errorLengthVar <- df$variable[diff != df$length]
+           if (length(errorLengthVar) > 0) {
+
+             stop(paste0('[StfwfSchema:: validity StfwfSchema] The following variables have incoherent lengths and positions:', paste0(errorLengthVar, collapse = ' , '), '.\n'))
+
+           }
 
            return(TRUE)
          }
