@@ -13,14 +13,27 @@
 #'    the file.
 #'    \item finalPos: final position of the field whic hthe values of this variable occupies in the
 #'    file.
-#'    \item valueRegExp: regular expression for the values of this variable.
+#'    \item type: type of the variable. It must be either \code{num} or \code{char}.
+#'    \item valueRegEx: regular expression for the values of this variable.
 #'    \item description: textual description of the variable.
 #'
 #'  }
 #'
 #'
 #' @examples
-#' # An empty ObsErrorSTDMLEParam object:
+#' # An empty StfwfSchema object:
+#' new(Class = 'StfwfSchema')
+#'
+#' # A trivial example:
+#' df <- data.frame(variable = c('Turnover', 'Employees'),
+#'                  length = c(9L, 3L),
+#'                  initialPos = c(1, 10),
+#'                  finalPos = c(9, 12),
+#'                  type = rep('num', 2),
+#'                  valueRegEx = c('[0-9]{0,9}', '[0-9]{0,3}'),
+#'                  description = c('Turnover of the business unit',
+#'                                  'Number of employees of the business unit'))
+#' new(Class = 'StfwfSchema', df = df)
 #'
 #'
 #' @export
@@ -30,7 +43,8 @@ setClass(Class = "StfwfSchema",
                                           length = integer(0),
                                           initialPos = integer(0),
                                           finalPos = integer(0),
-                                          valueRegExp = character(0),
+                                          type = character(0),
+                                          valueRegEx = character(0),
                                           description = character(0))),
          validity = function(object){
 
@@ -43,10 +57,10 @@ setClass(Class = "StfwfSchema",
 
            # Column names
            if (!all(names(df) ==
-                    c('variable', 'length', 'initialPos',
-                      'finalPos', 'valueRegExp', 'description'))) {
+                    c('variable', 'length', 'initialPos', 'finalPos',
+                      'type', 'valueRegEx', 'description'))) {
 
-             stop('[StfwfSchema:: validity StfwfSchema] The schema data.frame has wrong column names.\n')
+             stop('[StfwfSchema:: validity StfwfSchema] The schema data.frame has wrong column names. (Check also the order). \n')
 
            }
            # finPos >= iniPos
@@ -66,6 +80,29 @@ setClass(Class = "StfwfSchema",
 
            }
 
-           return(TRUE)
+           # sum(length) = finPos[final] - iniPos[initial] + 1
+           if (df$finalPos[dim(df)[1]] - df$initialPos[1] + 1 != sum(df$length)) {
+
+             stop('[StfwfSchema:: validity StfwfSchema] The sum of lengths is not coherent with the set of positions.')
+
+          }
+
+          # type num or char
+          if (!any(df$type %in% c('num', 'char'))) {
+
+            stop('[StfwfSchema:: validity StfwfSchema] The type must be either char or num.')
+
+          }
+
+          # Is regex?
+          notValidRegex <- qdapRegex::is.regex(df$valueRegEx)
+          notRegExVar <- df$variable[!notValidRegex]
+
+          if (!all()) {
+
+            stop(paste0('[StfwfSchema:: validity StfwfSchema] The following variables have invalid regex:', paste0(notRegExVar, collapse = ' , '), '.\n'))
+
+          }
+          return(TRUE)
          }
 )

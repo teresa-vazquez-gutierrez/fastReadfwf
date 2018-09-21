@@ -20,14 +20,27 @@ schema of the fixed-width file to read.
    the file.
    \item finalPos: final position of the field whic hthe values of this variable occupies in the
    file.
-   \item valueRegExp: regular expression for the values of this variable.
+   \item type: type of the variable. It must be either \code{num} or \code{char}.
+   \item valueRegEx: regular expression for the values of this variable.
    \item description: textual description of the variable.
 
  }}
 }}
-
 \examples{
-# An empty ObsErrorSTDMLEParam object:
+# An empty StfwfSchema object:
+new(Class = 'StfwfSchema')
+
+# A trivial example:
+df <- data.frame(variable = c('Turnover', 'Employees'),
+                 length = c(9L, 3L),
+                 initialPos = c(1, 10),
+                 finalPos = c(9, 12),
+                 type = rep('num', 2),
+                 valueRegEx = c('[0-9]{0,9}', '[0-9]{0,3}'),
+                 description = c('Turnover of the business unit',
+                                 'Number of employees of the business unit'))
+new(Class = 'StfwfSchema', df = df)
 
 
 }
+

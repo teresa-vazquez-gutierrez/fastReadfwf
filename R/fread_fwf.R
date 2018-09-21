@@ -28,7 +28,12 @@
 #' @return Returns a \linkS4class{data.table} with the contents of the file.
 #'
 #' @examples
+#' \dontrun{
+#' filename <- 'file1.txt'
+#' fileschema <- XLSToSchema('file1schema.xlsx')
+#' fread_fwf(filename, fileschema)
 #'
+#' }
 #' @seealso \code{\link[data.table]{fread}}
 #'
 #' @import data.table
@@ -36,7 +41,9 @@
 #' @importFrom stringi stri_sub
 #'
 #' @export
-setGeneric("fread_fwf", function(filename, schema) {standardGeneric("fread_fwf")})
+setGeneric("fread_fwf",
+           function(filename, StfwfSchema, perl = FALSE, encoding = 'unknown') {
+             standardGeneric("fread_fwf")})
 
 #' @rdname fread_fwf
 #'
@@ -45,26 +52,13 @@ setGeneric("fread_fwf", function(filename, schema) {standardGeneric("fread_fwf")
 #' @export
 setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
-          function(filename, schema){
+          function(filename, StfwfSchema, perl = FALSE, encoding = 'unknown'){
 
-    sc <- read.table(file= schema, header= FALSE, sep= ";") #schema fwf
-    variables <- as.character(sc[, 1])  ##Variables
-    start_col <- sc[,2] ##Posicion inicial
-    end_col <- sc[,3] ##Posicion inicial
-    start_end <- cbind(start_col, end_col)
-
-    dt <-  fread(file = file,
-                 colClasses = "character",
-                 sep = "\n",
-                 header = FALSE)
-
-    extrae <- function(x) {
-    apply(start_end, 1, function(y) stringi::stri_sub(x, y[1], y[2]))}
-
-    dt[, (variables) := data.table((lapply(dt, extrae))$V1)] [, V1 := NULL]
-
-    rm(extrae)
-
-    return(dt)
+    dt <-  fread(file = filename, colClasses = "character",
+                 sep = "\n", header = FALSE, encoding = encoding)
+    schema <- getdf(StfwfSchema)
+    posMatrix <- schema[, c('initialPos', 'finalPos')]
+    dt[ , schema$variable := lapply(1:(dim(mat)[1]), function(i) {stringi::stri_sub(V1, mat[i,1], mat[i, 2])})][, V1 := NULL]
+    return(dt[])
 })
 
