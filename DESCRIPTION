@@ -1,4 +1,4 @@
-Package: freadfwf
+Package: fastReadfwf
 Title: Fast read of fwf files with arbitrary input schema
 Version: 0.1.0
 Authors@R: c(
