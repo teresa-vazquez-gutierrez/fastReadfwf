@@ -13,7 +13,7 @@ Imports:
     data.table (>= 1.10.4),
     openxlsx (>= 4.0.0),
     stringi (>= 1.1.7)
-License: GPLv3
+License: GPL-3
 LazyData: true
 Encoding: UTF-8
 Collate:

@@ -41,6 +41,8 @@
 #'
 #' @importFrom openxlsx read.xlsx
 #'
+#' @importFrom methods new
+#'
 #' @export
 XLSToSchema <- function(xlsname, lang = 'sp'){
 

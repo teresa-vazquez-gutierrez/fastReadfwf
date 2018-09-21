@@ -11,7 +11,7 @@ schema of the fixed-width file to read.
 \section{Slots}{
 
 \describe{
-\item{\code{Schemadf}}{data.frame with 5 columns:
+\item{\code{df}}{data.frame with 5 columns:
  \itemize{
 
    \item variable: the name of the variable.

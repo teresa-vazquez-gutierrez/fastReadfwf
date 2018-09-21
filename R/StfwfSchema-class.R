@@ -4,7 +4,7 @@
 #' schema of the fixed-width file to read.
 #'
 #'
-#' @slot Schemadf data.frame with 5 columns:
+#' @slot df data.frame with 5 columns:
 #'  \itemize{
 #'
 #'    \item variable: the name of the variable.

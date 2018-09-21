@@ -6,22 +6,20 @@
 \alias{fread_fwf,character,StfwfSchema-method}
 \title{Fast read a fixed-width file}
 \usage{
-fread_fwf(filename, StfwfSchema, perl = FALSE, encoding = "unknown")
+fread_fwf(filename, StfwfSchema, encoding = "unknown")
 
 \S4method{fread_fwf}{character,StfwfSchema}(filename, StfwfSchema,
-  perl = FALSE, encoding = "unknown")
+  encoding = "unknown")
 }
 \arguments{
-\item{filename}{Object of class \linkS4class{StQ} whose slot \code{Data} will be converted.}
+\item{filename}{Character vector of length 1 with the name of the file to read.}
 
-\item{perl}{Logical vector of length 1 indicating whether Perl is installed in the system or not.}
+\item{StfwfSchema}{Object of class \linkS4class{StfwfSchema} with the schema of the file to read.}
 
 \item{encoding}{Character vector of length 1 with default value is "unknown". Other possible
 options are "UTF-8" and "Latin-1".
 NB: it is not used to re-encode the input but to enable handling of encoded strings in their
 native encoding.}
-
-\item{schema}{\code{Character} vector with names of the output variables.}
 }
 \value{
 Returns a \linkS4class{data.table} with the contents of the file.
@@ -31,15 +29,8 @@ Returns a \linkS4class{data.table} with the contents of the file.
 wraps around \code{\link[data.table]{fread}} from package \linkS4class{data.table} to provide the
 contents of the file.
 
-This method converts the slot \code{Data} from the input \code{StQ} object into a
-\linkS4class{data.table} with statistical units by row and variables specified in the input
-parameter \code{VarNames} by columns.
-
-To distinguish between variables and qualifiers this function makes use of the slot \code{DD} of
-input \linkS4class{StQ} variable.
-
-This method is indeed a wrapper for the function \code{\link[data.table]{dcast.data.table}} of
-the package \linkS4class{data.table}, adapted to the structure of object \linkS4class{StQ}.
+This method is indeed a wrapper for the function \code{\link[data.table]{fread}} followed by the
+application of \code{\link[stringi]{stri_sub}}.
 }
 \examples{
 \dontrun{
