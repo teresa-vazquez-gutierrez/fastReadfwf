@@ -48,7 +48,7 @@ setMethod(f = "fread_fwf",
                  sep = "\n", header = FALSE, encoding = encoding)
     schema <- getdf(StfwfSchema)
     posMatrix <- schema[, c('initialPos', 'finalPos')]
-    dt[ , schema$variable := lapply(1:(dim(mat)[1]), function(i) {stringi::stri_sub(V1, mat[i,1], mat[i, 2])})][, V1 := NULL]
+    dt[ , schema$variable := lapply(1:(dim(posMatrix)[1]), function(i) {stringi::stri_sub(V1, posMatrix[i,1], posMatrix[i, 2])})][, V1 := NULL]
     return(dt[])
 })
 
