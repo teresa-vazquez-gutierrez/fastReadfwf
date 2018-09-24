@@ -58,13 +58,15 @@ XLSToSchema <- function(xlsname, lang = 'sp'){
 
   if (lang == 'sp' && any(colnames(xls) != stColNames_sp)) {
 
-    stop('[StfwfSchema:: XLSToSchema] Column names not valid. Check the documentation for correct names.\n')
+    diffNames <- paste0(colnames(xls)[colnames(xls) != stColNames_sp], collapse = ', ')
+    stop(paste0('[StfwfSchema:: XLSToSchema] The following columns have invalid names: ', diffNames, '.\n'))
 
   }
 
   if (lang == 'en' && any(colnames(xls) != stColNames)) {
 
-    stop('[StfwfSchema:: XLSToSchema] Column names not valid. Check the documentation for correct names.\n')
+    diffNames <- paste0(colnames(xls)[colnames(xls) != stColNames_sp], collapse = ', ')
+    stop(paste0('[StfwfSchema:: XLSToSchema] The following columns have invalid names: ', diffNames, '.\n'))
 
   }
 
