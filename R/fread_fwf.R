@@ -50,7 +50,7 @@ setMethod(f = "fread_fwf",
     posMatrix <- schema[, c('initialPos', 'finalPos')]
     dt[ , schema$variable := lapply(1:(dim(posMatrix)[1]), function(i) {stringi::stri_sub(V1, posMatrix[i,1], posMatrix[i, 2])})][, V1 := NULL]
     numVarNames <- schema$variable[schema$type == 'num']
-    dt[, numVarNames := lapply(.SD, as.numeric), .SDcols = numVarNames, with = FALSE]
+    dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
     return(dt[])
 })
 
