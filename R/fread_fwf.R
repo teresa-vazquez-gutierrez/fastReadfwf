@@ -48,15 +48,47 @@ setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
           function(filename, StfwfSchema, encoding = 'unknown', check = FALSE, perl = FALSE){
 
+    trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+
     dt <-  fread(file = filename, colClasses = "character",
                  sep = "\n", header = FALSE, encoding = encoding)
     schema <- getdf(StfwfSchema)
     posMatrix <- schema[, c('initialPos', 'finalPos')]
-    dt[ , schema$variable := lapply(1:(dim(posMatrix)[1]),
+    varNames <- schema$variable
+    dt[ , (varNames) := lapply(1:(dim(posMatrix)[1]),
                                     function(i) {
                                       stringi::stri_sub(V1,
                                                         posMatrix[i,1],
                                                         posMatrix[i, 2])})][, V1 := NULL]
+    dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
+    numVarNames <- schema$variable[schema$type == 'num']
+    dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
+
+    if (check){
+
+      cat('[fastReadfwf:: fread_fwf] Value patterns will be checked for each variable.\n\n')
+      varNames <- schema$variable
+      for (i in seq(along = varNames)){
+
+        cat(paste0('Checking variable ', varNames[i], '... '))
+        pattern <- schema$valueRegEx[i]
+        values <- dt[[varNames[i]]]
+        wrongValuesindex <- which(regexpr(pattern, values, perl = perl) == -1)
+        if (length(wrongValuesindex) == 0) {
+
+          cat('ok.\n')
+
+        } else {
+
+          cat()
+
+          stop(paste0('\nPlease revise either the data set or the regex for this variable.\n\n The following values do not follow the pattern:\n',
+                      paste0(dt[[varNames[i]]][wrongValuesindex], collapse = ', ')))
+        }
+      }
+    }
+
+
     return(dt[])
 })
 

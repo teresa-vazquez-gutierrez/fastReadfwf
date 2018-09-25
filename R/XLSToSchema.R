@@ -65,7 +65,7 @@ XLSToSchema <- function(xlsname, sheetname, lang = 'sp'){
 
   if (lang == 'en' && any(colnames(xls) != stColNames)) {
 
-    diffNames <- paste0(colnames(xls)[colnames(xls) != stColNames_sp], collapse = ', ')
+    diffNames <- paste0(colnames(xls)[colnames(xls) != stColNames], collapse = ', ')
     stop(paste0('[StfwfSchema:: XLSToSchema] The following columns have invalid names: ', diffNames, '.\n'))
 
   }
@@ -84,7 +84,7 @@ XLSToSchema <- function(xlsname, sheetname, lang = 'sp'){
 
   }
 
-  xls$valueRegEx[is.na(xls$valueRegEx)] <- '[.]+'
+  xls$valueRegEx[is.na(xls$valueRegEx)] <- '.*'
 
   output <- new(Class = 'StfwfSchema', df = xls)
   return(output)
