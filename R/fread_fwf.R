@@ -33,7 +33,11 @@
 #'
 #' @export
 setGeneric("fread_fwf",
-           function(filename, StfwfSchema, encoding = 'unknown') {standardGeneric("fread_fwf")})
+           function(filename, StfwfSchema, encoding = 'unknown', check = FALSE, perl = FALSE) {
+
+             standardGeneric("fread_fwf")
+
+           })
 
 #' @rdname fread_fwf
 #'
@@ -42,13 +46,17 @@ setGeneric("fread_fwf",
 #' @export
 setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
-          function(filename, StfwfSchema, encoding = 'unknown'){
+          function(filename, StfwfSchema, encoding = 'unknown', check = FALSE, perl = FALSE){
 
     dt <-  fread(file = filename, colClasses = "character",
                  sep = "\n", header = FALSE, encoding = encoding)
     schema <- getdf(StfwfSchema)
     posMatrix <- schema[, c('initialPos', 'finalPos')]
-    dt[ , schema$variable := lapply(1:(dim(posMatrix)[1]), function(i) {stringi::stri_sub(V1, posMatrix[i,1], posMatrix[i, 2])})][, V1 := NULL]
+    dt[ , schema$variable := lapply(1:(dim(posMatrix)[1]),
+                                    function(i) {
+                                      stringi::stri_sub(V1,
+                                                        posMatrix[i,1],
+                                                        posMatrix[i, 2])})][, V1 := NULL]
     return(dt[])
 })
 

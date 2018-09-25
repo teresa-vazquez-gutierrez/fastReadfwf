@@ -27,6 +27,8 @@
 #'
 #' @param xlsname Name of the xls file containing the schema.
 #'
+#' @param sheetname Name or index of the sheet of the xls file.
+#'
 #' @param lang Character vector of length 1 indicating the language for the header in the xls file
 #' (English: en; Spanish: sp).
 #'
@@ -44,17 +46,15 @@
 #' @importFrom methods new
 #'
 #' @export
-XLSToSchema <- function(xlsname, lang = 'sp'){
+XLSToSchema <- function(xlsname, sheetname, lang = 'sp'){
 
-  if (lang == 'sp') tagName <- 'Schema'
-  if (lang == 'en') tagName <- 'Schema'
   stColNames <- c('variable', 'length', 'initialPos', 'finalPos', 'type', 'valueRegEx',
                   'description')
   stColNames_sp <- c('variable', 'longitud', 'posInicial', 'posFinal',
                      'tipo', 'regExValor', 'descripción')
   Encoding(stColNames_sp) <- "UTF-8"
 
-  xls <- openxlsx::read.xlsx(xlsname, sheet = tagName)
+  xls <- openxlsx::read.xlsx(xlsname, sheet = sheetname)
 
   if (lang == 'sp' && any(colnames(xls) != stColNames_sp)) {
 
@@ -84,11 +84,7 @@ XLSToSchema <- function(xlsname, lang = 'sp'){
 
   }
 
-  if (all(is.na(xls$valueRegEx))) {
-
-    xls$valueRegEx <- '[.]+'
-
-  }
+  xls$valueRegEx[is.na(xls$valueRegEx)] <- '[.]+'
 
   output <- new(Class = 'StfwfSchema', df = xls)
   return(output)
