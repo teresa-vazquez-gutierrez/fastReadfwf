@@ -41,6 +41,5 @@ df <- data.frame(variable = c('Turnover', 'Employees'),
                                  'Number of employees of the business unit'))
 new(Class = 'StfwfSchema', df = df)
 
-
 }
 

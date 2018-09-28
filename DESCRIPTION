@@ -20,8 +20,9 @@ Encoding: UTF-8
 Collate:
     'StfwfSchema-class.R'
     'XLSToSchema.R'
-    'fread_fwf.R'
     'getdf.R'
+    'fread_fwf.R'
+    'show.R'
 RoxygenNote: 5.0.1
 URL: https://github.com/david-salgado/fastReadfwf
 BugReports: https://github.com/david-salgado/fastReadfwf/issues

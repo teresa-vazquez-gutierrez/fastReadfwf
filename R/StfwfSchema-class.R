@@ -35,6 +35,7 @@
 #'                                  'Number of employees of the business unit'))
 #' new(Class = 'StfwfSchema', df = df)
 #'
+#' @importFrom qdapRegex is.regex
 #'
 #' @export
 setClass(Class = "StfwfSchema",
@@ -88,7 +89,7 @@ setClass(Class = "StfwfSchema",
           }
 
           # type num or char
-          if (!any(df$type %in% c('num', 'char'))) {
+          if (!any(df$type %in% c('num', 'char', 'bool'))) {
 
             stop('[StfwfSchema:: validity StfwfSchema] The type must be either char or num.')
 

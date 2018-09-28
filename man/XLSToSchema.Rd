@@ -4,10 +4,12 @@
 \alias{XLSToSchema}
 \title{Build an object of class \linkS4class{StfwfSchema}.}
 \usage{
-XLSToSchema(xlsname, lang = "sp")
+XLSToSchema(xlsname, sheetname, lang = "sp")
 }
 \arguments{
 \item{xlsname}{Name of the xls file containing the schema.}
+
+\item{sheetname}{Name or index of the sheet of the xls file.}
 
 \item{lang}{Character vector of length 1 indicating the language for the header in the xls file
 (English: en; Spanish: sp).}

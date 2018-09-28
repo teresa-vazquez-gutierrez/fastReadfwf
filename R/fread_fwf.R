@@ -41,7 +41,7 @@ setGeneric("fread_fwf",
 
 #' @rdname fread_fwf
 #'
-#' @include StfwfSchema-class.R
+#' @include StfwfSchema-class.R getdf.R
 #'
 #' @export
 setMethod(f = "fread_fwf",
@@ -50,8 +50,8 @@ setMethod(f = "fread_fwf",
 
     trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 
-    dt <-  fread(file = filename, colClasses = "character",
-                 sep = "\n", header = FALSE, encoding = encoding)
+    dt <-  data.table::fread(file = filename, colClasses = "character",
+                             sep = "\n", header = FALSE, encoding = encoding)
     schema <- getdf(StfwfSchema)
     posMatrix <- schema[, c('initialPos', 'finalPos')]
     varNames <- schema$variable

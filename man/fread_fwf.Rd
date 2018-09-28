@@ -6,10 +6,11 @@
 \alias{fread_fwf,character,StfwfSchema-method}
 \title{Fast read a fixed-width file}
 \usage{
-fread_fwf(filename, StfwfSchema, encoding = "unknown")
+fread_fwf(filename, StfwfSchema, encoding = "unknown", check = FALSE,
+  perl = FALSE)
 
 \S4method{fread_fwf}{character,StfwfSchema}(filename, StfwfSchema,
-  encoding = "unknown")
+  encoding = "unknown", check = FALSE, perl = FALSE)
 }
 \arguments{
 \item{filename}{Character vector of length 1 with the name of the file to read.}
