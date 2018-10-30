@@ -16,6 +16,12 @@
 #' NB: it is not used to re-encode the input but to enable handling of encoded strings in their
 #' native encoding.
 #'
+#' @param check Logical vector of length 1 with default value \code{FALSE} to check if the values of
+#' each variable in the read file satisfy the regexp specified in the schema.
+#'
+#' @param perl Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
+#' perl or not in the application of regexp.
+#'
 #' @return Returns a \linkS4class{data.table} with the contents of the file.
 #'
 #' @examples
@@ -34,10 +40,7 @@
 #' @export
 setGeneric("fread_fwf",
            function(filename, StfwfSchema, encoding = 'unknown', check = FALSE, perl = FALSE) {
-
-             standardGeneric("fread_fwf")
-
-           })
+             standardGeneric("fread_fwf")})
 
 #' @rdname fread_fwf
 #'

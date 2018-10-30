@@ -1,10 +1,11 @@
-#' @title Return slot \code{df} from the input object.
+#' @title Return variable names from the input schema.
 #'
-#' @description \code{getdf} extracts the slot \code{df} of the input object.
+#' @description \code{getdf} extracts the slot \code{df} of the input object and returns its column
+#' \code{variable} as a vector.
 #'
 #' @param object Object of class \linkS4class{StfwfSchema}.
 #'
-#' @return A data.frame.
+#' @return A character vector.
 #'
 #' @examples
 #' # A trivial example:
@@ -18,18 +19,18 @@
 #'                                  'Number of employees of the business unit'),
 #'                  stringsAsFactors = FALSE)
 #' Schema <- new(Class = 'StfwfSchema', df = df)
-#' getdf(Schema)
+#' getVariables(Schema)
 #'
 #'
 #' @export
-setGeneric("getdf", function(object){standardGeneric("getdf")})
+setGeneric("getVariables", function(object){standardGeneric("getVariables")})
 
-#' @rdname getdf
+#' @rdname getVariables
 #'
 #' @export
 setMethod(
-  f = "getdf",
+  f = "getVariables",
   signature = c("StfwfSchema"),
-  function(object){object@df}
+  function(object){object@df[['variable']]}
 )
 

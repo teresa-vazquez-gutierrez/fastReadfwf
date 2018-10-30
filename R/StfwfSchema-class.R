@@ -32,7 +32,8 @@
 #'                  type = rep('num', 2),
 #'                  valueRegEx = c('[0-9]{0,9}', '[0-9]{0,3}'),
 #'                  description = c('Turnover of the business unit',
-#'                                  'Number of employees of the business unit'))
+#'                                  'Number of employees of the business unit'),
+#'                  stringsAsFactors = FALSE)
 #' new(Class = 'StfwfSchema', df = df)
 #'
 #' @importFrom qdapRegex is.regex
@@ -55,7 +56,49 @@ setClass(Class = "StfwfSchema",
              warning('[StfwfSchema:: validity StfwfSchema] The schema data.frame has 0 rows.\n')
 
            }
+           # Column types
+           colClasses <- lapply(df, class)
+           if (colClasses$variable != 'character') {
 
+             stop('[StfwfSchema:: validity StfwfSchema] The class of column variable must be character.\n')
+
+           }
+
+           if (!colClasses$length %in% c('numeric', 'integer')) {
+
+             stop('[StfwfSchema:: validity StfwfSchema] The class of column length must be numeric or integer.\n')
+
+           }
+
+           if (!colClasses$initialPos %in% c('numeric', 'integer')) {
+
+             stop('[StfwfSchema:: validity StfwfSchema] The class of column initialPos must be numeric or integer.\n')
+
+           }
+
+           if (!colClasses$finalPos %in% c('numeric', 'integer')) {
+
+             stop('[StfwfSchema:: validity StfwfSchema] The class of column finalPos must be numeric or integer.\n')
+
+           }
+
+           if (colClasses$type != 'character') {
+
+             stop('[StfwfSchema:: validity StfwfSchema] The class of column type must be character.\n')
+
+           }
+
+           if (colClasses$valueRegEx != 'character') {
+
+             stop('[StfwfSchema:: validity StfwfSchema] The class of column valueRegEx must be character.\n')
+
+           }
+
+           if (colClasses$description != 'character') {
+
+             stop('[StfwfSchema:: validity StfwfSchema] The class of column description must be character.\n')
+
+           }
            # Column names
            if (!all(names(df) ==
                     c('variable', 'length', 'initialPos', 'finalPos',
