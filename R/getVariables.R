@@ -1,7 +1,7 @@
 #' @title Return variable names from the input schema.
 #'
-#' @description \code{getdf} extracts the slot \code{df} of the input object and returns its column
-#' \code{variable} as a vector.
+#' @description \code{getVariables} extracts the slot \code{df} of the input object and returns its
+#' column \code{variable} as a vector.
 #'
 #' @param object Object of class \linkS4class{StfwfSchema}.
 #'
