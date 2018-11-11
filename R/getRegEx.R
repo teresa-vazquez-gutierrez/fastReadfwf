@@ -21,6 +21,7 @@
 #' Schema <- new(Class = 'StfwfSchema', df = df)
 #' getRegEx(Schema)
 #'
+#' @include getdf.R getVariables.R
 #'
 #' @export
 setGeneric("getRegEx", function(object){standardGeneric("getRegEx")})
@@ -31,6 +32,12 @@ setGeneric("getRegEx", function(object){standardGeneric("getRegEx")})
 setMethod(
   f = "getRegEx",
   signature = c("StfwfSchema"),
-  function(object){object@df[['valueRegEx']]}
+  function(object){
+
+    out <- getdf(object)[['valueRegEx']]
+    names(out) <- getVariables(object)
+    return(out)
+
+  }
 )
 

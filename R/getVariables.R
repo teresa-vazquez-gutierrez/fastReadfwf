@@ -22,6 +22,8 @@
 #' getVariables(Schema)
 #'
 #'
+#' @include getdf.R
+#'
 #' @export
 setGeneric("getVariables", function(object){standardGeneric("getVariables")})
 
@@ -31,6 +33,6 @@ setGeneric("getVariables", function(object){standardGeneric("getVariables")})
 setMethod(
   f = "getVariables",
   signature = c("StfwfSchema"),
-  function(object){object@df[['variable']]}
+  function(object){getdf(object)[['variable']]}
 )
 

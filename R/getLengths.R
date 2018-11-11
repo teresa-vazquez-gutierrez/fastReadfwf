@@ -22,6 +22,8 @@
 #' getLengths(Schema)
 #'
 #'
+#' @include getdf.R getVariables.R
+#'
 #' @export
 setGeneric("getLengths", function(object){standardGeneric("getLengths")})
 
@@ -31,6 +33,11 @@ setGeneric("getLengths", function(object){standardGeneric("getLengths")})
 setMethod(
   f = "getLengths",
   signature = c("StfwfSchema"),
-  function(object){object@df[['length']]}
+  function(object){
+
+    out <- getdt(object)[['length']]
+    names(out) <- getVariables(object)
+    return(out)
+  }
 )
 

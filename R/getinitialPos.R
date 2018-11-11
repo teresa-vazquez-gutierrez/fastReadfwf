@@ -21,6 +21,7 @@
 #' Schema <- new(Class = 'StfwfSchema', df = df)
 #' getinitialPos(Schema)
 #'
+#' @include getdf.R getVariables.R
 #'
 #' @export
 setGeneric("getinitialPos", function(object){standardGeneric("getinitialPos")})
@@ -31,6 +32,11 @@ setGeneric("getinitialPos", function(object){standardGeneric("getinitialPos")})
 setMethod(
   f = "getinitialPos",
   signature = c("StfwfSchema"),
-  function(object){object@df[['initialPos']]}
+  function(object){
+
+    out <- getdf(object)[['initialPos']]
+    names(out) <- getVariables(object)
+    return(out)
+  }
 )
 

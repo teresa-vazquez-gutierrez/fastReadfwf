@@ -22,6 +22,7 @@
 #' Schema <- new(Class = 'StfwfSchema', df = df)
 #' getTypes(Schema)
 #'
+#' @include getdf.R getVariables.R
 #'
 #' @export
 setGeneric("getTypes", function(object){standardGeneric("getTypes")})
@@ -32,6 +33,12 @@ setGeneric("getTypes", function(object){standardGeneric("getTypes")})
 setMethod(
   f = "getTypes",
   signature = c("StfwfSchema"),
-  function(object){object@df[['type']]}
+  function(object){
+
+    out <- getdf(object)[['type']]
+    names(out) <- getVariables(object)
+    return(out)
+
+  }
 )
 

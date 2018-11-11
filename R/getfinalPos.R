@@ -21,6 +21,7 @@
 #' Schema <- new(Class = 'StfwfSchema', df = df)
 #' getfinalPos(Schema)
 #'
+#' @include getdf.R getVariables.R
 #'
 #' @export
 setGeneric("getfinalPos", function(object){standardGeneric("getfinalPos")})
@@ -31,6 +32,12 @@ setGeneric("getfinalPos", function(object){standardGeneric("getfinalPos")})
 setMethod(
   f = "getfinalPos",
   signature = c("StfwfSchema"),
-  function(object){object@df[['finalPos']]}
+  function(object){
+
+    out <- getdf(object)[['finalPos']]
+    names(out) <- getVariables(object)
+    return(out)
+
+  }
 )
 
