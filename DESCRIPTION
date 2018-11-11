@@ -22,6 +22,7 @@ Collate:
     'XLSToSchema.R'
     'getdf.R'
     'fread_fwf.R'
+    'getLengths.R'
     'getVariables.R'
     'show.R'
 RoxygenNote: 6.1.0
