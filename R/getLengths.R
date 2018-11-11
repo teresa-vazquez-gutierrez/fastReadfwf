@@ -35,7 +35,7 @@ setMethod(
   signature = c("StfwfSchema"),
   function(object){
 
-    out <- getdt(object)[['length']]
+    out <- getdf(object)[['length']]
     names(out) <- getVariables(object)
     return(out)
   }
