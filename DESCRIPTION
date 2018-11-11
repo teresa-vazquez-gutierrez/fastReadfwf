@@ -23,6 +23,7 @@ Collate:
     'getdf.R'
     'fread_fwf.R'
     'getLengths.R'
+    'getTypes.R'
     'getVariables.R'
     'getfinalPos.R'
     'getinitialPos.R'
