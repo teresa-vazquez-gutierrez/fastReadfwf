@@ -24,6 +24,7 @@ Collate:
     'fread_fwf.R'
     'getLengths.R'
     'getVariables.R'
+    'getfinalPos.R'
     'getinitialPos.R'
     'show.R'
 RoxygenNote: 6.1.0
