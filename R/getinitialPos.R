@@ -1,7 +1,7 @@
-#' @title Return variable lengths from the input schema.
+#' @title Return variable initial positions from the input schema.
 #'
-#' @description \code{getLengths} extracts the slot \code{df} of the input object and returns its
-#' column \code{length} as a vector.
+#' @description \code{getinitialPos} extracts the slot \code{df} of the input object and returns its
+#' column \code{initialPos} as a vector.
 #'
 #' @param object Object of class \linkS4class{StfwfSchema}.
 #'
@@ -19,18 +19,18 @@
 #'                                  'Number of employees of the business unit'),
 #'                  stringsAsFactors = FALSE)
 #' Schema <- new(Class = 'StfwfSchema', df = df)
-#' getLengths(Schema)
+#' getinitialPos(Schema)
 #'
 #'
 #' @export
-setGeneric("getLengths", function(object){standardGeneric("getLengths")})
+setGeneric("getinitialPos", function(object){standardGeneric("getinitialPos")})
 
-#' @rdname getLengths
+#' @rdname getinitialPos
 #'
 #' @export
 setMethod(
-  f = "getLengths",
+  f = "getinitialPos",
   signature = c("StfwfSchema"),
-  function(object){object@df[['length']]}
+  function(object){object@df[['initialPos']]}
 )
 
