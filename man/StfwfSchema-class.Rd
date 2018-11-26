@@ -38,7 +38,8 @@ df <- data.frame(variable = c('Turnover', 'Employees'),
                  type = rep('num', 2),
                  valueRegEx = c('[0-9]{0,9}', '[0-9]{0,3}'),
                  description = c('Turnover of the business unit',
-                                 'Number of employees of the business unit'))
+                                 'Number of employees of the business unit'),
+                 stringsAsFactors = FALSE)
 new(Class = 'StfwfSchema', df = df)
 
 }

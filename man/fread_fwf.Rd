@@ -21,6 +21,12 @@ fread_fwf(filename, StfwfSchema, encoding = "unknown", check = FALSE,
 options are "UTF-8" and "Latin-1".
 NB: it is not used to re-encode the input but to enable handling of encoded strings in their
 native encoding.}
+
+\item{check}{Logical vector of length 1 with default value \code{FALSE} to check if the values of
+each variable in the read file satisfy the regexp specified in the schema.}
+
+\item{perl}{Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
+perl or not in the application of regexp.}
 }
 \value{
 Returns a \linkS4class{data.table} with the contents of the file.
