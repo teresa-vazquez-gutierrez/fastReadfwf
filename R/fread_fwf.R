@@ -11,24 +11,24 @@
 #'
 #' @param StfwfSchema Object of class \linkS4class{StfwfSchema} with the schema of the file to read.
 #'
-#' @param encoding Character vector of length 1 with default value is "unknown". Other possible
-#' options are "UTF-8" and "Latin-1".
-#' NB: it is not used to re-encode the input but to enable handling of encoded strings in their
-#' native encoding.
-#'
-#' @param check Logical vector of length 1 with default value \code{FALSE} to check if the values of
-#' each variable in the read file satisfy the regexp specified in the schema.
+#' @param outFormat Character vector of length 1 whose default value is "data.table". Other
+#' option is "tibble".
 #'
 #' @param perl Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 #' perl or not in the application of regexp.
+#'
+#' @param ... Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
+#' according to the value of \code{outFormat} above.
 #'
 #' @return Returns a \linkS4class{data.table} with the contents of the file.
 #'
 #' @examples
 #' \dontrun{
-#' filename <- 'file1.txt'
-#' fileschema <- XLSToSchema('file1schema.xlsx')
-#' fread_fwf(filename, fileschema)
+#' path <- 'C:/Users/David/Documents/Cursos.Seminarios.Impartidos/UCM/EMOS/Organization/Course 2018-2019/Organization - OOP'
+#' pathSchema <- file.path(path, 'EPA/stEPA2018_Schema.xlsx')
+#' stSchema <- fastReadfwf::XLSToSchema(pathSchema, sheetname = 'stEPA2018_Schema', lang = 'en')
+#' dataFile_T1 <- file.path(path, 'EPA/md_EPA_2018T1.txt')
+#' data_T1_st <- fastReadfwf::fread_fwf(dataFile_T1, stSchema, outFormat = 'data.table', perl = TRUE)
 #'
 #' }
 #' @seealso \code{\link[data.table]{fread}}
@@ -37,61 +37,63 @@
 #'
 #' @importFrom stringi stri_sub
 #'
+#' #' @importFrom readr read_fwf fwf_widths
+#'
 #' @export
 setGeneric("fread_fwf",
-           function(filename, StfwfSchema, encoding = 'unknown', check = FALSE, perl = FALSE) {
+           function(filename, StfwfSchema, outFormat, ...) {
              standardGeneric("fread_fwf")})
 
 #' @rdname fread_fwf
 #'
-#' @include StfwfSchema-class.R getdf.R
+#' @include StfwfSchema-class.R getdf.R getVariables.R getTypes.R
 #'
 #' @export
 setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
-          function(filename, StfwfSchema, encoding = 'unknown', check = FALSE, perl = FALSE){
+          function(filename, StfwfSchema, outFormat = 'data.table', perl = FALSE, ...){
 
-    trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+    supportedFormats <- c('data.table', 'tibble')
 
-    dt <-  data.table::fread(file = filename, colClasses = "character",
-                             sep = "\n", header = FALSE, encoding = encoding)
-    schema <- getdf(StfwfSchema)
-    posMatrix <- schema[, c('initialPos', 'finalPos')]
-    varNames <- schema$variable
-    dt[ , (varNames) := lapply(1:(dim(posMatrix)[1]),
-                                    function(i) {
-                                      stringi::stri_sub(V1,
-                                                        posMatrix[i,1],
-                                                        posMatrix[i, 2])})][, V1 := NULL]
-    dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
-    numVarNames <- schema$variable[schema$type == 'num']
-    dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
+    if (!outFormat %in% supportedFormats) stop('[fastReadfwf:: fread_fwf] Output format not supported.\n')
 
-    if (check){
+    if (outFormat == 'data.table') {
 
-      cat('[fastReadfwf:: fread_fwf] Value patterns will be checked for each variable.\n\n')
-      varNames <- schema$variable
-      for (i in seq(along = varNames)){
+      trim <- function (x) gsub("^\\s+|\\s+$", "", x, perl = perl)
+      dt <-  data.table::fread(file = filename, colClasses = "character",
+                               sep = "\n", header = FALSE, ...)
+      schema <- getdf(StfwfSchema)
+      posMatrix <- schema[, c('initialPos', 'finalPos')]
+      varNames <- getVariables(StfwfSchema)
+      dt[ , (varNames) := lapply(1:(dim(posMatrix)[1]),
+                                      function(i) {
+                                        stringi::stri_sub(V1,
+                                                          posMatrix[i,1],
+                                                          posMatrix[i, 2])})][, V1 := NULL]
+      dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
+      types <- getTypes(StfwfSchema)
+      numVarNames <- varNames[types == 'num']
+      dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
+      return(dt[])
 
-        cat(paste0('Checking variable ', varNames[i], '... '))
-        pattern <- schema$valueRegEx[i]
-        values <- dt[[varNames[i]]]
-        wrongValuesindex <- which(regexpr(pattern, values, perl = perl) == -1)
-        if (length(wrongValuesindex) == 0) {
+    }
 
-          cat('ok.\n')
+    if (outFormat == 'tibble') {
 
-        } else {
+      widths <- getLengths(stSchema)
+      varNames <- getVariables(stSchema)
+      types <- getTypes(StfwfSchema)
+      types <- paste0(substr(types, 1, 1), collapse = '')
+      tibble <- readr::read_fwf(
+        file = filename,
+        col_positions = readr::fwf_widths(widths, varNames),
+        col_types = types,
+        ...)
+      return(tibble)
 
-          cat()
-
-          stop(paste0('\nPlease revise either the data set or the regex for this variable.\n\n The following values do not follow the pattern:\n',
-                      paste0(dt[[varNames[i]]][wrongValuesindex], collapse = ', ')))
-        }
-      }
     }
 
 
-    return(dt[])
+
 })
 
