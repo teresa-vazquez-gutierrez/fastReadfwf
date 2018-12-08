@@ -8,7 +8,7 @@
 #'  \itemize{
 #'
 #'    \item variable: the name of the variable.
-#'    \item length: the number of positions which the values of this variable occupies in the file.
+#'    \item width: the number of positions which the values of this variable occupies in the file.
 #'    \item initialPos: initial position of the field whic hthe values of this variable occupies in
 #'    the file.
 #'    \item finalPos: final position of the field whic hthe values of this variable occupies in the
@@ -26,7 +26,7 @@
 #'
 #' # A trivial example:
 #' df <- data.frame(variable = c('Turnover', 'Employees'),
-#'                  length = c(9L, 3L),
+#'                  width = c(9L, 3L),
 #'                  initialPos = c(1, 10),
 #'                  finalPos = c(9, 12),
 #'                  type = rep('num', 2),
@@ -42,7 +42,7 @@
 setClass(Class = "StfwfSchema",
          representation = list(df = 'data.frame'),
          prototype = list(df = data.frame(variable = character(0),
-                                          length = integer(0),
+                                          width = integer(0),
                                           initialPos = integer(0),
                                           finalPos = integer(0),
                                           type = character(0),
@@ -64,9 +64,9 @@ setClass(Class = "StfwfSchema",
 
            }
 
-           if (!colClasses$length %in% c('numeric', 'integer')) {
+           if (!colClasses$width %in% c('numeric', 'integer')) {
 
-             stop('[StfwfSchema:: validity StfwfSchema] The class of column length must be numeric or integer.\n')
+             stop('[StfwfSchema:: validity StfwfSchema] The class of column width must be numeric or integer.\n')
 
            }
 
@@ -101,7 +101,7 @@ setClass(Class = "StfwfSchema",
            }
            # Column names
            if (!all(names(df) ==
-                    c('variable', 'length', 'initialPos', 'finalPos',
+                    c('variable', 'width', 'initialPos', 'finalPos',
                       'type', 'valueRegEx', 'description'))) {
 
              stop('[StfwfSchema:: validity StfwfSchema] The schema data.frame has wrong column names. (Check also the order). \n')
@@ -115,24 +115,30 @@ setClass(Class = "StfwfSchema",
              stop(paste0('[StfwfSchema:: validity StfwfSchema] The following variables have incoherent positions:', paste0(errorDiffPos, collapse = ' , '), '.\n'))
 
            }
-           # length = finPos - iniPos + 1
+           # width = finPos - iniPos + 1
            diff <- df$finalPos - df$initialPos + 1
-           errorLengthVar <- df$variable[diff != df$length]
-           if (length(errorLengthVar) > 0) {
+           errorwidthVar <- df$variable[diff != df$width]
+           if (length(errorwidthVar) > 0) {
 
-             stop(paste0('[StfwfSchema:: validity StfwfSchema] The following variables have incoherent lengths and positions:', paste0(errorLengthVar, collapse = ' , '), '.\n'))
+             stop(paste0('[StfwfSchema:: validity StfwfSchema] The following variables have incoherent widths and positions:', paste0(errorwidthVar, collapse = ' , '), '.\n'))
 
            }
 
-           # sum(length) = finPos[final] - iniPos[initial] + 1
-           if (df$finalPos[dim(df)[1]] - df$initialPos[1] + 1 != sum(df$length)) {
+           # sum(width) = finPos[final] - iniPos[initial] + 1
+           if (df$finalPos[dim(df)[1]] - df$initialPos[1] + 1 > sum(df$width)) {
 
-             stop('[StfwfSchema:: validity StfwfSchema] The sum of lengths is not coherent with the set of positions.')
+             warning('[StfwfSchema:: validity StfwfSchema] The sum of widths is not equal to the number of positions. There seems to be blank spaces in the schema.\n')
 
-          }
+           }
+
+           if (df$finalPos[dim(df)[1]] - df$initialPos[1] + 1 < sum(df$width)) {
+
+             stop('[StfwfSchema:: validity StfwfSchema] The sum of widths is not equal to the number of positions. There seems to be overlapping positions.\n')
+
+           }
 
           # type num or char
-          if (!any(df$type %in% c('num', 'char', 'bool'))) {
+          if (!any(df$type %in% c('num', 'char', 'log'))) {
 
             stop('[StfwfSchema:: validity StfwfSchema] The type must be either char or num.')
 

@@ -28,7 +28,8 @@
 #' pathSchema <- file.path(path, 'EPA/stEPA2018_Schema.xlsx')
 #' stSchema <- fastReadfwf::XLSToSchema(pathSchema, sheetname = 'stEPA2018_Schema', lang = 'en')
 #' dataFile_T1 <- file.path(path, 'EPA/md_EPA_2018T1.txt')
-#' data_T1_st <- fastReadfwf::fread_fwf(dataFile_T1, stSchema, outFormat = 'data.table', perl = TRUE)
+#' data_T1_dt <- fread_fwf(dataFile_T1, stSchema, outFormat = 'data.table', perl = TRUE)
+#' data_T1_ti <- fread_fwf(dataFile_T1, stSchema, outFormat = 'tibble')
 #'
 #' }
 #' @seealso \code{\link[data.table]{fread}}
@@ -80,7 +81,7 @@ setMethod(f = "fread_fwf",
 
     if (outFormat == 'tibble') {
 
-      widths <- getLengths(stSchema)
+      widths <- getWidths(stSchema)
       varNames <- getVariables(stSchema)
       types <- getTypes(StfwfSchema)
       types <- paste0(substr(types, 1, 1), collapse = '')

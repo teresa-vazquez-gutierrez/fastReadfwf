@@ -1,6 +1,6 @@
 #' @title Return variable lengths from the input schema.
 #'
-#' @description \code{getLengths} extracts the slot \code{df} of the input object and returns its
+#' @description \code{getWidths} extracts the slot \code{df} of the input object and returns its
 #' column \code{length} as a vector.
 #'
 #' @param object Object of class \linkS4class{StfwfSchema}.
@@ -10,7 +10,7 @@
 #' @examples
 #' # A trivial example:
 #' df <- data.frame(variable = c('Turnover', 'Employees'),
-#'                  length = c(9L, 3L),
+#'                  width = c(9L, 3L),
 #'                  initialPos = c(1, 10),
 #'                  finalPos = c(9, 12),
 #'                  type = rep('num', 2),
@@ -19,23 +19,23 @@
 #'                                  'Number of employees of the business unit'),
 #'                  stringsAsFactors = FALSE)
 #' Schema <- new(Class = 'StfwfSchema', df = df)
-#' getLengths(Schema)
+#' getWidths(Schema)
 #'
 #'
 #' @include getdf.R getVariables.R
 #'
 #' @export
-setGeneric("getLengths", function(object){standardGeneric("getLengths")})
+setGeneric("getWidths", function(object){standardGeneric("getWidths")})
 
-#' @rdname getLengths
+#' @rdname getWidths
 #'
 #' @export
 setMethod(
-  f = "getLengths",
+  f = "getWidths",
   signature = c("StfwfSchema"),
   function(object){
 
-    out <- getdf(object)[['length']]
+    out <- getdf(object)[['width']]
     names(out) <- getVariables(object)
     return(out)
   }
