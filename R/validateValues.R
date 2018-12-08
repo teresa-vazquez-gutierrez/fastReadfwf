@@ -20,10 +20,12 @@
 #' \dontrun{
 #' path <- 'C:/Users/David/Documents/Cursos.Seminarios.Impartidos/UCM/EMOS/Organization/Course 2018-2019/Organization - OOP'
 #' pathSchema <- file.path(path, 'EPA/stEPA2018_Schema.xlsx')
-#' stSchema <- fastReadfwf::XLSToSchema(pathSchema, sheetname = 'stEPA2018_Schema', lang = 'en')
+#' stSchema <- XLSToSchema(pathSchema, sheetname = 'stEPA2018_Schema', lang = 'en')
 #' dataFile_T1 <- file.path(path, 'EPA/md_EPA_2018T1.txt')
-#' data_T1_st <- fastReadfwf::fread_fwf(dataFile_T1, stSchema, perl = TRUE)
+#' data_T1_dt <- fread_fwf(dataFile_T1, stSchema, outFormat = 'data.table', perl = TRUE)
+#' data_T1_ti <- fread_fwf(dataFile_T1, stSchema, outFormat = 'tibble', perl = TRUE)
 #' validateValues(data_T1_st, stSchema, perl = TRUE)
+#' validateValues(data_T1_ti, stSchema, perl = TRUE)
 #'
 #' }
 #'
