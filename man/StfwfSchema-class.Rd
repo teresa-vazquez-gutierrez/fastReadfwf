@@ -15,7 +15,7 @@ schema of the fixed-width file to read.
  \itemize{
 
    \item variable: the name of the variable.
-   \item length: the number of positions which the values of this variable occupies in the file.
+   \item width: the number of positions which the values of this variable occupies in the file.
    \item initialPos: initial position of the field whic hthe values of this variable occupies in
    the file.
    \item finalPos: final position of the field whic hthe values of this variable occupies in the
@@ -32,7 +32,7 @@ new(Class = 'StfwfSchema')
 
 # A trivial example:
 df <- data.frame(variable = c('Turnover', 'Employees'),
-                 length = c(9L, 3L),
+                 width = c(9L, 3L),
                  initialPos = c(1, 10),
                  finalPos = c(9, 12),
                  type = rep('num', 2),

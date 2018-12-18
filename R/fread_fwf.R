@@ -38,7 +38,7 @@
 #'
 #' @importFrom stringi stri_sub
 #'
-#' #' @importFrom readr read_fwf fwf_widths
+#' @importFrom readr read_fwf fwf_widths
 #'
 #' @export
 setGeneric("fread_fwf",

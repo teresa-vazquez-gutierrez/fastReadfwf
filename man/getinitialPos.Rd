@@ -23,7 +23,7 @@ column \code{initialPos} as a vector.
 \examples{
 # A trivial example:
 df <- data.frame(variable = c('Turnover', 'Employees'),
-                 length = c(9L, 3L),
+                 width = c(9L, 3L),
                  initialPos = c(1, 10),
                  finalPos = c(9, 12),
                  type = rep('num', 2),

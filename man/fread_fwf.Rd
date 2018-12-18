@@ -6,24 +6,21 @@
 \alias{fread_fwf,character,StfwfSchema-method}
 \title{Fast read a fixed-width file}
 \usage{
-fread_fwf(filename, StfwfSchema, encoding = "unknown", check = FALSE,
-  perl = FALSE)
+fread_fwf(filename, StfwfSchema, outFormat, ...)
 
 \S4method{fread_fwf}{character,StfwfSchema}(filename, StfwfSchema,
-  encoding = "unknown", check = FALSE, perl = FALSE)
+  outFormat = "data.table", perl = FALSE, ...)
 }
 \arguments{
 \item{filename}{Character vector of length 1 with the name of the file to read.}
 
 \item{StfwfSchema}{Object of class \linkS4class{StfwfSchema} with the schema of the file to read.}
 
-\item{encoding}{Character vector of length 1 with default value is "unknown". Other possible
-options are "UTF-8" and "Latin-1".
-NB: it is not used to re-encode the input but to enable handling of encoded strings in their
-native encoding.}
+\item{outFormat}{Character vector of length 1 whose default value is "data.table". Other
+option is "tibble".}
 
-\item{check}{Logical vector of length 1 with default value \code{FALSE} to check if the values of
-each variable in the read file satisfy the regexp specified in the schema.}
+\item{...}{Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
+according to the value of \code{outFormat} above.}
 
 \item{perl}{Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 perl or not in the application of regexp.}
@@ -41,9 +38,12 @@ application of \code{\link[stringi]{stri_sub}}.
 }
 \examples{
 \dontrun{
-filename <- 'file1.txt'
-fileschema <- XLSToSchema('file1schema.xlsx')
-fread_fwf(filename, fileschema)
+path <- 'C:/Users/David/Documents/Cursos.Seminarios.Impartidos/UCM/EMOS/Organization/Course 2018-2019/Organization - OOP'
+pathSchema <- file.path(path, 'EPA/stEPA2018_Schema.xlsx')
+stSchema <- fastReadfwf::XLSToSchema(pathSchema, sheetname = 'stEPA2018_Schema', lang = 'en')
+dataFile_T1 <- file.path(path, 'EPA/md_EPA_2018T1.txt')
+data_T1_dt <- fread_fwf(dataFile_T1, stSchema, outFormat = 'data.table', perl = TRUE)
+data_T1_ti <- fread_fwf(dataFile_T1, stSchema, outFormat = 'tibble')
 
 }
 }
