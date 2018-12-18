@@ -74,7 +74,11 @@ setMethod(f = "fread_fwf",
       dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
       types <- getTypes(StfwfSchema)
       numVarNames <- varNames[types == 'num']
-      dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
+      if (length(numVarNames) > 0 ) {
+
+        dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
+
+      }
       return(dt[])
 
     }
