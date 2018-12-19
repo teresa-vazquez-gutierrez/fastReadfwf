@@ -74,6 +74,7 @@ setMethod(f = "fread_fwf",
       dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
       types <- getTypes(StfwfSchema)
       numVarNames <- varNames[types == 'num']
+
       if (length(numVarNames) > 0 ) {
 
         dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
@@ -85,8 +86,8 @@ setMethod(f = "fread_fwf",
 
     if (outFormat == 'tibble') {
 
-      widths <- getWidths(stSchema)
-      varNames <- getVariables(stSchema)
+      widths <- getWidths(StfwfSchema)
+      varNames <- getVariables(StfwfSchema)
       types <- getTypes(StfwfSchema)
       types <- paste0(substr(types, 1, 1), collapse = '')
       tibble <- readr::read_fwf(
