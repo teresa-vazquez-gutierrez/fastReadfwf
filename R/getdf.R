@@ -1,4 +1,4 @@
-#' @title Return slot \code{df} from the input object.
+#' @title Get slot \code{df} from the input object.
 #'
 #' @description \code{getdf} extracts the slot \code{df} of the input object.
 #'

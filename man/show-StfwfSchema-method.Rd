@@ -3,7 +3,7 @@
 \docType{methods}
 \name{show,StfwfSchema-method}
 \alias{show,StfwfSchema-method}
-\title{Show an object of class \linkS4class{StfwfSchema}}
+\title{Show an object of class \linkS4class{StfwfSchema}.}
 \usage{
 \S4method{show}{StfwfSchema}(object)
 }
@@ -11,7 +11,7 @@
 \item{object}{Object of class \linkS4class{StfwfSchema}.}
 }
 \value{
-Invisible \code{\link{NULL}}.
+Return invisible \code{\link{NULL}}.
 }
 \description{
 \code{show} displays the slot \code{df} of the input \linkS4class{StfwfSchema} object excluding
@@ -22,4 +22,3 @@ the description column.
 show(new(Class = 'StfwfSchema'))
 
 }
-

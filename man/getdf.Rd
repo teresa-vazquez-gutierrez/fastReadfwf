@@ -4,7 +4,7 @@
 \name{getdf}
 \alias{getdf}
 \alias{getdf,StfwfSchema-method}
-\title{Return slot \code{df} from the input object.}
+\title{Get slot \code{df} from the input object.}
 \usage{
 getdf(object)
 
@@ -35,4 +35,3 @@ getdf(Schema)
 
 
 }
-

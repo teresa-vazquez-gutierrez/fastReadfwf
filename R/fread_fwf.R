@@ -24,13 +24,17 @@
 #'
 #' @examples
 #' \dontrun{
-#' path <- 'C:/Users/David/Documents/Cursos.Seminarios.Impartidos/UCM/EMOS/Organization/Course 2018-2019/Organization - OOP'
-#' pathSchema <- file.path(path, 'EPA/stEPA2018_Schema.xlsx')
-#' stSchema <- fastReadfwf::XLSToSchema(pathSchema, sheetname = 'stEPA2018_Schema', lang = 'en')
-#' dataFile_T1 <- file.path(path, 'EPA/md_EPA_2018T1.txt')
-#' data_T1_dt <- fread_fwf(dataFile_T1, stSchema, outFormat = 'data.table', perl = TRUE)
-#' data_T1_ti <- fread_fwf(dataFile_T1, stSchema, outFormat = 'tibble')
-#'
+#' path <- system.file('extdata', package = 'fastReadfwf')
+#' stSchema <- fastReadfwf::xlsxToSchema(
+#'    file.path(path, 'Schema.SNHS.xlsx'),
+#'    sheetname = 'stENSE2017Adulto_Schema')
+#' data.DT <- fread_fwf(
+#' file.path(path, 'Example.MicroData.SNHS.txt'), stSchema, outFormat = 'data.table', perl = TRUE)
+#' head(data.DT)
+#' data.tibble <- fread_fwf(
+#' file.path(path, 'Example.MicroData.SNHS.txt'), stSchema, outFormat = 'tibble', perl = TRUE)
+#' head(data.tibble)
+
 #' }
 #' @seealso \code{\link[data.table]{fread}}
 #'
@@ -61,8 +65,7 @@ setMethod(f = "fread_fwf",
     if (outFormat == 'data.table') {
 
       trim <- function (x) gsub("^\\s+|\\s+$", "", x, perl = perl)
-      dt <-  data.table::fread(file = filename, colClasses = "character",
-                               sep = "\n", header = FALSE, ...)
+      dt <-  fread(file = filename, colClasses = "character", sep = "\n", header = FALSE, ...)
       schema <- getdf(StfwfSchema)
       posMatrix <- schema[, c('initialPos', 'finalPos')]
       varNames <- getVariables(StfwfSchema)
@@ -75,7 +78,7 @@ setMethod(f = "fread_fwf",
       types <- getTypes(StfwfSchema)
       numVarNames <- varNames[types == 'num']
 
-      if (length(numVarNames) > 0 ) {
+      if (length(numVarNames) > 0) {
 
         dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
 

@@ -8,15 +8,16 @@
 \usage{
 setinitialPos(schema, initialPos, variables)
 
-\S4method{setinitialPos}{StfwfSchema,integer}(schema, initialPos, variables)
+\S4method{setinitialPos}{StfwfSchema,integer}(schema, initialPos,
+  variables)
 }
 \arguments{
 \item{schema}{Object of class \linkS4class{StfwfSchema}.}
 
+\item{initialPos}{integer vector with the new initial positions of the variables.}
+
 \item{variables}{character vector with the names of the variables whose final positions are to be
 updated.}
-
-\item{initial}{integer vector with the new initial positions of the variables.}
 }
 \value{
 Object of class \linkS4class{StfwfSchema}.
@@ -40,4 +41,3 @@ Schema <- new(Class = 'StfwfSchema', df = df)
 setinitialPos(Schema, c(2L), c('Turnover'))
 
 }
-

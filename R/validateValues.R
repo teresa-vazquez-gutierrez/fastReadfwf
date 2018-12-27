@@ -17,17 +17,15 @@
 #' @return Returns \code{TRUE}.
 #'
 #' @examples
-#' \dontrun{
-#' path <- 'C:/Users/David/Documents/Cursos.Seminarios.Impartidos/UCM/EMOS/Organization/Course 2018-2019/Organization - OOP'
-#' pathSchema <- file.path(path, 'EPA/stEPA2018_Schema.xlsx')
-#' stSchema <- XLSToSchema(pathSchema, sheetname = 'stEPA2018_Schema', lang = 'en')
-#' dataFile_T1 <- file.path(path, 'EPA/md_EPA_2018T1.txt')
-#' data_T1_dt <- fread_fwf(dataFile_T1, stSchema, outFormat = 'data.table', perl = TRUE)
-#' data_T1_ti <- fread_fwf(dataFile_T1, stSchema, outFormat = 'tibble', perl = TRUE)
-#' validateValues(data_T1_st, stSchema, perl = TRUE)
-#' validateValues(data_T1_ti, stSchema, perl = TRUE)
+#' path <- system.file('extdata', package = 'fastReadfwf')
+#' stSchema <- fastReadfwf::xlsxToSchema(
+#'    file.path(path, 'Schema.SNHS.xlsx'),
+#'    sheetname = 'stENSE2017Adulto_Schema')
+#' data <- fread_fwf(
+#' file.path(path, 'Example.MicroData.SNHS.txt'), stSchema, outFormat = 'data.table', perl = TRUE)
+#' validateValues(data, stSchema, perl = TRUE)
 #'
-#' }
+#'
 #'
 #' @import data.table
 #'

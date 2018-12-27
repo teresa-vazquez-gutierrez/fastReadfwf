@@ -5,7 +5,7 @@
 #'
 #' @param schema Object of class \linkS4class{StfwfSchema}.
 #'
-#' @param initial integer vector with the new initial positions of the variables.
+#' @param initialPos integer vector with the new initial positions of the variables.
 #'
 #' @param variables character vector with the names of the variables whose final positions are to be
 #' updated.

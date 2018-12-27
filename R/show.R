@@ -1,11 +1,11 @@
-#' Show an object of class \linkS4class{StfwfSchema}
+#' Show an object of class \linkS4class{StfwfSchema}.
 #'
 #' \code{show} displays the slot \code{df} of the input \linkS4class{StfwfSchema} object excluding
 #' the description column.
 #'
 #' @param object Object of class \linkS4class{StfwfSchema}.
 #'
-#' @return Invisible \code{\link{NULL}}.
+#' @return Return invisible \code{\link{NULL}}.
 #'
 #' @examples
 #' # A trivial example
@@ -16,7 +16,7 @@
 #' @export
 setMethod(
   f = "show",
-  signature = c("StfwfSchema"),
+  signature(object = "StfwfSchema"),
   function(object){
 
     output <- getdf(object)

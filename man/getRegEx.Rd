@@ -35,4 +35,3 @@ Schema <- new(Class = 'StfwfSchema', df = df)
 getRegEx(Schema)
 
 }
-
