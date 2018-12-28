@@ -49,6 +49,6 @@ The file may have a header or not. In the latter case, the order of columns is a
 }
 \examples{
 path <- system.file('extdata', package = 'fastReadfwf')
-csvToSchema(file.path(path, 'Schema.SNHS.csv'), header = TRUE)
+csvToSchema(file.path(path, 'SchemaSNHS.csv'), header = TRUE)
 
 }

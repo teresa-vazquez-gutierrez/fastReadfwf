@@ -33,12 +33,18 @@ application of \code{\link[stringi]{stri_sub}}.
 \examples{
 path <- system.file('extdata', package = 'fastReadfwf')
 stSchema <- fastReadfwf::xlsxToSchema(
-   file.path(path, 'Schema.SNHS.xlsx'),
-   sheetname = 'stENSE2017Adulto_Schema')
+   file.path(path, 'SchemaSNHS.xlsx'),
+   sheetname = 'stSchema')
+
+# For data.tables
 data <- fread_fwf(
-file.path(path, 'Example.MicroData.SNHS.txt'), stSchema, outFormat = 'data.table', perl = TRUE)
+file.path(path, 'MicroDataSNHS.txt'), stSchema, outFormat = 'data.table', perl = TRUE)
 validateValues(data, stSchema, perl = TRUE)
 
+# For tibbles
+data <- fread_fwf(
+file.path(path, 'MicroDataSNHS.txt'), stSchema, outFormat = 'tibble')
+validateValues(data, stSchema, perl = TRUE)
 
 
 }

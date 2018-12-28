@@ -36,7 +36,7 @@
 #'
 #' @examples
 #' path <- system.file('extdata', package = 'fastReadfwf')
-#' xlsxToSchema(file.path(path, 'Schema.SNHS.xlsx'), 'stENSE2017Adulto_Schema')
+#' xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 #'
 #' @import data.table
 #'

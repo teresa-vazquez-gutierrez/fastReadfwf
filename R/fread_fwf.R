@@ -23,19 +23,19 @@
 #' @return Returns a \linkS4class{data.table} with the contents of the file.
 #'
 #' @examples
-#' \dontrun{
 #' path <- system.file('extdata', package = 'fastReadfwf')
-#' stSchema <- fastReadfwf::xlsxToSchema(
-#'    file.path(path, 'Schema.SNHS.xlsx'),
-#'    sheetname = 'stENSE2017Adulto_Schema')
+#' stSchema <- fastReadfwf::xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
+#'
+#' # For data.tables
 #' data.DT <- fread_fwf(
-#' file.path(path, 'Example.MicroData.SNHS.txt'), stSchema, outFormat = 'data.table', perl = TRUE)
+#' file.path(path, 'MicroDataSNHS.txt'), stSchema, outFormat = 'data.table', perl = TRUE)
 #' head(data.DT)
+#'
+#' # For tibbles
 #' data.tibble <- fread_fwf(
-#' file.path(path, 'Example.MicroData.SNHS.txt'), stSchema, outFormat = 'tibble', perl = TRUE)
+#' file.path(path, 'MicroDataSNHS.txt'), stSchema, outFormat = 'tibble')
 #' head(data.tibble)
-
-#' }
+#'
 #' @seealso \code{\link[data.table]{fread}}
 #'
 #' @import data.table

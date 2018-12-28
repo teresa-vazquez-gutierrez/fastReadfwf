@@ -19,12 +19,18 @@
 #' @examples
 #' path <- system.file('extdata', package = 'fastReadfwf')
 #' stSchema <- fastReadfwf::xlsxToSchema(
-#'    file.path(path, 'Schema.SNHS.xlsx'),
-#'    sheetname = 'stENSE2017Adulto_Schema')
+#'    file.path(path, 'SchemaSNHS.xlsx'),
+#'    sheetname = 'stSchema')
+#'
+#' # For data.tables
 #' data <- fread_fwf(
-#' file.path(path, 'Example.MicroData.SNHS.txt'), stSchema, outFormat = 'data.table', perl = TRUE)
+#' file.path(path, 'MicroDataSNHS.txt'), stSchema, outFormat = 'data.table', perl = TRUE)
 #' validateValues(data, stSchema, perl = TRUE)
 #'
+#' # For tibbles
+#' data <- fread_fwf(
+#' file.path(path, 'MicroDataSNHS.txt'), stSchema, outFormat = 'tibble')
+#' validateValues(data, stSchema, perl = TRUE)
 #'
 #'
 #' @import data.table
@@ -33,8 +39,7 @@
 #'
 #' @export
 setGeneric("validateValues",
-           function(object, StfwfSchema, perl) {
-             standardGeneric("validateValues")})
+           function(object, StfwfSchema, perl) {standardGeneric("validateValues")})
 
 #' @rdname validateValues
 #'
@@ -51,6 +56,7 @@ setMethod(f = "validateValues",
     cat(paste0('Checking variable ', varNames[i], '... '))
     pattern <- valueRegEx[i]
     values <- object[[varNames[i]]]
+
     wrongValuesindex <- which(regexpr(pattern, values, perl = perl) == -1)
     if (length(wrongValuesindex) == 0) {
 
@@ -59,7 +65,7 @@ setMethod(f = "validateValues",
     } else {
 
       stop(paste0('\n Please revise either the data set or the regex for this variable.\n\n The following values do not follow the pattern:\n',
-                              paste0(dt[[varNames[i]]][wrongValuesindex], collapse = ', ')))
+                              paste0(object[[varNames[i]]][wrongValuesindex], collapse = ', ')))
     }
   })
   return(TRUE)
