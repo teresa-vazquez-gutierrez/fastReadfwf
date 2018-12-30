@@ -12,6 +12,7 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  cache = FALSE,
   comment = "#>"
 )
 ```
@@ -50,7 +51,7 @@ Notice that we have created a new sheet with name *stSchema* fully oriented towa
 
 This sheet can be straightforwardly read into a data.frame:
 
-```{r Origxlsx, echo = TRUE, eval = TRUE, cache = TRUE}
+```{r Origxlsx, echo = TRUE, eval = TRUE, cache = FALSE}
 library(openxlsx)
 path <- system.file('extdata', package = 'fastReadfwf')
 origSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'), 
@@ -61,7 +62,7 @@ str(origSchema)
 
 Notice that this original schema in xlsx format is almost in the standardised way. Some short ad-hoc work needs to be conducted for this survey to build the standardised schema. The largest part of the work boils down to specify the regex for each variable:
 
-```{r Stxlsx, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Origxlsx'}
+```{r Stxlsx, echo = TRUE, eval = TRUE, cache = FALSE, dependson= 'Origxlsx'}
 stSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'), 
                         sheet = 'stSchema', 
                         colNames = TRUE)
@@ -70,7 +71,7 @@ str(stSchema)
 
 Producing a data.table is now straightforward and fairly fast:
 
-```{r readDT, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Stxlsx'}
+```{r readDT, echo = TRUE, eval = TRUE, cache = FALSE, dependson= 'Stxlsx'}
 library(fastReadfwf)
 library(data.table)
 stSchema <- xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
@@ -83,7 +84,7 @@ str(data.DT)
 
 In the case of tibbles, we proceed in the same way:
 
-```{r readTibble, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Stxlsx'}
+```{r readTibble, echo = TRUE, eval = TRUE, cache = FALSE, dependson= 'Stxlsx'}
 library(fastReadfwf)
 library(tibble)
 stSchema <- xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
@@ -96,7 +97,7 @@ data.tibble
 
 Once data have been read, we can validate the format of the values of each variable.
 
-```{r validTibble, echo = TRUE, eval = TRUE, cache = TRUE, dependson = 'readTibble'}
+```{r validTibble, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readTibble'}
 validateValues(data.tibble, stSchema)
 ```
 
@@ -107,11 +108,11 @@ An ideal situation for official statistical production and dissemination would b
 
 As constructors we have defined two functions to read the schema details from an xlsx or csv file. Since some columns are redundant, it is not necessary to provide all of them:
 
-```{r, echo = TRUE, cache = TRUE, eval = TRUE}
+```{r, echo = TRUE, cache = FALSE, eval = TRUE}
 library(fastReadfwf)
 library(openxlsx)
 
-# Only variable names, widths and types are provided
+# Only variable names, widths and types provided
 xlsx.df <- data.frame(variable = paste0('var', 1:3),
                       width = c(10, 2, 4),
                       initialPos = NA,
@@ -125,7 +126,7 @@ xlsxToSchema('exampleSchema.xlsx', 'stSchema')
 
 We have defined *getters* for this class:
 
-```{r, echo = TRUE, cache = TRUE, eval = TRUE}
+```{r, echo = TRUE, cache = FALSE, eval = TRUE}
 library(fastReadfwf)
 path <- system.file('extdata', package = 'fastReadfwf')
 stSchema <- csvToSchema(file.path(path, 'SchemaSNHS.csv'))
