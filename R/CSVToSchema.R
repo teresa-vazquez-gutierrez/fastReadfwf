@@ -49,25 +49,62 @@
 #' @export
 csvToSchema <- function(csvname, sep = ';', header = FALSE, lang = 'en', ...){
 
-  stColNames <- c('variable', 'width', 'initialPos', 'finalPos',
-                  'type', 'valueRegEx', 'description')
+  stColNames <- c('variable', 'width', 'initialPos', 'finalPos', 'type', 'valueRegEx','description')
+  csv <- fread(csvname, sep = sep, header = header, blank.lines.skip = TRUE, ...)
 
-  if (!header) {
+  if (header == FALSE) {
 
-    csv <- fread(csvname, sep = sep, header = header, blank.lines.skip = TRUE, ...)
-    if (lang == 'en') setnames(csv, stColNames)
+    if (lang == 'en') {
+
+      warning('[fastReadfwf::csvToSchema] No header specified. Standard names assigned.')
+      setnames(csv, stColNames)
+
+    }
+
   }
 
-  if (header) csv <- fread(csvname, sep = sep, header = header, blank.lines.skip = TRUE, ...)
+  if (header == TRUE) {
 
-  csv[, (names(csv)[7]) := as.character(get(names(csv)[7]))][
-    , (names(csv)[6]) := as.character(get((names(csv)[6])))]
+    if (lang == 'en') {
+
+
+      diffNames_1 <- setdiff(unique(names(csv)), stColNames)
+      if (length(diffNames_1) > 0) {
+
+        stop(paste0('[StfwfSchema:: csvToSchema] Wrong column names:\n',
+                    paste0(diffNames_1, collapse = ', '), '.\n'))
+
+      }
+
+      diffNames_2 <- setdiff(stColNames, unique(colnames(csv)))
+      if (length(diffNames_2) > 0) {
+
+        stop(paste0('[StfwfSchema:: csvToSchema] Missing column names:\n',
+                    paste0(diffNames_2, collapse = ', '), '.\n'))
+
+      }
+      setcolorder(csv, stColNames)
+    }
+  }
+
   if (lang == 'en') {
 
-    setcolorder(csv, stColNames)
-    csv$valueRegEx[is.na(csv$valueRegEx)] <- '.*'
+    n <- dim(csv)[1]
+    csv[, description := as.character(description)][
+      , valueRegEx := as.character(valueRegEx)]
+
+    # No initialPos and no finalPos: only width specified
+    if (all(!is.na(csv$width)) & all(is.na(csv$finalPos)) & all(is.na(csv$initialPos))) {
+
+      csv[, initialPos := 1 + c(0, cumsum(width)[-n])]
+      csv[, finalPos := initialPos + width - 1]
+    }
+
+    # Whitespaces to .*
+    csv[is.na(valueRegEx) | valueRegEx == '', valueRegEx := '.*']
 
   }
+
   output <- new(Class = 'StfwfSchema', df = csv)
   return(output)
 }

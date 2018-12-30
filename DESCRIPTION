@@ -20,6 +20,7 @@ Encoding: UTF-8
 Collate:
     'StfwfSchema-class.R'
     'csvToSchema.R'
+    'fastReadfwf.R'
     'getdf.R'
     'getVariables.R'
     'getTypes.R'

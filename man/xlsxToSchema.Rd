@@ -4,18 +4,22 @@
 \alias{xlsxToSchema}
 \title{Build an object of class \linkS4class{StfwfSchema}.}
 \usage{
-xlsxToSchema(xlsname, sheetname, lang = "en")
+xlsxToSchema(xlsxname, sheetname, header = TRUE, lang = "en", ...)
 }
 \arguments{
-\item{xlsname}{Name of the xlsx file containing the schema.}
+\item{xlsxname}{Name of the xlsx file containing the schema.}
 
 \item{sheetname}{Name or index of the sheet of the xlsx file.}
 
+\item{header}{Does the first data line contain column names? Defaults to \code{TRUE}.}
+
 \item{lang}{Character vector of length 1 indicating the language for the header in the xlsx file
 (English: en).}
+
+\item{...}{Extra arguments for \code{\link[data.table]{fread}}.}
 }
 \value{
-Returns an object of class \linkS4class{StfwfSchema}.
+Return an object of class \linkS4class{StfwfSchema}.
 }
 \description{
 \code{XLSToSchema} is a constructor of the class \linkS4class{StfwfSchema}.

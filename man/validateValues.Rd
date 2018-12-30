@@ -6,7 +6,7 @@
 \alias{validateValues,data.frame,StfwfSchema-method}
 \title{Fast read a fixed-width file}
 \usage{
-validateValues(object, StfwfSchema, perl)
+validateValues(object, StfwfSchema, perl = FALSE)
 
 \S4method{validateValues}{data.frame,StfwfSchema}(object, StfwfSchema,
   perl = FALSE)

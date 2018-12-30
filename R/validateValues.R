@@ -39,7 +39,7 @@
 #'
 #' @export
 setGeneric("validateValues",
-           function(object, StfwfSchema, perl) {standardGeneric("validateValues")})
+           function(object, StfwfSchema, perl = FALSE) {standardGeneric("validateValues")})
 
 #' @rdname validateValues
 #'

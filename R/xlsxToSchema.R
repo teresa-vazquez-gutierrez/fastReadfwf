@@ -25,14 +25,18 @@
 #'
 #' The tag must have a header in file 1. Only English is supported so far.
 #'
-#' @param xlsname Name of the xlsx file containing the schema.
+#' @param xlsxname Name of the xlsx file containing the schema.
 #'
 #' @param sheetname Name or index of the sheet of the xlsx file.
+#'
+#' @param header Does the first data line contain column names? Defaults to \code{TRUE}.
 #'
 #' @param lang Character vector of length 1 indicating the language for the header in the xlsx file
 #' (English: en).
 #'
-#' @return Returns an object of class \linkS4class{StfwfSchema}.
+#' @param ... Extra arguments for \code{\link[data.table]{fread}}.
+#'
+#' @return Return an object of class \linkS4class{StfwfSchema}.
 #'
 #' @examples
 #' path <- system.file('extdata', package = 'fastReadfwf')
@@ -45,30 +49,60 @@
 #' @importFrom methods new
 #'
 #' @export
-xlsxToSchema <- function(xlsname, sheetname, lang = 'en'){
+xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
 
   stColNames <- c('variable', 'width', 'initialPos', 'finalPos', 'type', 'valueRegEx','description')
+  xlsx <- read.xlsx(xlsxname, sheet = sheetname, colNames = header, skipEmptyCols = FALSE, ...)
 
-  xlsx <- read.xlsx(xlsname, sheet = sheetname)
+  if (header == FALSE) {
 
-  if (lang == 'en' && any(colnames(xlsx) != stColNames)) {
+    if (lang == 'en') {
 
-    diffNames <- paste0(colnames(xlsx)[colnames(xlsx) != stColNames], collapse = ', ')
-    stop(
-      paste0('[StfwfSchema:: XLSToSchema] The following columns have invalid names: ',
-             diffNames,
-             '.\n')
-    )
-  }
+      warning('[fastReadfwf::xlsxToSchema] No header specified. Standard names assigned.')
+      colnames(xlsx) <- stColNames
 
-  if (all(is.na(xlsx$finalPos)) & all(is.na(xlsx$initialPos))) {
-
-    xlsx$initialPos <- 1 + c(0, cumsum(xlsx$width)[-dim(xlsx)[1]])
-    xlsx$finalPos <- xlsx$initialPos + xlsx$width - 1
+    }
 
   }
+  if (header == TRUE) {
 
-  xlsx$valueRegEx[is.na(xlsx$valueRegEx)] <- '.*'
+    if (lang == 'en') {
+
+
+      diffNames_1 <- setdiff(unique(colnames(xlsx)), stColNames)
+      if (length(diffNames_1) > 0) {
+
+        stop(paste0('[StfwfSchema:: xlsxToSchema] Wrong column names:\n',
+                    paste0(diffNames_1, collapse = ', '), '.\n'))
+
+      }
+
+      diffNames_2 <- setdiff(stColNames, unique(colnames(xlsx)))
+      if (length(diffNames_2) > 0) {
+
+        stop(paste0('[StfwfSchema:: xlsxToSchema] Missing column names:\n',
+                    paste0(diffNames_2, collapse = ', '), '.\n'))
+
+      }
+      xlsx <- xlsx[, stColNames]
+    }
+  }
+
+  if (lang == 'en') {
+
+    n <- dim(xlsx)[1]
+
+    # No initialPos and no finalPos: only width specified
+    if (all(!is.na(xlsx$width)) & all(is.na(xlsx$finalPos)) & all(is.na(xlsx$initialPos))) {
+
+      xlsx$initialPos <- 1 + c(0, cumsum(xlsx$width)[-n])
+      xlsx$finalPos <- xlsx$initialPos + xlsx$width - 1
+    }
+
+    # Whitespaces to .*
+    xlsx$valueRegEx[is.na(xlsx$valueRegEx)] <- '.*'
+
+  }
   output <- new(Class = 'StfwfSchema', df = xlsx)
   return(output)
 
