@@ -100,7 +100,7 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
     }
 
     # Whitespaces to .*
-    xlsx$valueRegEx[is.na(xlsx$valueRegEx)] <- '.*'
+    xlsx$valueRegEx[is.na(xlsx$valueRegEx) | xlsx$valueRegEx == ''] <- '.*'
 
   }
   output <- new(Class = 'StfwfSchema', df = xlsx)

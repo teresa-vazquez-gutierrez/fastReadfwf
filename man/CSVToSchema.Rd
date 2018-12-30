@@ -4,14 +4,14 @@
 \alias{csvToSchema}
 \title{Build an object of class \linkS4class{StfwfSchema}.}
 \usage{
-csvToSchema(csvname, sep = ";", header = FALSE, lang = "en", ...)
+csvToSchema(csvname, sep = ";", header = TRUE, lang = "en", ...)
 }
 \arguments{
 \item{csvname}{Name of the csv file containing the schema.}
 
 \item{sep}{The separator between columns. Defaults to ';'.}
 
-\item{header}{Does the first data line contain column names? Defaults to \code{FALSE}.}
+\item{header}{Does the first data line contain column names? Defaults to \code{TRUE}.}
 
 \item{lang}{Character vector of length 1 indicating the language for the header in the csv file
 (English: en -- default). So far only English is supported.}

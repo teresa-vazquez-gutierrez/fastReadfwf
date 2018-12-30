@@ -29,7 +29,7 @@
 #'
 #' @param sep The separator between columns. Defaults to ';'.
 #'
-#' @param header Does the first data line contain column names? Defaults to \code{FALSE}.
+#' @param header Does the first data line contain column names? Defaults to \code{TRUE}.
 #'
 #' @param lang Character vector of length 1 indicating the language for the header in the csv file
 #' (English: en -- default). So far only English is supported.
@@ -47,7 +47,7 @@
 #' @importFrom methods new
 #'
 #' @export
-csvToSchema <- function(csvname, sep = ';', header = FALSE, lang = 'en', ...){
+csvToSchema <- function(csvname, sep = ';', header = TRUE, lang = 'en', ...){
 
   stColNames <- c('variable', 'width', 'initialPos', 'finalPos', 'type', 'valueRegEx','description')
   csv <- fread(csvname, sep = sep, header = header, blank.lines.skip = TRUE, ...)
