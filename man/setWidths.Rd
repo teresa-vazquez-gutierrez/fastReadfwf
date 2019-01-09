@@ -40,3 +40,4 @@ Schema <- new(Class = 'StfwfSchema', df = df)
 setWidths(Schema, c(6L), c('Turnover'))
 
 }
+

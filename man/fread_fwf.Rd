@@ -54,3 +54,4 @@ head(data.tibble)
 \seealso{
 \code{\link[data.table]{fread}}
 }
+

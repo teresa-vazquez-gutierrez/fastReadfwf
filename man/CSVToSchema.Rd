@@ -52,3 +52,4 @@ path <- system.file('extdata', package = 'fastReadfwf')
 csvToSchema(file.path(path, 'SchemaSNHS.csv'), header = TRUE)
 
 }
+

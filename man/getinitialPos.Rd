@@ -35,3 +35,4 @@ Schema <- new(Class = 'StfwfSchema', df = df)
 getinitialPos(Schema)
 
 }
+

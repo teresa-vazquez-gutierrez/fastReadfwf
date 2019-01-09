@@ -40,3 +40,4 @@ Schema <- new(Class = 'StfwfSchema', df = df)
 setRegEx(Schema, c('[0-9]{0,10}'), 'Turnover')
 
 }
+

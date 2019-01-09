@@ -4,7 +4,9 @@ Version: 0.1.0
 Authors@R: c(
     person("David", "Salgado", email = "david.salgado.fernandez@gmail.com", role = c("cre", "aut")),
     person("Jara", "Poch", email = "jarapoch@gmail.com", role = "aut"))
-Description: This package provides a function to fast-read fixed-width files using an input schema. Basically it provides a wrapper for fread and readr returning a data.table or a tibble, respectively.
+Description: This package provides a function to fast-read fixed-width files
+    using an input schema. Basically it provides a wrapper for fread and readr
+    returning a data.table or a tibble, respectively.
 Depends:
     R (>= 3.3.2)
 Imports:
@@ -37,7 +39,7 @@ Collate:
     'show.R'
     'validateValues.R'
     'xlsxToSchema.R'
-RoxygenNote: 6.1.1
+RoxygenNote: 5.0.1
 URL: https://github.com/david-salgado/fastReadfwf
 BugReports: https://github.com/david-salgado/fastReadfwf/issues
 Suggests:

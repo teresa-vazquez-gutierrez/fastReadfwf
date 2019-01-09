@@ -40,3 +40,4 @@ Schema <- new(Class = 'StfwfSchema', df = df)
 setfinalPos(Schema, c(8L), c('Turnover'))
 
 }
+
