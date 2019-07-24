@@ -8,7 +8,7 @@ Description: This package provides a function to fast-read fixed-width files
     using an input schema. Basically it provides a wrapper for fread and readr
     returning a data.table or a tibble, respectively.
 Depends:
-    R (>= 3.3.2)
+    R (>= 3.3.0)
 Imports:
     methods (>= 3.3.2),
     data.table (>= 1.10.4),
