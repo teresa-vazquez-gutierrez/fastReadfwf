@@ -30,6 +30,8 @@
 #'
 #' @include getdf.R getVariables.R setdf.R
 #'
+#' @importFrom methods validObject
+#'
 #' @export
 setGeneric("setRegEx", function(schema, regex, variables){standardGeneric("setRegEx")})
 

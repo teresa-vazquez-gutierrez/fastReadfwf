@@ -30,6 +30,8 @@
 #'
 #' @include getdf.R getVariables.R setdf.R getinitialPos.R getfinalPos.R
 #'
+#' @importFrom methods validObject
+#'
 #' @export
 setGeneric("setWidths", function(schema, widths, variables){standardGeneric("setWidths")})
 

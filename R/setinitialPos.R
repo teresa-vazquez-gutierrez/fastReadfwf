@@ -30,6 +30,8 @@
 #'
 #' @include getdf.R getVariables.R setdf.R
 #'
+#' @importFrom methods validObject
+#'
 #' @export
 setGeneric("setinitialPos", function(schema, initialPos, variables){standardGeneric("setinitialPos")})
 
@@ -52,7 +54,7 @@ setMethod(
     df$finalPos <- df$initialPos + df$width - 1
     warning('[fastReadfwf::setfinalPos] Widths and final positions have been recomputed according to new initial positions.\n')
     setdf(schema) <- df
-    #    validObject(schema)
+    validObject(schema)
     return(schema)
 
   }

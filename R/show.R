@@ -21,7 +21,7 @@ setMethod(
 
     output <- getdf(object)
     output$description <- NULL
-    show(output)
+    methods::show(output)
     invisible(NULL)
   }
 )

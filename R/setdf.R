@@ -11,7 +11,7 @@
 #' @examples
 #' # A trivial example:
 #' df <- data.frame(variable = c('Turnover', 'Employees'),
-#'                  length = c(9L, 3L),
+#'                  width = c(9L, 3L),
 #'                  initialPos = c(1, 10),
 #'                  finalPos = c(9, 12),
 #'                  type = rep('num', 2),
@@ -23,6 +23,8 @@
 #' setdf(Schema) <- df
 #'
 #' @rdname setdf
+#'
+#' @importFrom methods validObject
 #'
 #' @export
 setGeneric("setdf<-", function(object, value){standardGeneric("setdf<-")})
@@ -36,6 +38,7 @@ setReplaceMethod(
   function(object, value){
 
     object@df <- value
+    validObject(object)
     return(object)
   }
 )
