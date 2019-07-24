@@ -19,8 +19,10 @@
 #'
 #' @examples
 #' # file will be written to working directory
+#' path <- system.file('extdata', package = 'fastReadfwf')
+#' stSchema <- fastReadfwf::xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 #' data(MicroDataSNHS)
-#' fwrite_fwf(data.DT, paste0(getwd(),'/MicroDataSNHS', stSchema, justify = 'right')
+#' fwrite_fwf(MicroDataSNHS, file.path(getwd(),'MicroDataSNHS'), stSchema, justify = 'right')
 #'
 #' @seealso \code{\link[data.table]{fwrite}} \code{\link{fread_fwf}]}
 #'
@@ -63,7 +65,7 @@ setMethod(f = "fwrite_fwf",
             #data.DT[, row := Reduce(function(...) paste0(...), .SD), .SDcols = ColNames][
               , .(row)]
 
-            fwrite(data.DT[, .(row)], filename, sep = '', row.names = FALSE, col.names = FALSE, ...)
+            fwrite(data.DT[, .(row)], filename, sep = '\n', row.names = FALSE, col.names = FALSE, ...)
             cat(paste0('\ndata written in ', filename), '\n')
 
 
