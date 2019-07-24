@@ -32,9 +32,13 @@ the fwf file to write, concatenates columns accordingly and uses \code{\link[dat
 to write the file on disk.
 }
 \examples{
+\dontrun{
 # file will be written to working directory
+path <- system.file('extdata', package = 'fastReadfwf')
+stSchema <- fastReadfwf::xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 data(MicroDataSNHS)
-fwrite_fwf(data.DT, paste0(getwd(),'/MicroDataSNHS', stSchema, justify = 'right')
+fwrite_fwf(MicroDataSNHS, file.path(getwd(), 'MicroDataSNHS'), stSchema, justify = 'right')
+}
 
 }
 \seealso{

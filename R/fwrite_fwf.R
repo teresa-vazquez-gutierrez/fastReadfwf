@@ -18,11 +18,13 @@
 #' @return Returns an invisible \code{NULL}. The dataset is written in file \code{filename}.
 #'
 #' @examples
+#' \dontrun{
 #' # file will be written to working directory
 #' path <- system.file('extdata', package = 'fastReadfwf')
 #' stSchema <- fastReadfwf::xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 #' data(MicroDataSNHS)
-#' fwrite_fwf(MicroDataSNHS, file.path(getwd(),'MicroDataSNHS'), stSchema, justify = 'right')
+#' fwrite_fwf(MicroDataSNHS, file.path(getwd(), 'MicroDataSNHS'), stSchema, justify = 'right')
+#'}
 #'
 #' @seealso \code{\link[data.table]{fwrite}} \code{\link{fread_fwf}]}
 #'
