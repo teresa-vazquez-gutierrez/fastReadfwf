@@ -27,7 +27,7 @@ The motivation is to provide a high-level scripting procedure to read this sort 
 The package also provides a format validation functionality for the values of each variable in the data set. The values are validated according to the format specified by the user in the schema through regular expressions.
 
 # An illustrative example: the Spanish National Health Survey
-The Spanish National Health Survey disseminates three anonymised microdata files together with their respective schemas corresponding to the questionnaires for adults, households, and household members under 18 years. The structure of these files and their schemas is different to those provided for other surveys. These files can be downloaded from the Spanish NSI's website. The microdata file for the adults together with its corresponding schema is included in this package for the 2017 edition.
+The Spanish National Health Survey disseminates three anonymised microdata files together with their respective schemas corresponding to the questionnaires for adults, households, and household members under 18 years. The structure of these files and their schemas are different to those provided for other surveys. These files can be downloaded from the Spanish NSI's website. The microdata file for the adults together with its corresponding schema is included in this package for the 2017 edition.
 
 Let us illustrate the philosophy of our proposed standardisation with the data files included in the package. Firstly, the schema for the questionnaire for adults is specified in an xlsx file with 5 sheet. Those with Spanish names contain the original schema specified in the downloaded file from the Spanish NSI's website. It is mainly for human consumption:
 
@@ -37,7 +37,7 @@ Let us illustrate the philosophy of our proposed standardisation with the data f
 
 * Sheet CNAE 2009 contains a condensed description of the Spanish version (CNAE) of the classification of economic activities NACE Rev. 2.
 
-* Sheet CNO 2011 contains a condensed description of the Spanish version (CNO) of the classification of professional occupations (?).
+* Sheet CNO 2011 contains a condensed description of the Spanish version (CNO) of the classification of professional occupations ISCO-08.
 
 Notice that we have created a new sheet with name *stSchema* fully oriented towards computer use with the information contained in the preceding 4 sheet in the following columns:
 
@@ -100,6 +100,13 @@ Once data have been read, we can validate the format of the values of each varia
 ```{r validTibble, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readTibble'}
 validateValues(data.tibble, stSchema)
 ```
+
+The validation can also be conducted in the data.table format:
+
+```{r validDT, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readDT'}
+validateValues(data.DT, stSchema)
+```
+
 
 # Some details
 
