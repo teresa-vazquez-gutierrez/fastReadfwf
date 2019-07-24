@@ -36,4 +36,3 @@ Schema <- new(Class = 'StfwfSchema')
 setdf(Schema) <- df
 
 }
-

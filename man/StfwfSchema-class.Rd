@@ -26,6 +26,7 @@ schema of the fixed-width file to read.
 
  }}
 }}
+
 \examples{
 # An empty StfwfSchema object:
 new(Class = 'StfwfSchema')
@@ -43,4 +44,3 @@ df <- data.frame(variable = c('Turnover', 'Employees'),
 new(Class = 'StfwfSchema', df = df)
 
 }
-

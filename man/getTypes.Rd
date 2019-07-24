@@ -36,4 +36,3 @@ Schema <- new(Class = 'StfwfSchema', df = df)
 getTypes(Schema)
 
 }
-

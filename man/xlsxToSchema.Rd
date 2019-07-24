@@ -52,4 +52,3 @@ path <- system.file('extdata', package = 'fastReadfwf')
 xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 
 }
-

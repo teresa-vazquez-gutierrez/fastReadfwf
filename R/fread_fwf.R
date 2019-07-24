@@ -1,11 +1,12 @@
-#' @title Fast read a fixed-width file
+#' @title Fast read a fixed-width file.
 #'
 #' @description \code{fread_fwf} takes as basic input a fixed-width filename and its schema and
-#' wraps around \code{\link[data.table]{fread}} from package \linkS4class{data.table} to provide the
-#' contents of the file.
+#' wraps around \code{\link[data.table]{fread}} from package \linkS4class{data.table} or around
+#' \code{\link[readr]{read_fwf}} to provide the contents of the file.
 #'
-#' This method is indeed a wrapper for the function \code{\link[data.table]{fread}} followed by the
-#' application of \code{\link[stringi]{stri_sub}}.
+#' This method is indeed either (i) a wrapper for the function \code{\link[data.table]{fread}}
+#' followed by the application of \code{\link[stringi]{stri_sub}} or (ii) a direct wrapper for the
+#' function \code{\link[readr]{read_fwf}}.
 #'
 #' @param filename Character vector of length 1 with the name of the file to read.
 #'
@@ -15,12 +16,13 @@
 #' option is "tibble".
 #'
 #' @param perl Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
-#' perl or not in the application of regexp.
+#' perl or not in the application of the column \code{regexp}.
 #'
 #' @param ... Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
 #' according to the value of \code{outFormat} above.
 #'
-#' @return Returns a \linkS4class{data.table} with the contents of the file.
+#' @return Returns a \linkS4class{data.table} or a \link[tibble]{tibble} with the contents of the
+#' file.
 #'
 #' @examples
 #' path <- system.file('extdata', package = 'fastReadfwf')

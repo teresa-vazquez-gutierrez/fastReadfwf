@@ -8,7 +8,8 @@
 \usage{
 setinitialPos(schema, initialPos, variables)
 
-\S4method{setinitialPos}{StfwfSchema,integer}(schema, initialPos, variables)
+\S4method{setinitialPos}{StfwfSchema,integer}(schema, initialPos,
+  variables)
 }
 \arguments{
 \item{schema}{Object of class \linkS4class{StfwfSchema}.}
@@ -40,4 +41,3 @@ Schema <- new(Class = 'StfwfSchema', df = df)
 setinitialPos(Schema, c(2L), c('Turnover'))
 
 }
-

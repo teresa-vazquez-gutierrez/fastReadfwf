@@ -8,16 +8,16 @@
 #'
 #' \itemize{
 #'
-#'    \item \code{variable} (en): the name of the variable.
-#'    \item \code{width} (en): the number of positions which the values of each variable occupies in
+#'    \item \code{variable}: the name of the variable.
+#'    \item \code{width}: the number of positions which the values of each variable occupies in
 #'     the file.
-#'    \item \code{initialPos} (en): initial position of the field which the values of this variable
+#'    \item \code{initialPos}: initial position of the field which the values of this variable
 #'    occupies in the file.
-#'    \item \code{finalPos} (en): final position of the field which the values of this variable
+#'    \item \code{finalPos}: final position of the field which the values of this variable
 #'    occupies in the file.
-#'    \item \code{type} (en): type of the variable. It must be either \code{log}, \code{integer},
+#'    \item \code{type}: type of the variable. It must be either \code{log}, \code{int},
 #'    \code{num} or \code{char}.
-#'    \item \code{valueRegEx} (en): regular expression for the values of each variable.
+#'    \item \code{valueRegEx}: regular expression (\link{regex}) for the values of each variable.
 #'    \item \code{description}: textual description of the variable.
 #'
 #' }
