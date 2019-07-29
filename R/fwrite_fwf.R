@@ -46,25 +46,35 @@ setMethod(f = "fwrite_fwf",
           signature = c("data.frame", "character", "StfwfSchema"),
           function(data, filename, StfwfSchema, justify = 'right', ...){
 
-          if (!justify %in% c('left', 'right')) {
+            if (!justify %in% c('left', 'right')) {
 
-            stop('[fastReadfwf::fwrite_fwf] justify must be either right or left.')
-          }
+              stop('[fastReadfwf::fwrite_fwf] justify must be either right or left.\n')
+            }
             data.DT <- as.data.table(data)
             widths <- getWidths(StfwfSchema)
             widths.DT <- data.table(variable = names(widths), width = widths)
             widths.DT <- widths.DT[variable %chin% names(data.DT)]
             ColNames <- names(data.DT)
+            varNotPresent <- ColNames[which(!ColNames %in% widths.DT$variable)]
+            if (length(varNotPresent) > 0) {
+
+              stop(paste0('[fastReadfwf::fwrite_fwf] The following variables in data are not present in the schema: ',
+                          paste0(varNotPresent, collapse = ', '), '.\n'))
+
+            }
             for (i in seq(along = ColNames)){
 
+              width <- widths.DT[variable == ColNames[i]][['width']]
               variable <- ColNames[i]
-              data.DT[, (variable) := format(get(variable),
-                                        width = widths.DT[variable == variable][['width']],
-                                        justify = 'right')]
+              data.DT[, (variable) := format(as.character(get(variable)),
+                                             width = width,
+                                             justify = 'right',
+                                             na.encode = FALSE)][
+                                               is.na(get(variable)), (variable) := paste0(rep(' ', width), collapse = '')]
 
             }
             data.DT[, row := Reduce(function(...) stri_join(...), .SD), .SDcols = ColNames][
-            #data.DT[, row := Reduce(function(...) paste0(...), .SD), .SDcols = ColNames][
+              #data.DT[, row := Reduce(function(...) paste0(...), .SD), .SDcols = ColNames][
               , .(row)]
 
             fwrite(data.DT[, .(row)], filename, sep = '\n', row.names = FALSE, col.names = FALSE, ...)
@@ -73,5 +83,5 @@ setMethod(f = "fwrite_fwf",
 
             return(invisible(NULL))
 
-})
+          })
 
