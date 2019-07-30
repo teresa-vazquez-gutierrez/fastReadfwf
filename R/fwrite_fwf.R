@@ -52,19 +52,17 @@ setMethod(f = "fwrite_fwf",
             }
             data.DT <- as.data.table(data)
             widths <- getWidths(StfwfSchema)
-            widths.DT <- data.table(variable = names(widths), width = widths)
-            widths.DT <- widths.DT[variable %chin% names(data.DT)]
             ColNames <- names(data.DT)
-            varNotPresent <- ColNames[which(!ColNames %in% widths.DT$variable)]
-            if (length(varNotPresent) > 0) {
+            varNotPresentInSch <- ColNames[which(!ColNames %in% names(widths))]
+            if (length(varNotPresentInSch) > 0) {
 
               stop(paste0('[fastReadfwf::fwrite_fwf] The following variables in data are not present in the schema: ',
-                          paste0(varNotPresent, collapse = ', '), '.\n'))
+                          paste0(varNotPresentInSch, collapse = ', '), '.\n'))
 
             }
             for (i in seq(along = ColNames)){
 
-              width <- widths.DT[variable == ColNames[i]][['width']]
+              width <- widths[ColNames[i]]
               variable <- ColNames[i]
               data.DT[, (variable) := format(as.character(get(variable)),
                                              width = width,
@@ -73,8 +71,22 @@ setMethod(f = "fwrite_fwf",
                                                is.na(get(variable)), (variable) := paste0(rep(' ', width), collapse = '')]
 
             }
+            varNotPresentInDT <- names(widths)[which(!names(widths) %in% ColNames)]
+            widths.NotPresentInDT <- widths[varNotPresentInDT]
+            auxDT <- data.table(width = unique(widths.NotPresentInDT))
+            fWhite <- function(i){sapply(i, function(i) paste0(rep.int(' ', i), collapse = ''))}
+            auxDT[, value := fWhite(width)]
+            data.DT_NotPresent <- data.table(variable = names(widths.NotPresentInDT), width = widths.NotPresentInDT)
+            data.DT_NotPresent <- merge(data.DT_NotPresent, auxDT, by = 'width')[
+              , width := NULL][
+                , auxID := 'auxID']
+            data.DT_NotPresent <- dcast(data.DT_NotPresent, formula = auxID ~ variable, value.var = 'value')[
+              , auxID := NULL]
+            data.DT[, names(data.DT_NotPresent) := data.DT_NotPresent]
+            setcolorder(data.DT, getVariables(StfwfSchema))
+
+
             data.DT[, row := Reduce(function(...) stri_join(...), .SD), .SDcols = ColNames][
-              #data.DT[, row := Reduce(function(...) paste0(...), .SD), .SDcols = ColNames][
               , .(row)]
 
             fwrite(data.DT[, .(row)], filename, sep = '\n', row.names = FALSE, col.names = FALSE, ...)
