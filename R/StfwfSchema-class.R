@@ -107,6 +107,16 @@ setClass(Class = "StfwfSchema",
              stop('[StfwfSchema:: validity StfwfSchema] The schema data.frame has wrong column names. (Check also the order). \n')
 
            }
+           # No duplicated variable names
+           variables <- df$variable
+           dupVars <- variables[duplicated(variables)]
+           if (length(dupVars) > 0){
+
+             stop(paste0('[StfwfSchema:: validity StfwfSchema] The following variables are duplicated: ',
+                         paste0(dupVars, collapse = ', '), '.\n'))
+
+           }
+
            # finPos >= iniPos
            diffPos <- df$finalPos - df$initialPos
            errorDiffPos <- df$variable[diffPos < 0]
