@@ -72,17 +72,19 @@ setMethod(f = "fwrite_fwf",
 
             }
             varNotPresentInDT <- names(widths)[which(!names(widths) %in% ColNames)]
-            widths.NotPresentInDT <- widths[varNotPresentInDT]
-            auxDT <- data.table(width = unique(widths.NotPresentInDT))
-            fWhite <- function(i){sapply(i, function(i) paste0(rep.int(' ', i), collapse = ''))}
-            auxDT[, value := fWhite(width)]
-            data.DT_NotPresent <- data.table(variable = names(widths.NotPresentInDT), width = widths.NotPresentInDT)
-            data.DT_NotPresent <- merge(data.DT_NotPresent, auxDT, by = 'width')[
-              , width := NULL][
-                , auxID := 'auxID']
-            data.DT_NotPresent <- dcast(data.DT_NotPresent, formula = auxID ~ variable, value.var = 'value')[
-              , auxID := NULL]
-            data.DT[, names(data.DT_NotPresent) := data.DT_NotPresent]
+            if(length(varNotPresentInDT) > 0){
+              widths.NotPresentInDT <- widths[varNotPresentInDT]
+              auxDT <- data.table(width = unique(widths.NotPresentInDT))
+              fWhite <- function(i){sapply(i, function(i) paste0(rep.int(' ', i), collapse = ''))}
+              auxDT[, value := fWhite(width)]
+              data.DT_NotPresent <- data.table(variable = names(widths.NotPresentInDT), width = widths.NotPresentInDT)
+              data.DT_NotPresent <- merge(data.DT_NotPresent, auxDT, by = 'width')[
+                , width := NULL][
+                  , auxID := 'auxID']
+              data.DT_NotPresent <- dcast(data.DT_NotPresent, formula = auxID ~ variable, value.var = 'value')[
+                , auxID := NULL]
+              data.DT[, names(data.DT_NotPresent) := data.DT_NotPresent]
+            }
             setcolorder(data.DT, getVariables(StfwfSchema))
 
 
