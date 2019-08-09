@@ -58,7 +58,8 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
 
     if (lang == 'en') {
 
-      warning('[fastReadfwf::xlsxToSchema] No header specified. Standard names assigned.')
+      warning(paste0('[fastReadfwf::xlsxToSchema] No header specified. Standard names assigned in the following order: ',
+                     paste0(stColNames, collapse = ', '), '\n.'))
       colnames(xlsx) <- stColNames
 
     }
@@ -92,6 +93,34 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
 
     n <- dim(xlsx)[1]
 
+    # Classes of columns width, initialPos, finalPos must be integer
+    xlsx$width <- as.integer(xlsx$width)
+    widthNAs <- is.na(xlsx$width)
+    invalidWidths <- xlsx[widthNAs, 'variable']
+    if (sum(widthNAs) != 0 & sum(widthNAs) != n) {
+
+      stop(paste0('[fastReadfwf::xlsxToSchema] The following variables have wrong width: ',
+                  paste0(invalidWidths, collapse = ', '), '.\n'))
+    }
+
+    xlsx$initialPos <- as.integer(xlsx$initialPos)
+    initialPosNAs <- is.na(xlsx$initialPos)
+    invalidinitialPos <- xlsx[initialPosNAs, 'variable']
+    if (sum(initialPosNAs) != 0 & sum(initialPosNAs) != n) {
+
+      stop(paste0('[fastReadfwf::xlsxToSchema] The following variables have wrong initial positions: ',
+                  paste0(invalidinitialPos, collapse = ', '), '.\n'))
+    }
+
+    xlsx$finalPos <- as.integer(xlsx$finalPos)
+    finalPosNAs <- is.na(xlsx$finalPos)
+    invalidfinalPos <- xlsx[finalPosNAs, 'variable']
+    if (sum(finalPosNAs) != 0 & sum(finalPosNAs) != n) {
+
+      stop(paste0('[fastReadfwf::xlsxToSchema] The following variables have wrong final positions: ',
+                  paste0(invalidfinalPos, collapse = ', '), '.\n'))
+    }
+
     # No initialPos and no finalPos: only width specified
     if (all(!is.na(xlsx$width)) & all(is.na(xlsx$finalPos)) & all(is.na(xlsx$initialPos))) {
 
@@ -103,6 +132,7 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
     xlsx$valueRegEx[is.na(xlsx$valueRegEx) | xlsx$valueRegEx == ''] <- '.*'
 
   }
+
   output <- new(Class = 'StfwfSchema', df = xlsx)
   return(output)
 
