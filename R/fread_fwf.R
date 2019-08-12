@@ -48,7 +48,7 @@
 #'
 #' @export
 setGeneric("fread_fwf",
-           function(filename, StfwfSchema, outFormat, ...) {
+           function(filename, StfwfSchema, outFormat, perl = FALSE, ...) {
              standardGeneric("fread_fwf")})
 
 #' @rdname fread_fwf
@@ -77,8 +77,12 @@ setMethod(f = "fread_fwf",
                                                           posMatrix[i,1],
                                                           posMatrix[i, 2])})][, V1 := NULL]
       dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
+
       types <- getTypes(StfwfSchema)
       numVarNames <- varNames[types == 'num']
+
+      indx2 <- which(names(dt) %in% numVarNames)
+      for (j in indx2) set(dt, i = grep("^$|^ $", dt[[j]]), j = j, value = NA_character_)
 
       if (length(numVarNames) > 0) {
 
