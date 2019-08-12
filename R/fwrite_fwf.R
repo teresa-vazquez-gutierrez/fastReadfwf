@@ -34,7 +34,7 @@
 #'
 #' @export
 setGeneric("fwrite_fwf",
-           function(data, filename, StfwfSchema, justify = 'right', ...) {
+           function(data, filename, StfwfSchema, justify = 'left', ...) {
              standardGeneric("fwrite_fwf")})
 
 #' @rdname fwrite_fwf
