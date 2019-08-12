@@ -148,21 +148,25 @@ setClass(Class = "StfwfSchema",
            }
 
           # type num or char
-          if (!any(df$type %in% c('num', 'char', 'log'))) {
+          invalidTypes <-  which(!df$type %in% c('num', 'char', 'log'))
+          invalidTypes <- df$variable[invalidTypes]
+          if (length(invalidTypes) > 0) {
 
-            stop('[StfwfSchema:: validity StfwfSchema] The type must be either char or num.')
+            stop(paste0('[StfwfSchema:: validity StfwfSchema] Types must be char, num or log. The type of the following variables are invalid:\n',
+                        paste0(invalidTypes, collapse = ', '), '.\n'))
 
           }
 
-           # ascending order (by initialPos)
-           variables_origOrder <- df$variable
-           variables_ascOrder <- df$variable[order(df$initialPos)]
-           dif <- (variables_origOrder != variables_ascOrder)
-           if (sum(dif) > 0){
 
-             stop(paste0('[StfwfSchema:: validity StfwfSchema] the following variables are not in the correct order (ascending initial position): ', paste0(variables_origOrder[dif], collapse = ', ')))
+          # ascending order (by initialPos)
+          variables_origOrder <- df$variable
+          variables_ascOrder <- df$variable[order(df$initialPos)]
+          dif <- (variables_origOrder != variables_ascOrder)
+          if (sum(dif) > 0){
 
-           }
+           stop(paste0('[StfwfSchema:: validity StfwfSchema] the following variables are not in the correct order (ascending initial position): ', paste0(variables_origOrder[dif], collapse = ', ')))
+
+          }
 
           # Is regex?
           notValidRegex <- qdapRegex::is.regex(df$valueRegEx)
