@@ -6,7 +6,7 @@
 \alias{fread_fwf,character,StfwfSchema-method}
 \title{Fast read a fixed-width file.}
 \usage{
-fread_fwf(filename, StfwfSchema, outFormat, ...)
+fread_fwf(filename, StfwfSchema, outFormat, perl = FALSE, ...)
 
 \S4method{fread_fwf}{character,StfwfSchema}(filename, StfwfSchema,
   outFormat = "data.table", perl = FALSE, ...)
@@ -19,11 +19,11 @@ fread_fwf(filename, StfwfSchema, outFormat, ...)
 \item{outFormat}{Character vector of length 1 whose default value is "data.table". Other
 option is "tibble".}
 
-\item{...}{Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
-according to the value of \code{outFormat} above.}
-
 \item{perl}{Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 perl or not in the application of the column \code{regexp}.}
+
+\item{...}{Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
+according to the value of \code{outFormat} above.}
 }
 \value{
 Returns a \linkS4class{data.table} or a \link[tibble]{tibble} with the contents of the

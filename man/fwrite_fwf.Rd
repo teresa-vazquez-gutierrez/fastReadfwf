@@ -6,7 +6,7 @@
 \alias{fwrite_fwf,data.frame,character,StfwfSchema-method}
 \title{Fast write a fixed-width file.}
 \usage{
-fwrite_fwf(data, filename, StfwfSchema, justify = "right", ...)
+fwrite_fwf(data, filename, StfwfSchema, justify = "left", ...)
 
 \S4method{fwrite_fwf}{data.frame,character,StfwfSchema}(data, filename,
   StfwfSchema, justify = "right", ...)
