@@ -46,6 +46,8 @@
 #'
 #' @importFrom readr read_fwf fwf_widths
 #'
+#' @include getdf.R getVariables.R getTypes.R
+#'
 #' @export
 setGeneric("fread_fwf",
            function(filename, StfwfSchema, outFormat, perl = FALSE, ...) {
@@ -53,7 +55,7 @@ setGeneric("fread_fwf",
 
 #' @rdname fread_fwf
 #'
-#' @include StfwfSchema-class.R getdf.R getVariables.R getTypes.R
+#' @include StfwfSchema-class.R getdf.R getVariables.R getTypes.R getWidths.R
 #'
 #' @export
 setMethod(f = "fread_fwf",
