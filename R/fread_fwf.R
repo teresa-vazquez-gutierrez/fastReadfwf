@@ -40,13 +40,13 @@
 #'
 #' @seealso \code{\link[data.table]{fread}}
 #'
+#' @include StfwfSchema-class.R  getdf.R getVariables.R getTypes.R
+#'
 #' @import data.table
 #'
 #' @importFrom stringi stri_sub
 #'
 #' @importFrom readr read_fwf fwf_widths
-#'
-#' @include getdf.R getVariables.R getTypes.R
 #'
 #' @export
 setGeneric("fread_fwf",
@@ -54,8 +54,6 @@ setGeneric("fread_fwf",
              standardGeneric("fread_fwf")})
 
 #' @rdname fread_fwf
-#'
-#' @include StfwfSchema-class.R getdf.R getVariables.R getTypes.R getWidths.R
 #'
 #' @export
 setMethod(f = "fread_fwf",
@@ -69,10 +67,10 @@ setMethod(f = "fread_fwf",
     if (outFormat == 'data.table') {
 
       trim <- function (x) gsub("^\\s+|\\s+$", "", x, perl = perl)
-      dt <-  fread(file = filename, colClasses = "character", sep = "\n", header = FALSE, ...)
-      schema <- getdf(StfwfSchema)
+      dt <-  data.table::fread(file = filename, colClasses = "character", sep = "\n", header = FALSE, ...)
+      schema <- fastReadfwf::getdf(StfwfSchema)
       posMatrix <- schema[, c('initialPos', 'finalPos')]
-      varNames <- getVariables(StfwfSchema)
+      varNames <- fastReadfwf::getVariables(StfwfSchema)
       dt[ , (varNames) := lapply(1:(dim(posMatrix)[1]),
                                       function(i) {
                                         stringi::stri_sub(V1,
@@ -80,7 +78,7 @@ setMethod(f = "fread_fwf",
                                                           posMatrix[i, 2])})][, V1 := NULL]
       dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
 
-      types <- getTypes(StfwfSchema)
+      types <- fastReadfwf::getTypes(StfwfSchema)
       numVarNames <- varNames[types == 'num']
 
       indx2 <- which(names(dt) %in% numVarNames)
@@ -97,9 +95,9 @@ setMethod(f = "fread_fwf",
 
     if (outFormat == 'tibble') {
 
-      widths <- getWidths(StfwfSchema)
-      varNames <- getVariables(StfwfSchema)
-      types <- getTypes(StfwfSchema)
+      widths <- fastReadfwf::getWidths(StfwfSchema)
+      varNames <- fastReadfwf::getVariables(StfwfSchema)
+      types <- fastReadfwf::getTypes(StfwfSchema)
       types <- paste0(substr(types, 1, 1), collapse = '')
       tibble <- readr::read_fwf(
         file = filename,
