@@ -10,6 +10,9 @@
 #'
 #' @param StfwfSchema Object of class \linkS4class{StfwfSchema} with the schema of the file.
 #'
+#' @param validate Logical vector of length 1 with default value \code{FALSE} to indicate whether to
+#' validate the content of \code{data} before writing.
+#'
 #' @param justify Character vector of length 1 with default value \code{left} to indicate whether to
 #' justify strings to the left or to the right.
 #'
@@ -34,7 +37,7 @@
 #'
 #' @export
 setGeneric("fwrite_fwf",
-           function(data, filename, StfwfSchema, justify = 'left', ...) {
+           function(data, filename, StfwfSchema, validate = FALSE, justify = 'left', ...) {
              standardGeneric("fwrite_fwf")})
 
 #' @rdname fwrite_fwf
@@ -43,13 +46,22 @@ setGeneric("fwrite_fwf",
 #'
 #' @export
 setMethod(f = "fwrite_fwf",
-          signature = c("data.frame", "character", "StfwfSchema"),
-          function(data, filename, StfwfSchema, justify = 'right', ...){
+          signature = c("data.frame", "character", "StfwfSchema", "logical", "character"),
+          function(data, filename, StfwfSchema, validate = FALSE, justify = 'right', ...){
 
             if (!justify %in% c('left', 'right')) {
 
               stop('[fastReadfwf::fwrite_fwf] justify must be either right or left.\n')
+
             }
+
+            if(validate){
+
+              data <- setChar(data)
+              validateValues(data, StfwfSchema)
+
+            }
+
             data.DT <- as.data.table(data)
             widths <- getWidths(StfwfSchema)
             ColNames <- names(data.DT)
@@ -70,8 +82,11 @@ setMethod(f = "fwrite_fwf",
                                              na.encode = FALSE)][
                                                is.na(get(variable)), (variable) := paste0(rep(' ', width), collapse = '')]
             }
+
             varNotPresentInDT <- names(widths)[which(!names(widths) %in% ColNames)]
+
             if(length(varNotPresentInDT) > 0){
+
               widths.NotPresentInDT <- widths[varNotPresentInDT]
               auxDT <- data.table(width = unique(widths.NotPresentInDT))
               fWhite <- function(i){sapply(i, function(i) paste0(rep.int(' ', i), collapse = ''))}
@@ -83,7 +98,9 @@ setMethod(f = "fwrite_fwf",
               data.DT_NotPresent <- dcast(data.DT_NotPresent, formula = auxID ~ variable, value.var = 'value')[
                 , auxID := NULL]
               data.DT[, names(data.DT_NotPresent) := data.DT_NotPresent]
+
             }
+
             setcolorder(data.DT, getVariables(StfwfSchema))
 
 
@@ -91,7 +108,7 @@ setMethod(f = "fwrite_fwf",
               , .(row)]
 
             fwrite(data.DT[, .(row)], filename, sep = '\n', row.names = FALSE, col.names = FALSE, ...)
-            cat(paste0('\ndata written in ', filename), '\n')
+            cat(paste0('\n data written in ', filename), '\n')
 
 
             return(invisible(NULL))
