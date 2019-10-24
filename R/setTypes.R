@@ -72,6 +72,7 @@ setMethod(f = "setTypes",
 
               if (length(numVarNames) > 0) {
 
+                data[data == ""] <- NA
                 data[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
 
               }
@@ -88,6 +89,7 @@ setMethod(f = "setTypes",
 
               if (length(numVarNames) > 0) {
 
+                data[data == ""] <- NA
                 data[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
 
               }
