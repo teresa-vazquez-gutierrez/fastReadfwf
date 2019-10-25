@@ -3,13 +3,15 @@
 \docType{methods}
 \name{fwrite_fwf}
 \alias{fwrite_fwf}
-\alias{fwrite_fwf,data.frame,character,StfwfSchema-method}
+\alias{fwrite_fwf,data.frame,character,StfwfSchema,logical,character-method}
 \title{Fast write a fixed-width file.}
 \usage{
-fwrite_fwf(data, filename, StfwfSchema, justify = "right", ...)
+fwrite_fwf(data, filename, StfwfSchema, validate = FALSE,
+  justify = "left", ...)
 
-\S4method{fwrite_fwf}{data.frame,character,StfwfSchema}(data, filename,
-  StfwfSchema, justify = "right", ...)
+
+  \S4method{fwrite_fwf}{data.frame,character,StfwfSchema,logical,character}(data,
+  filename, StfwfSchema, validate = FALSE, justify = "right", ...)
 }
 \arguments{
 \item{data}{\linkS4class{data.table} with the data to write.}
@@ -17,6 +19,9 @@ fwrite_fwf(data, filename, StfwfSchema, justify = "right", ...)
 \item{filename}{Character vector of length 1 with the name of the file to write.}
 
 \item{StfwfSchema}{Object of class \linkS4class{StfwfSchema} with the schema of the file.}
+
+\item{validate}{Logical vector of length 1 with default value \code{FALSE} to indicate whether to
+validate the content of \code{data} before writing.}
 
 \item{justify}{Character vector of length 1 with default value \code{left} to indicate whether to
 justify strings to the left or to the right.}

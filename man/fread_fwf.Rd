@@ -6,24 +6,33 @@
 \alias{fread_fwf,character,StfwfSchema-method}
 \title{Fast read a fixed-width file.}
 \usage{
-fread_fwf(filename, StfwfSchema, outFormat, ...)
+fread_fwf(filename, StfwfSchema, validate = FALSE, convert = TRUE,
+  outFormat, perl = FALSE, ...)
 
 \S4method{fread_fwf}{character,StfwfSchema}(filename, StfwfSchema,
-  outFormat = "data.table", perl = FALSE, ...)
+  validate = FALSE, convert = TRUE, outFormat = "data.table",
+  perl = FALSE, ...)
 }
 \arguments{
 \item{filename}{Character vector of length 1 with the name of the file to read.}
 
 \item{StfwfSchema}{Object of class \linkS4class{StfwfSchema} with the schema of the file to read.}
 
+\item{validate}{Logical vector of length 1 with default value \code{FALSE} to indicate whether to
+validate the content of \code{filename} with the regular expressions in \code{StfwfSchema}. This step is done before
+converting the types.}
+
+\item{convert}{Logical vector of length 1 with default value \code{TRUE} to indicate whether to convert
+the content of \code{filename} to the types in \code{StfwfSchema}.}
+
 \item{outFormat}{Character vector of length 1 whose default value is "data.table". Other
 option is "tibble".}
 
-\item{...}{Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
-according to the value of \code{outFormat} above.}
-
 \item{perl}{Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 perl or not in the application of the column \code{regexp}.}
+
+\item{...}{Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
+according to the value of \code{outFormat} above.}
 }
 \value{
 Returns a \linkS4class{data.table} or a \link[tibble]{tibble} with the contents of the

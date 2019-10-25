@@ -1,6 +1,6 @@
 Package: fastReadfwf
 Title: Fast read of fwf files with arbitrary input schema
-Version: 0.2.6
+Version: 0.2.11
 Authors@R: c(
     person("David", "Salgado", email = "david.salgado.fernandez@gmail.com", role = c("cre", "aut")),
     person("Jara", "Poch", email = "jarapoch@gmail.com", role = "aut"))
@@ -28,12 +28,14 @@ Collate:
     'getdf.R'
     'getVariables.R'
     'getTypes.R'
+    'setTypes.R'
     'fread_fwf.R'
     'getWidths.R'
     'fwrite_fwf.R'
     'getRegEx.R'
     'getfinalPos.R'
     'getinitialPos.R'
+    'setChar.R'
     'setdf.R'
     'setRegEx.R'
     'setWidths.R'

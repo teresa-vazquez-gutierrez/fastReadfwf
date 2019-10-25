@@ -12,6 +12,13 @@
 #'
 #' @param StfwfSchema Object of class \linkS4class{StfwfSchema} with the schema of the file to read.
 #'
+#' @param validate Logical vector of length 1 with default value \code{FALSE} to indicate whether to
+#' validate the content of \code{filename} with the regular expressions in \code{StfwfSchema}. This step is done before
+#' converting the types.
+#'
+#' @param convert Logical vector of length 1 with default value \code{TRUE} to indicate whether to convert
+#' the content of \code{filename} to the types in \code{StfwfSchema}.
+#'
 #' @param outFormat Character vector of length 1 whose default value is "data.table". Other
 #' option is "tibble".
 #'
@@ -40,6 +47,8 @@
 #'
 #' @seealso \code{\link[data.table]{fread}}
 #'
+#' @include StfwfSchema-class.R  getdf.R getVariables.R getTypes.R setTypes.R
+#'
 #' @import data.table
 #'
 #' @importFrom stringi stri_sub
@@ -48,17 +57,15 @@
 #'
 #' @export
 setGeneric("fread_fwf",
-           function(filename, StfwfSchema, outFormat, ...) {
+           function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat, perl = FALSE, ...) {
              standardGeneric("fread_fwf")})
 
 #' @rdname fread_fwf
 #'
-#' @include StfwfSchema-class.R getdf.R getVariables.R getTypes.R
-#'
 #' @export
 setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
-          function(filename, StfwfSchema, outFormat = 'data.table', perl = FALSE, ...){
+          function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, ...){
 
     supportedFormats <- c('data.table', 'tibble')
 
@@ -67,39 +74,50 @@ setMethod(f = "fread_fwf",
     if (outFormat == 'data.table') {
 
       trim <- function (x) gsub("^\\s+|\\s+$", "", x, perl = perl)
-      dt <-  fread(file = filename, colClasses = "character", sep = "\n", header = FALSE, ...)
-      schema <- getdf(StfwfSchema)
+      dt <-  data.table::fread(file = filename, colClasses = "character", sep = "\n", header = FALSE, ...)
+      schema <- fastReadfwf::getdf(StfwfSchema)
       posMatrix <- schema[, c('initialPos', 'finalPos')]
-      varNames <- getVariables(StfwfSchema)
+      varNames <- fastReadfwf::getVariables(StfwfSchema)
       dt[ , (varNames) := lapply(1:(dim(posMatrix)[1]),
                                       function(i) {
                                         stringi::stri_sub(V1,
                                                           posMatrix[i,1],
                                                           posMatrix[i, 2])})][, V1 := NULL]
       dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
-      types <- getTypes(StfwfSchema)
-      numVarNames <- varNames[types == 'num']
 
-      if (length(numVarNames) > 0) {
+      if (validate) fastReadfwf::validateValues(dt, schema, perl)
 
-        dt[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
+      if (convert) {
+
+        dt <- fastReadfwf::setTypes(dt, StfwfSchema)
 
       }
+
       return(dt[])
 
     }
 
     if (outFormat == 'tibble') {
 
-      widths <- getWidths(StfwfSchema)
-      varNames <- getVariables(StfwfSchema)
-      types <- getTypes(StfwfSchema)
-      types <- paste0(substr(types, 1, 1), collapse = '')
+      widths <- fastReadfwf::getWidths(StfwfSchema)
+      varNames <- fastReadfwf::getVariables(StfwfSchema)
+      types0 <- fastReadfwf::getTypes(StfwfSchema)
+      types <- paste0(rep('c', length(types0)), collapse = '')
       tibble <- readr::read_fwf(
         file = filename,
         col_positions = readr::fwf_widths(widths, varNames),
         col_types = types,
         ...)
+
+
+      if (validate) validateValues(tibble, schema, perl)
+
+      if (convert) {
+
+        tibble <- setTypes(tibble, StfwfSchema)
+
+      }
+
       return(tibble)
 
     }
