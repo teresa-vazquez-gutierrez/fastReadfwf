@@ -66,7 +66,7 @@ setMethod(f = "fwrite_fwf",
               variable <- ColNames[i]
               data.DT[, (variable) := format(as.character(get(variable)),
                                              width = width,
-                                             justify = 'right',
+                                             justify = 'left',
                                              na.encode = FALSE)][
                                                is.na(get(variable)), (variable) := paste0(rep(' ', width), collapse = '')]
 
@@ -86,7 +86,6 @@ setMethod(f = "fwrite_fwf",
               data.DT[, names(data.DT_NotPresent) := data.DT_NotPresent]
             }
             setcolorder(data.DT, getVariables(StfwfSchema))
-
 
             data.DT[, row := Reduce(function(...) stri_join(...), .SD), .SDcols = ColNames][
               , .(row)]
