@@ -70,9 +70,10 @@ setMethod(f = "setTypes",
               indx2 <- which(names(data) %in% numVarNames)
               for (j in indx2) set(data, i = grep("^$|^ $", data[[j]]), j = j, value = NA_character_)
 
+              data[data == ""] <- NA
+
               if (length(numVarNames) > 0) {
 
-                data[data == ""] <- NA
                 data[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
 
               }
@@ -87,9 +88,10 @@ setMethod(f = "setTypes",
               indx2 <- which(names(data) %in% numVarNames)
               for (j in indx2) set(data, i = grep("^$|^ $", data[[j]]), j = j, value = NA_character_)
 
+              data[data == ""] <- NA
+
               if (length(numVarNames) > 0) {
 
-                data[data == ""] <- NA
                 data[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
 
               }
