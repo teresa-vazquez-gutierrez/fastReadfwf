@@ -49,6 +49,8 @@ setMethod(f = "fwrite_fwf",
           signature = c("data.frame", "character", "StfwfSchema", "logical", "character"),
           function(data, filename, StfwfSchema, validate = FALSE, justify = 'right', ...){
 
+            value <- auxID <- '.' <- NULL
+
             if (!justify %in% c('left', 'right')) {
 
               stop('[fastReadfwf::fwrite_fwf] justify must be either right or left.\n')

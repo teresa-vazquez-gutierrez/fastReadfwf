@@ -49,6 +49,8 @@
 #' @export
 csvToSchema <- function(csvname, sep = ';', header = TRUE, lang = 'en', ...){
 
+  width <- initialPos <- finalPos <- valueRegEx <- description <- NULL
+
   stColNames <- c('variable', 'width', 'initialPos', 'finalPos', 'type', 'valueRegEx','description')
   csv <- fread(csvname, sep = sep, header = header, blank.lines.skip = TRUE, ...)
 
