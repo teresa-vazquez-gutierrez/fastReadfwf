@@ -46,7 +46,7 @@ setGeneric("fwrite_fwf",
 #'
 #' @export
 setMethod(f = "fwrite_fwf",
-          signature = c("data.frame", "character", "StfwfSchema", "logical", "character"),
+          signature = c("data.frame", "character", "StfwfSchema"),
           function(data, filename, StfwfSchema, validate = FALSE, justify = 'right', ...){
 
             value <- auxID <- '.' <- NULL

@@ -3,15 +3,14 @@
 \docType{methods}
 \name{fwrite_fwf}
 \alias{fwrite_fwf}
-\alias{fwrite_fwf,data.frame,character,StfwfSchema,logical,character-method}
+\alias{fwrite_fwf,data.frame,character,StfwfSchema-method}
 \title{Fast write a fixed-width file.}
 \usage{
 fwrite_fwf(data, filename, StfwfSchema, validate = FALSE,
   justify = "left", ...)
 
-
-  \S4method{fwrite_fwf}{data.frame,character,StfwfSchema,logical,character}(data,
-  filename, StfwfSchema, validate = FALSE, justify = "right", ...)
+\S4method{fwrite_fwf}{data.frame,character,StfwfSchema}(data, filename,
+  StfwfSchema, validate = FALSE, justify = "right", ...)
 }
 \arguments{
 \item{data}{\linkS4class{data.table} with the data to write.}
