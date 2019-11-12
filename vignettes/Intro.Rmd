@@ -51,7 +51,7 @@ Notice that we have created a new sheet with name *stSchema* fully oriented towa
 
 This sheet can be straightforwardly read into a data.frame:
 
-```{r Origxlsx, echo = TRUE, eval = TRUE, cache = FALSE}
+```{r Origxlsx, echo = TRUE, eval = TRUE, cache = TRUE}
 library(openxlsx)
 path <- system.file('extdata', package = 'fastReadfwf')
 origSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'), 
@@ -62,22 +62,22 @@ str(origSchema)
 
 Notice that this original schema in xlsx format is almost in the standardised way. Some short ad-hoc work needs to be conducted for this survey to build the standardised schema. The largest part of the work boils down to specify the regex for each variable:
 
-```{r Stxlsx, echo = TRUE, eval = TRUE, cache = FALSE, dependson= 'Origxlsx'}
+```{r Stxlsx, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Origxlsx'}
 stSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'), 
                         sheet = 'stSchema', 
                         colNames = TRUE)
 str(stSchema)
 ```
 
-Producing a data.table is now straightforward and fairly fast:
+Producing a data.table is now straightforward and fairly fast. The function `xlsxToSchema()` is used to load the schema object. Then, the function `fread_fwf()` is used to read the file with that schema.
 
-```{r readDT, echo = TRUE, eval = TRUE, cache = FALSE, dependson= 'Stxlsx'}
+```{r readDT, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Stxlsx'}
 library(fastReadfwf)
 library(data.table)
 stSchema <- xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 system.time(
   data.DT <- fread_fwf(file.path(path, 'MicroDataSNHS.txt'), 
-                       stSchema, outFormat = 'data.table', perl = TRUE)
+                       stSchema, outFormat = 'data.table', convert = FALSE, perl = TRUE)
 )
 str(data.DT)
 ```
@@ -90,22 +90,50 @@ library(tibble)
 stSchema <- xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 system.time(
   data.tibble <- fread_fwf(file.path(path, 'MicroDataSNHS.txt'), 
-                       stSchema, outFormat = 'tibble')
+                       stSchema, outFormat = 'tibble', convert = FALSE)
 )
 data.tibble
 ```
 
-Once data have been read, we can validate the format of the values of each variable.
+Once data have been read, we can validate the format of the values of each variable. As regular expressions are used over character strings, validation should be done before converting the content of the file to the type of each variable. To deal with these steps inside the `fread_fwf()` the following arguments can be used:
+
+* `validate`: by default is `FALSE`, if `TRUE` the validation of the values is conducted before the convertion (setting the types).
+* `convert`: by default is `TRUE`, then the output of the function will have the variables converted to the types in the schema.
+
+The validation can be conducted also apart from the `fread_fwf()` function with the `validateValues()` function. In the case of data.table format:
+
+```{r validDT, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readDT'}
+validateValues(data.DT, stSchema)
+```
+
+In the tibble format:
 
 ```{r validTibble, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readTibble'}
 validateValues(data.tibble, stSchema)
 ```
 
-The validation can also be conducted in the data.table format:
+Then, the values can be converted easily with the `setTypes()` function:
 
-```{r validDT, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readDT'}
-validateValues(data.DT, stSchema)
+```{r setTypes, echo = TRUE, eval = TRUE, cache = TRUE, dependson = 'readDT'}
+data.DT.converted <- setTypes(data.DT, stSchema)
+str(data.DT.converted)
 ```
+
+There is another function to allow the user to validate values with the regular expressions of an schema before writing in a file. The `setChar()` function convert all variables to character to be able to validate adequately. Let see an example with the data.table object.
+
+```{r setChar, echo = TRUE, eval = TRUE, cache = TRUE, dependson = 'setTypes'}
+data.DT.Char <- setChar(data.DT.converted)
+validateValues(data.DT.Char, stSchema)
+```
+
+Now, we illustrate the other functionality of this package, writing easy and fast in a fixed-width file with the function `fwrite_fwf()`. The object in the argument `data` can be data.table or tibble and with types of the variables converted or not. 
+```{r writeDT, echo = FALSE, eval = TRUE, cache = FALSE, dependson = 'setChar'}
+system.time(
+  fwrite_fwf(data.DT.Char, file.path(path, 'MicroDataSNHS_written.txt'), 
+                       stSchema, validate = FALSE)
+)
+```
+The argument `validate` is `FALSE` by default. If `validate = TRUE`: the types are set to character, then the validation is conducted and if every variable is validated, the writing process keeps going. 
 
 
 # Some details
