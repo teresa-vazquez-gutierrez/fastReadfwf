@@ -40,7 +40,7 @@
 #'
 #' @examples
 #' path <- system.file('extdata', package = 'fastReadfwf')
-#' csvToSchema(file.path(path, 'SchemaSNHS.csv'), header = TRUE)
+#' csvToSchema(file.path(path, 'SchemaSNHS_microdataWeb.csv'), header = TRUE)
 #'
 #' @import data.table
 #'

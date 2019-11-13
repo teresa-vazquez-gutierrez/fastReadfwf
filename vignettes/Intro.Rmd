@@ -2,7 +2,9 @@
 title: "Fast reading fixed-width files in a standardised way"
 author: "David Salgado"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
@@ -27,7 +29,8 @@ The motivation is to provide a high-level scripting procedure to read this sort 
 The package also provides a format validation functionality for the values of each variable in the data set. The values are validated according to the format specified by the user in the schema through regular expressions.
 
 # An illustrative example: the Spanish National Health Survey
-The Spanish National Health Survey disseminates three anonymised microdata files together with their respective schemas corresponding to the questionnaires for adults, households, and household members under 18 years. The structure of these files and their schemas are different to those provided for other surveys. These files can be downloaded from the Spanish NSI's website. The microdata file for the adults together with its corresponding schema is included in this package for the 2017 edition.
+The Spanish National Health Survey disseminates three anonymised microdata files together with their respective schemas corresponding to the questionnaires for adults, households, and household members under 18 years. The structure of these files and their schemas are different to those provided for other surveys. These files can be [downloaded from the Spanish NSI's website](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176783&menu=resultados&secc=1254736195295&idp=1254735573175). The schema corresponding to the microdata file for the adults for the 2017 edition is included in this package named as *SchemaSNHS_microdataWeb.xlsx*. A selection of some variables and individuals from these data has been made and included in the package, name as *MicroDataSNHS*. 
+
 
 Let us illustrate the philosophy of our proposed standardisation with the data files included in the package. Firstly, the schema for the questionnaire for adults is specified in an xlsx file with 5 sheet. Those with Spanish names contain the original schema specified in the downloaded file from the Spanish NSI's website. It is mainly for human consumption:
 
@@ -54,9 +57,10 @@ This sheet can be straightforwardly read into a data.frame:
 ```{r Origxlsx, echo = TRUE, eval = TRUE, cache = TRUE}
 library(openxlsx)
 path <- system.file('extdata', package = 'fastReadfwf')
-origSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'), 
-                        sheet = 'Diseño de Registro C. Adulto', 
+origSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'),
+                        sheet = 'Diseño de Registro C. Adulto',
                         colNames = TRUE)
+
 str(origSchema)
 ```
 
@@ -69,9 +73,11 @@ stSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'),
 str(stSchema)
 ```
 
+## `data.table` format
+
 Producing a data.table is now straightforward and fairly fast. The function `xlsxToSchema()` is used to load the schema object. Then, the function `fread_fwf()` is used to read the file with that schema.
 
-```{r readDT, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Stxlsx'}
+```{r readDT, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Origxlsx'}
 library(fastReadfwf)
 library(data.table)
 stSchema <- xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
@@ -80,19 +86,6 @@ system.time(
                        stSchema, outFormat = 'data.table', convert = FALSE, perl = TRUE)
 )
 str(data.DT)
-```
-
-In the case of tibbles, we proceed in the same way:
-
-```{r readTibble, echo = TRUE, eval = TRUE, cache = FALSE, dependson= 'Stxlsx'}
-library(fastReadfwf)
-library(tibble)
-stSchema <- xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
-system.time(
-  data.tibble <- fread_fwf(file.path(path, 'MicroDataSNHS.txt'), 
-                       stSchema, outFormat = 'tibble', convert = FALSE)
-)
-data.tibble
 ```
 
 Once data have been read, we can validate the format of the values of each variable. As regular expressions are used over character strings, validation should be done before converting the content of the file to the type of each variable. To deal with these steps inside the `fread_fwf()` the following arguments can be used:
@@ -104,12 +97,6 @@ The validation can be conducted also apart from the `fread_fwf()` function with 
 
 ```{r validDT, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readDT'}
 validateValues(data.DT, stSchema)
-```
-
-In the tibble format:
-
-```{r validTibble, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readTibble'}
-validateValues(data.tibble, stSchema)
 ```
 
 Then, the values can be converted easily with the `setTypes()` function:
@@ -127,13 +114,34 @@ validateValues(data.DT.Char, stSchema)
 ```
 
 Now, we illustrate the other functionality of this package, writing easy and fast in a fixed-width file with the function `fwrite_fwf()`. The object in the argument `data` can be data.table or tibble and with types of the variables converted or not. 
-```{r writeDT, echo = FALSE, eval = TRUE, cache = FALSE, dependson = 'setChar'}
+```{r writeDT, echo = FALSE, eval = FALSE, cache = FALSE, dependson = 'setChar'}
 system.time(
   fwrite_fwf(data.DT.Char, file.path(path, 'MicroDataSNHS_written.txt'), 
                        stSchema, validate = FALSE)
 )
 ```
 The argument `validate` is `FALSE` by default. If `validate = TRUE`: the types are set to character, then the validation is conducted and if every variable is validated, the writing process keeps going. 
+
+## `tibble` format
+
+In the case of tibbles, we proceed in the same way:
+
+```{r readTibble, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Origxlsx'}
+library(fastReadfwf)
+library(tibble)
+stSchema <- xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
+system.time(
+  data.tibble <- fread_fwf(file.path(path, 'MicroDataSNHS.txt'), 
+                       stSchema, outFormat = 'tibble', convert = FALSE)
+)
+data.tibble
+```
+
+The validation of the values inside the tibble:
+
+```{r validTibble, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readTibble'}
+validateValues(data.tibble, stSchema)
+```
 
 
 # Some details
@@ -164,7 +172,7 @@ We have defined *getters* for this class:
 ```{r, echo = TRUE, cache = FALSE, eval = TRUE}
 library(fastReadfwf)
 path <- system.file('extdata', package = 'fastReadfwf')
-stSchema <- csvToSchema(file.path(path, 'SchemaSNHS.csv'))
+stSchema <- csvToSchema(file.path(path, 'SchemaSNHS_microdataWeb.csv'))
 
 # Get the slot df
 head(getdf(stSchema))
@@ -187,3 +195,17 @@ head(getTypes(stSchema))
 # Get regex
 head(getRegEx(stSchema))
 ```
+
+## Execution times
+
+The time of reading (and writing) is really fast even for large files. A summary of the execution times for some examples is shown in the following table.
+
+ Size | N. rows | N. columns | Reading time | Writing time 
+------------- | ------------- | ------------- | ------------- | -------------
+ 13.5 MB | 23089 | 445 | 3.40 sec | 19.59 sec
+  55.6 MB | 80134 | 512 | 13.32 sec | 69.23 sec
+
+These examples have been running under these system characteristics:
+
+* R version 3.5.3 (2019-03-11)
+* Platform: x86_64-w64-mingw32/x64 (64-bit)
