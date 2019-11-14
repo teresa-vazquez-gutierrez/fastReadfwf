@@ -28,6 +28,21 @@ This package provides a unified procedure to read these fixed-width files in a f
 The motivation is to provide a high-level scripting procedure to read this sort of files for any microdata set disseminated by a statistical office. In this vignette we illustrate the usage of this package with real data coming from the 2017 edition of the Spanish National Health Survey microdata set. 
 The package also provides a format validation functionality for the values of each variable in the data set. The values are validated according to the format specified by the user in the schema through regular expressions.
 
+## Read fwf
+
+One of the two main functionalities of this package is the ability to read fixed-width files in a fast way with the funcion `fread_fwf`.
+
+## Validate values
+
+The validation of the values is done in terms of values integrity by using regular expressions that allow for evaluations of data fields. For instance, one could check to ensure that a data value belongs to a set of permitted values. But there is no rules connecting different fields or allowing operations. Regular expressions are applied over character strings, then the validation of the values must be done before converting the data to the type of each variable or after setting all variables to character class. In this package, the validation of the values can be done with the function `validateValues()` or with the argument `validate = TRUE` which execute the validation as part of the reading or writing process. 
+
+This validation of the values is different from statistical data validation which can be done with the R package [`validate`](https://cran.r-project.org/web/packages/validate/index.html). That package supports rules that are per-field, in-record, cross-record or cross-dataset.
+
+## Write fwf
+
+The another main functionality of this package is the ability to write fixed-width files in a fast way with the funcion `fwrite_fwf`.
+
+
 # An illustrative example: the Spanish National Health Survey
 The Spanish National Health Survey disseminates three anonymised microdata files together with their respective schemas corresponding to the questionnaires for adults, households, and household members under 18 years. The structure of these files and their schemas are different to those provided for other surveys. These files can be [downloaded from the Spanish NSI's website](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176783&menu=resultados&secc=1254736195295&idp=1254735573175). The schema corresponding to the microdata file for the adults for the 2017 edition is included in this package named as *SchemaSNHS_microdataWeb.xlsx*. A selection of some variables and individuals from these data has been made and included in the package, name as *MicroDataSNHS*. 
 
@@ -102,14 +117,14 @@ validateValues(data.DT, stSchema)
 Then, the values can be converted easily with the `setTypes()` function:
 
 ```{r setTypes, echo = TRUE, eval = TRUE, cache = TRUE, dependson = 'readDT'}
-data.DT.converted <- setTypes(data.DT, stSchema)
-str(data.DT.converted)
+data.DT.Types <- setTypes(data.DT, stSchema)
+str(data.DT.Types)
 ```
 
 There is another function to allow the user to validate values with the regular expressions of an schema before writing in a file. The `setChar()` function convert all variables to character to be able to validate adequately. Let see an example with the data.table object.
 
 ```{r setChar, echo = TRUE, eval = TRUE, cache = TRUE, dependson = 'setTypes'}
-data.DT.Char <- setChar(data.DT.converted)
+data.DT.Char <- setChar(data.DT.Types)
 validateValues(data.DT.Char, stSchema)
 ```
 

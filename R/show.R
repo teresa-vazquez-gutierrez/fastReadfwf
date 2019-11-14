@@ -1,3 +1,4 @@
+#'
 #' @title Show an object of class \linkS4class{StfwfSchema}.
 #'
 #' @description \code{show} displays the slot \code{df} of the input \linkS4class{StfwfSchema} object excluding
