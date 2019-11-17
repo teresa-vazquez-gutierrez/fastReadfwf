@@ -40,7 +40,7 @@
 #'
 #' @examples
 #' path <- system.file('extdata', package = 'fastReadfwf')
-#' csvToSchema(file.path(path, 'SchemaSNHS.csv'), header = TRUE)
+#' csvToSchema(file.path(path, 'SchemaSNHS_microdataWeb.csv'), header = TRUE)
 #'
 #' @import data.table
 #'
@@ -48,6 +48,8 @@
 #'
 #' @export
 csvToSchema <- function(csvname, sep = ';', header = TRUE, lang = 'en', ...){
+
+  width <- initialPos <- finalPos <- valueRegEx <- description <- NULL
 
   stColNames <- c('variable', 'width', 'initialPos', 'finalPos', 'type', 'valueRegEx','description')
   csv <- fread(csvname, sep = sep, header = header, blank.lines.skip = TRUE, ...)

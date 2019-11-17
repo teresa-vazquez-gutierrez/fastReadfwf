@@ -67,6 +67,8 @@ setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
           function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, ...){
 
+            V1 <- NULL
+
     supportedFormats <- c('data.table', 'tibble')
 
     if (!outFormat %in% supportedFormats) stop('[fastReadfwf:: fread_fwf] Output format not supported.\n')

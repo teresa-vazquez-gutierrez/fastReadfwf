@@ -22,14 +22,14 @@
 #'      file.path(path, 'MicroDataSNHS.txt'), stSchema, validate = FALSE, convert = FALSE,
 #'        outFormat = 'data.table', perl = TRUE)
 #' data.DT.types <- setTypes(data.DT.char, stSchema)
-#' head(data.DT.types)
+#' str(data.DT.types)
 #'
 #' # For tibbles
 #'  data.tibble.char <- fread_fwf(
 #'       file.path(path, 'MicroDataSNHS.txt'), stSchema, validate = FALSE, convert = FALSE,
 #'        outFormat = 'tibble')
 #'  data.tibble.types <- setTypes(data.tibble.char, stSchema)
-#'  head(data.tibble.types)
+#'  str(data.tibble.types)
 #'
 #' @seealso \code{\link[fastReadfwf]{fread_fwf}}
 #'
@@ -70,9 +70,10 @@ setMethod(f = "setTypes",
               indx2 <- which(names(data) %in% numVarNames)
               for (j in indx2) set(data, i = grep("^$|^ $", data[[j]]), j = j, value = NA_character_)
 
+              data[data == ""] <- NA
+
               if (length(numVarNames) > 0) {
 
-                data[data == ""] <- NA
                 data[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
 
               }
@@ -87,9 +88,10 @@ setMethod(f = "setTypes",
               indx2 <- which(names(data) %in% numVarNames)
               for (j in indx2) set(data, i = grep("^$|^ $", data[[j]]), j = j, value = NA_character_)
 
+              data[data == ""] <- NA
+
               if (length(numVarNames) > 0) {
 
-                data[data == ""] <- NA
                 data[, (numVarNames) := lapply(.SD, as.numeric), .SDcols = numVarNames]
 
               }
