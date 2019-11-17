@@ -3,6 +3,14 @@ title: "Fast reading fixed-width files in a standardised way"
 author: "David Salgado"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+references:
+- id: SNHS17
+  title: Spanish National Health Survey
+  author:
+  - family: Spanish National Statistics Institute
+  URL: 'https://www.ine.es/dyngs/INEbase/en/operacion.htm?c=Estadistica_C&cid=1254736176783&menu=resultados&secc=1254736195295&idp=1254735573175'
+  issued:
+    year: 2017
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
@@ -23,7 +31,8 @@ Fixed-width files are still of extended usage in Official Statistics to dissemin
 
 This package provides a unified procedure to read these fixed-width files in a fast way using a standardised schema as an input parameter returning either a data.table or a tibble with the content of the file. The package does not provide a new reading function but only a common wrapper around the functions `fread` from the `data.table` package and `read_fwf` from the `readr` package.
 
-The motivation is to provide a high-level scripting procedure to read this sort of files for any microdata set disseminated by a statistical office. In this vignette we illustrate the usage of this package with real data coming from the 2017 edition of the Spanish National Health Survey microdata set. 
+The motivation is to provide a high-level scripting procedure to read this sort of files for any microdata set disseminated by a statistical office. In this vignette we illustrate the usage of this package with real data coming from the 2017 edition of the Spanish National Health Survey microdata set.
+
 The package also provides a format validation functionality for the values of each variable in the data set. The values are validated according to the format specified by the user in the schema through regular expressions.
 
 # An illustrative example: the Spanish National Health Survey
@@ -60,7 +69,7 @@ origSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'),
 str(origSchema)
 ```
 
-Notice that this original schema in xlsx format is almost in the standardised way. Some short ad-hoc work needs to be conducted for this survey to build the standardised schema. The largest part of the work boils down to specify the regex for each variable:
+Notice that this original schema in xlsx format is almost in the standardised way. Some short ad-hoc work needs to be conducted for this survey to build the standardised schema. The largest part of the work boils down to specifying the regex for each variable:
 
 ```{r Stxlsx, echo = TRUE, eval = TRUE, cache = FALSE, dependson= 'Origxlsx'}
 stSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'), 

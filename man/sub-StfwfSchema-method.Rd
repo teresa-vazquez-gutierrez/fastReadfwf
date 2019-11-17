@@ -38,7 +38,8 @@ df <- data.frame(variable = c('Turnover', 'Employees'),
                  description = c('Turnover of the business unit',
                                  'Number of employees of the business unit'),
                  stringsAsFactors = FALSE)
-Schema <- new(Class = 'StfwfSchema')
-Schema[df$variable == 'Turnover']
+Schema <- new(Class = 'StfwfSchema', df = df)
+Schema[variable == 'Turnover', ]
+Schema[1, 'valueRegEx']
 
 }

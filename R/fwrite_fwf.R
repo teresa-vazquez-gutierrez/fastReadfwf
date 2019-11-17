@@ -76,15 +76,12 @@ setMethod(f = "fwrite_fwf",
 
               width <- widths[ColNames[i]]
               variable <- ColNames[i]
-              data.DT[, (variable) := format(as.character(get(variable)),
-                                             width = width,
-<<<<<<< HEAD
-                                             justify = 'left',
-=======
-                                             justify = justify,
->>>>>>> b5bd64ccb595894ed2409eb7b98b66dd625da007
-                                             na.encode = FALSE)][
-                                               is.na(get(variable)), (variable) := paste0(rep(' ', width), collapse = '')]
+              data.DT[
+                , (variable) := format(as.character(get(variable)),
+                                       width = width,
+                                       justify = justify,
+                                       na.encode = FALSE)][
+                is.na(get(variable)), (variable) := paste0(rep(' ', width), collapse = '')]
             }
 
             varNotPresentInDT <- names(widths)[which(!names(widths) %in% ColNames)]
