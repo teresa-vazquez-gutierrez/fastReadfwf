@@ -24,6 +24,8 @@
 #'
 #' @param perl Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 #' perl or not in the application of the column \code{regexp}.
+#' 
+#' @param encoding Optional argument with the file encoding to be read, by default UTF-8.
 #'
 #' @param ... Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
 #' according to the value of \code{outFormat} above.
