@@ -65,7 +65,7 @@ setGeneric("fread_fwf",
 #' @export
 setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
-          function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, ...){
+          function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, encoding = "utf8", ...){
 
             V1 <- NULL
 
@@ -75,7 +75,7 @@ setMethod(f = "fread_fwf",
 
     if (outFormat == 'data.table') {
 
-      trim <- function (x) gsub("^\\s+|\\s+$", "", x, perl = perl)
+      trim <- function (x) gsub("^\\s+|\\s+$", "", iconv(x, to = encoding), perl = perl)
       dt <-  data.table::fread(file = filename, colClasses = "character", sep = "\n", header = FALSE, ...)
       schema <- fastReadfwf::getdf(StfwfSchema)
       posMatrix <- schema[, c('initialPos', 'finalPos')]
