@@ -15,6 +15,8 @@
 #'
 #' @param justify Character vector of length 1 with default value \code{left} to indicate whether to
 #' justify strings to the left or to the right.
+#' 
+#' @param encoding Character vector of length 1 with default value \code{utf8}, native is also supported.
 #'
 #' @param ... Other parameters from \code{\link[data.table]{fwrite}}.
 #'

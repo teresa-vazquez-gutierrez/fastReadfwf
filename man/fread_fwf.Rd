@@ -11,7 +11,7 @@ fread_fwf(filename, StfwfSchema, validate = FALSE, convert = TRUE,
 
 \S4method{fread_fwf}{character,StfwfSchema}(filename, StfwfSchema,
   validate = FALSE, convert = TRUE, outFormat = "data.table",
-  perl = FALSE, ...)
+  perl = FALSE, encoding = "utf8", ...)
 }
 \arguments{
 \item{filename}{Character vector of length 1 with the name of the file to read.}
@@ -33,6 +33,8 @@ perl or not in the application of the column \code{regexp}.}
 
 \item{...}{Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
 according to the value of \code{outFormat} above.}
+
+\item{encoding}{Optional argument with the file encoding to be read, by default UTF-8.}
 }
 \value{
 Returns a \linkS4class{data.table} or a \link[tibble]{tibble} with the contents of the
