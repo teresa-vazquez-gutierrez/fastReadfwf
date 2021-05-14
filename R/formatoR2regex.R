@@ -1,7 +1,7 @@
-#' @title Create a .xml file 
+#' @title Convert FormatoR to regex
 #' 
 #' 
-#' @description \code{xlsxToXML} create a .xml file following a certain structure.
+#' @description \code{formatoR2regex} Convert FormatoR to regex
 #'
 #' This function reads an Excel file containing partially the schema of the fixed-width
 #' file to read. This file must contain the following named columns: 
@@ -48,62 +48,42 @@
 #' 
 #' @import data.table
 #' 
-#' @importFrom openxlsx read.xlsx 
+#' @importFrom openxlsx read.xlsx
 #' 
-#' @include formatoR2regex
+#' @importFrom XML xmlTree addTag closeTag saveXML
 #' 
 #' @export
-xlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS"){
-  #Lectura del xlsx y construccion del xml#
-  cat("Leyendo hoja", sheetToRead, "del xlsx:", xlsxName, "...")
-  regions_info <- getNamedRegions(xlsxName)
-  region_idx  <- which(regions_info == regionName)
-  region_cells <- attr(regions_info, "position")[region_idx]
-  region_rows <- as.integer(gsub("[A-Z]*", "", strsplit(region_cells, ":")[[1]]))
+formatoR2regex <- function(formatoR){
   
-  xlsx <- read.xlsx(xlsxName, sheet=sheetToRead, rows = c(region_rows[1]:region_rows[2]))
-  names(xlsx) <- chartr("áéíóú…", "aeiou.", names(xlsx))
-  cat(" ok.\n")
+  types <- gsub("[[:digit:]]", "", formatoR)
+  types <- gsub("[[:punct:]]", "", types)
   
-  cat("Construyendo estructura del Schema...")
-  setnames(xlsx, c("Variable", "Longitud", "Posicion", "Descripcion"), 
-           c("variable", "width", "initialPos", "description"))
-  
-  xlsx$finalPos <- xlsx$initialPos + xlsx$width - 1
-  xlsx$type <- lapply(xlsx$Tipo, function(xlsxTipo){
-    switch(xlsxTipo,
-           "A" = "char",
-           "N" = "num")
+  types.regex <- sapply(types, function(x){
+    switch(x,
+           "A" = "[a-zA-Z]", 
+           "I" = "[0-9]",
+           "F" = "[0-9]",
+           "[.]*")
   })
-  xlsx$valueRegEx <- formatoR2regex(xlsx$FormatoR)
   
-  stColNames <- c("variable","width","initialPos","finalPos","type","valueRegEx",
-                  "description")
-  xlsx <- xlsx[, stColNames]
+  widths <- gsub("[[:alpha:]]", "", formatoR)
+  widths <- strsplit(widths, ".", fixed = TRUE)
   
-  cat(" ok.\n")
+  widths.regex <- sapply(widths, function(x){
+    if(length(x) == 0){output <- ""}
+    if(length(x) == 1){
+      output <- paste0("{1,", x, "}")
+    }
+    if(length(x) == 2){
+      a <- as.integer(x[1]) - as.integer(x[2])
+      output <- paste0("{1,", a, "}", "\\.[0-9]{1,", x[2], "}")
+    }
+    if(length(x) > 2){stop("Hay un elemento en formatoR no reconocido.")}
+    return(output)
+  })
   
-  cat("Construyendo XML...")
-  new_xml <- xml2::xml_new_root(
-    .value = "Schema",
-    .version = "1.0",
-    .encoding = "UTF-8")
+  output <- paste0(types.regex, widths.regex)
   
-  xml2::xml_add_child(new_xml, .value = "vars")
+  return(output)
   
-  vars_xml <- lapply(purrr::transpose(xlsx),
-                     function(x) {
-                       xml2::as_xml_document(list(var = lapply(x, as.list)))
-                     })
-  
-  for(var in vars_xml) xml2::xml_add_child(xml_child(new_xml), var)
-  
-  cat(" ok.\n")
-  
-  cat("Guardando XML en ", xmlName, "...")
-  xml2::write_xml(new_xml, file = xmlName)
-  cat(" ok.\n")
-  
-  return(new_xml)
-
 }
