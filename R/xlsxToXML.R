@@ -50,14 +50,12 @@
 #' 
 #' @importFrom openxlsx read.xlsx 
 #' 
-#' @importFrom XML xmlTree addTag closeTag saveXML
-#' 
 #' @include formatoR2regex
 #' 
 #' @export
 xlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS"){
   #Lectura del xlsx y construccion del xml#
-  cat("Leyendo hoja", sheetToRead, "del xlsx:", xlsxName, "\n")
+  cat("Leyendo hoja", sheetToRead, "del xlsx:", xlsxName, "...")
   regions_info <- getNamedRegions(xlsxName)
   region_idx  <- which(regions_info == regionName)
   region_cells <- attr(regions_info, "position")[region_idx]
@@ -65,8 +63,9 @@ xlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATO
   
   xlsx <- read.xlsx(xlsxName, sheet=sheetToRead, rows = c(region_rows[1]:region_rows[2]))
   names(xlsx) <- chartr("áéíóú…", "aeiou.", names(xlsx))
+  cat(" ok.\n")
   
-  cat("Construyendo estructura del Schema... \n")
+  cat("Construyendo estructura del Schema...")
   setnames(xlsx, c("Variable", "Longitud", "Posicion", "Descripcion"), 
            c("variable", "width", "initialPos", "description"))
   
@@ -82,19 +81,27 @@ xlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATO
                   "description")
   xlsx <- xlsx[, stColNames]
   
-  cat("Construyendo XML... \n")
-  newXML <- xmlTree()
-  newXML$addTag("Schema", close=FALSE)
-  newXML$addTag("Variables", close=FALSE)
-  lapply(1:nrow(xlsx), function(nrxlsx){
-    newXML$addTag("var", close=FALSE)
-    lapply(names(xlsx), function(nxlsx){
-      newXML$addTag(nxlsx, xlsx[nrxlsx, nxlsx])
-    })
-    newXML$closeTag()
-  })
-  newXML$closeTag()
-  newXML$closeTag()
-  cat("Creando XML en", outputPath, "\n")
-  saveXML(newXML, outputPath)
+  cat(" ok.\n")
+  
+  cat("Construyendo XML...")
+  new_xml <- xml2::xml_new_root(
+    .value = "Schema",
+    .version = "1.0",
+    .encoding = "UTF-8")
+  
+  xml2::xml_add_child(new_xml, .value = "vars")
+  
+  vars_xml <- lapply(purrr::transpose(xlsx),
+                     function(x) {
+                       xml2::as_xml_document(list(var = lapply(x, as.list)))
+                     })
+  
+  for(var in vars_xml) xml2::xml_add_child(xml_child(new_xml), var)
+  
+  cat(" ok.\n")
+  
+  cat("Guardando XML en ", xmlName, "...")
+  xml2::write_xml(new_xml, file = xmlName)
+  cat(" ok.\n")
+
 }
