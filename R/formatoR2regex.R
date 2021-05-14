@@ -62,13 +62,15 @@ formatoR2regex <- function(formatoR){
     switch(x,
            "A" = "[a-zA-Z]", 
            "I" = "[0-9]",
-           "F" = "[0-9]")
+           "F" = "[0-9]",
+           "[.]*")
   })
   
   widths <- gsub("[[:alpha:]]", "", formatoR)
   widths <- strsplit(widths, ".", fixed = TRUE)
   
   widths.regex <- sapply(widths, function(x){
+    if(length(x) == 0){output <- ""}
     if(length(x) == 1){
       output <- paste0("{1,", x, "}")
     }

@@ -24,84 +24,45 @@
 #'
 #' }
 #' 
-#' @param inputPath Path of the xml file containing the schema.
+#' @param xmlName Path of the xml file containing the schema.
 #' 
 #' @return Return an object of class \linkS4class{StfwfSchema}.
 #' 
 #' @examples 
 #' 
-#' inputPath <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
-#' xmlToSchema(inputPath)
+#' xmlName <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
+#' xmlToSchema(xmlName)
 #' 
-#' inputPath <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
-#' xmlToSchema(inputPath)
+#' xmlName <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
+#' xmlToSchema(xmlName)
 #' 
 #' @importFrom xml2 as_list read_xml
 #' 
 #' @export
 
-xmlToSchema <- function(inputPath){
-  #Lectura del XML y construccion del Schema#
-  xmlFile <- as_list(read_xml(inputPath))
-  nVar <- length(xmlFile$Schema$Variables)
+xmlToSchema <- function(xmlName){
   
-  xml.list <- data.frame(matrix(ncol=7, nrow=nVar))
-  colnames(xml.list) <- stColNames
+  #Lectura del XML y construcción de la tabla
+  doc <- read_xml(xmlName)
+  nodes <- xml_find_all(doc, ".//vars/var")
   
-  for (i in 1:nVar){
-    xml.list$variable[i]    <- unlist(xmlFile$Schema$Variables[i]$var$variable)
-    xml.list$width[i]       <- unlist(xmlFile$Schema$Variables[i]$var$width)
-    xml.list$initialPos[i]  <- unlist(xmlFile$Schema$Variables[i]$var$initialPos)
-    xml.list$finalPos[i]    <- unlist(xmlFile$Schema$Variables[i]$var$finalPos)
-    xml.list$type[i]        <- unlist(xmlFile$Schema$Variables[i]$var$type)
-    xml.list$valueRegEx[i]  <- unlist(xmlFile$Schema$Variables[i]$var$valueRegEx)
-    xml.list$description[i] <- unlist(xmlFile$Schema$Variables[i]$var$description)
-  }
+  vars.dt <- as.data.table(
+    purrr::map_df(nodes, function(x) {
+    kids <- xml_children(x)
+    setNames(as.list(xml_text(kids)), xml_name(kids))
+  })
+  )
+  vars.dt <- type.convert(vars.dt, as.is = TRUE)
   
-  n <- dim(xml.list)[1]
-  
-  # Classes of columns width, initialPos, finalPos must be integer
-  xml.list$width <- as.integer(xml.list$width)
-  widthNAs <- is.na(xml.list$width)
-  invalidWidths <- xml.list[widthNAs, 'variable']
-  if (sum(widthNAs) != 0 & sum(widthNAs) != n) {
+  # Comprobación de coherencia de posiciones y width
+  check.idx <- which(vars.dt[, width] != (vars.dt[, finalPos] - vars.dt[, initialPos] + 1))
+  if(length(check.idx) > 0){
     
-    stop(
-      paste0(
-        '[fastReadfwf::xlsxToSchema] The following variables have wrong width: ',
-        paste0(invalidWidths, collapse = ', '), '.\n'))
-  }
-  
-  xml.list$initialPos <- as.integer(xml.list$initialPos)
-  initialPosNAs <- is.na(xml.list$initialPos)
-  invalidinitialPos <- xml.list[initialPosNAs, 'variable']
-  if (sum(initialPosNAs) != 0 & sum(initialPosNAs) != n) {
+    stop(paste0("Las siguientes variables tienen incoherencia entre las posiciones y las anchuras: ",
+                paste(vars.dt[check.idx]$variable, collapse = ", "), ".\n"))
     
-    stop(paste0(
-      '[fastReadfwf::xlsxToSchema] The following variables have wrong initial positions: ',
-      paste0(invalidinitialPos, collapse = ', '), '.\n'))
   }
   
-  xml.list$finalPos <- as.integer(xml.list$finalPos)
-  finalPosNAs <- is.na(xml.list$finalPos)
-  invalidfinalPos <- xml.list[finalPosNAs, 'variable']
-  if (sum(finalPosNAs) != 0 & sum(finalPosNAs) != n) {
-    
-    stop(paste0(
-      '[fastReadfwf::xlsxToSchema] The following variables have wrong final positions: ',
-      paste0(invalidfinalPos, collapse = ', '), '.\n'))
-  }
-  
-  # No initialPos and no finalPos: only width specified
-  if (all(!is.na(xml.list$width)) & all(is.na(xml.list$finalPos)) & all(is.na(xml.list$initialPos))) {
-    
-    xml.list$initialPos <- 1 + c(0, cumsum(xml.list$width)[-n])
-    xml.list$finalPos <- xml.list$initialPos + xml.list$width - 1
-  }
-  
-  # Whitespaces to .*
-  xml.list$valueRegEx[is.na(xml.list$valueRegEx) | xml.list$valueRegEx == ''] <- '.*'
-  
-  output <- new(Class = 'StfwfSchema', df = xml.list)
+  output <- new(Class = 'StfwfSchema', df = vars.dt)
   return(output)
 }

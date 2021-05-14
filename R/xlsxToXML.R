@@ -103,5 +103,7 @@ xlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATO
   cat("Guardando XML en ", xmlName, "...")
   xml2::write_xml(new_xml, file = xmlName)
   cat(" ok.\n")
+  
+  return(new_xml)
 
 }
