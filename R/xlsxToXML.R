@@ -1,14 +1,58 @@
-#====================================#
-##########Carga de librerias##########
-#====================================#
-library(openxlsx)
-library(XML)
-library(xml2)
-library(data.table)
-
-#====================================#
-##########xlsxToXML##########
-#====================================#
+#' @title Create a .xml file 
+#' 
+#' 
+#' @description \code{xlsxToXML} create a .xml file following a certain structure.
+#'
+#' This function reads an Excel file containing partially the schema of the fixed-width
+#' file to read. This file must contain the following named columns: 
+#'
+#'
+#' \itemize{
+#'
+#'    \item \code{Variable}: the name of the variable.
+#'    \item \code{Longitud}: the number of positions which the values of
+#'    this variable occupies in the file.
+#'    \item \code{Posicion} or \code{Posición}: initial position of the field which
+#'    the values of this variable occupies in the file.
+#'    \item \code{Tipo}: type of the variable. It must be either \code{A} or \code{N}.
+#'    \item \code{FormatoR}: regular expression for the values of
+#'    this variable.
+#'    \item \code{Descripcion} or \code{Descripción}: textual description of the variable.
+#'
+#' }
+#' 
+#' The Excel file must have a header in the second row. 
+#' 
+#' @param inputPath Path of the xlsx file containing the schema.
+#' 
+#' @param sheetToRead Name or index of the sheet of the xlsx file.
+#' 
+#' @param outputPath Path where the xml file is going to be written.
+#' 
+#' @param rowsToDelete Last rows on the sheet that don't belong to the schema data table.
+#'
+#' @return Write the generated xml file in the outputPath.
+#' 
+#' @examples 
+#' inputPath    <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xlsx')
+#' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
+#' sheetToRead  <- 'Diseño'
+#' rowsToDelete <- 2
+#' xlsxToXML(inputPath = inputPath, sheetToRead = sheetToRead, outputPath = outputPath, rowsToDelete = rowsToDelete)
+#' 
+#' inputPath    <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xlsx')
+#' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
+#' sheetToRead  <- 'Diseño'
+#' rowsToDelete <- 7
+#' xlsxToXML(inputPath = inputPath, sheetToRead = sheetToRead, outputPath = outputPath, rowsToDelete = rowsToDelete)
+#' 
+#' @import data.table
+#' 
+#' @importFrom openxlsx read.xlsx
+#' 
+#' @importFrom XML xmlTree addTag closeTag saveXML
+#' 
+#' @export
 xlsxToXML <- function(inputPath, sheetToRead, outputPath, rowsToDelete){
   #Lectura del xlsx y construccion del xml#
   cat("Leyendo hoja", sheetToRead, "del xlsx:", inputPath, "\n")
@@ -46,109 +90,3 @@ xlsxToXML <- function(inputPath, sheetToRead, outputPath, rowsToDelete){
   cat("Creando XML en", outputPath, "\n")
   saveXML(newXML, outputPath)
 }
-
-#====================================#
-##########xmlToSchema##########
-#====================================#
-
-xmlToSchema <- function(inputPath){
-  #Lectura del XML y construccion del Schema#
-  xmlFile <- as_list(read_xml(inputPath))
-  nVar <- length(xmlFile$Schema$Variables)
-  
-  xml.list <- data.frame(matrix(ncol=7, nrow=nVar))
-  colnames(xml.list) <- stColNames
-  
-  for (i in 1:nVar){
-    xml.list$variable[i]    <- unlist(xmlFile$Schema$Variables[i]$var$variable)
-    xml.list$width[i]       <- unlist(xmlFile$Schema$Variables[i]$var$width)
-    xml.list$initialPos[i]  <- unlist(xmlFile$Schema$Variables[i]$var$initialPos)
-    xml.list$finalPos[i]    <- unlist(xmlFile$Schema$Variables[i]$var$finalPos)
-    xml.list$type[i]        <- unlist(xmlFile$Schema$Variables[i]$var$type)
-    xml.list$valueRegEx[i]  <- unlist(xmlFile$Schema$Variables[i]$var$valueRegEx)
-    xml.list$description[i] <- unlist(xmlFile$Schema$Variables[i]$var$description)
-  }
-  
-  n <- dim(xml.list)[1]
-  
-  # Classes of columns width, initialPos, finalPos must be integer
-  xml.list$width <- as.integer(xml.list$width)
-  widthNAs <- is.na(xml.list$width)
-  invalidWidths <- xml.list[widthNAs, 'variable']
-  if (sum(widthNAs) != 0 & sum(widthNAs) != n) {
-    
-    stop(
-      paste0(
-        '[fastReadfwf::xlsxToSchema] The following variables have wrong width: ',
-        paste0(invalidWidths, collapse = ', '), '.\n'))
-  }
-  
-  xml.list$initialPos <- as.integer(xml.list$initialPos)
-  initialPosNAs <- is.na(xml.list$initialPos)
-  invalidinitialPos <- xml.list[initialPosNAs, 'variable']
-  if (sum(initialPosNAs) != 0 & sum(initialPosNAs) != n) {
-    
-    stop(paste0(
-      '[fastReadfwf::xlsxToSchema] The following variables have wrong initial positions: ',
-      paste0(invalidinitialPos, collapse = ', '), '.\n'))
-  }
-  
-  xml.list$finalPos <- as.integer(xml.list$finalPos)
-  finalPosNAs <- is.na(xml.list$finalPos)
-  invalidfinalPos <- xml.list[finalPosNAs, 'variable']
-  if (sum(finalPosNAs) != 0 & sum(finalPosNAs) != n) {
-    
-    stop(paste0(
-      '[fastReadfwf::xlsxToSchema] The following variables have wrong final positions: ',
-      paste0(invalidfinalPos, collapse = ', '), '.\n'))
-  }
-  
-  # No initialPos and no finalPos: only width specified
-  if (all(!is.na(xml.list$width)) & all(is.na(xml.list$finalPos)) & all(is.na(xml.list$initialPos))) {
-    
-    xml.list$initialPos <- 1 + c(0, cumsum(xml.list$width)[-n])
-    xml.list$finalPos <- xml.list$initialPos + xml.list$width - 1
-  }
-  
-  # Whitespaces to .*
-  xml.list$valueRegEx[is.na(xml.list$valueRegEx) | xml.list$valueRegEx == ''] <- '.*'
-  
-  output <- new(Class = 'StfwfSchema', df = xml.list)
-  return(output)
-}
-
-#====================================#
-##########xlsxToXMLToSchema##########
-#====================================#
-
-xlsxToXMLToSchema <- function(xlsxPath, sheetToRead, xmlPath, rowsToDelete){
-  
-  xlsxToXML(inputPath = xlsxPath, 
-            sheetToRead = sheetToRead, 
-            outputPath = xmlPath, rowsToDelete = rowsToDelete)
-  
-  output <- xmlToSchema(inputPath = xmlPath)
-}
-
-
-#====================================#
-##########Prueba de funciones##########
-#====================================#
-#Parámetros de prueba
-inputPath    <- "C:/Users/jorge/Desktop/Beca_INE/data/disreg_enceursalud20_a.xlsx"
-outputPath   <- "C:/Users/jorge/Desktop/Beca_INE/data/disreg_enceursalud20_a.xml"
-sheetToRead  <- "Diseño"
-rowsToDelete <- 2
-
-#inputPath    <- "C:/Users/jorge/Desktop/Beca_INE/data/dr_EPA_2021.xlsx"
-#outputPath   <- "C:/Users/jorge/Desktop/Beca_INE/data/dr_EPA_2021.xml"
-#sheetToRead  <- "Diseño"
-#rowsToDelete <- 7
-
-xlsxToXML(inputPath = inputPath, 
-          sheetToRead = sheetToRead, 
-          outputPath = outputPath, rowsToDelete = rowsToDelete)
-
-outSchema <- xmlToSchema(inputPath = outputPath)
-
-outSchema2 <- xlsxToXMLToSchema(inputPath, sheetToRead, outputPath, rowsToDelete)
