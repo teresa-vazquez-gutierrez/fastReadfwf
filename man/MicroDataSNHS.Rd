@@ -4,7 +4,9 @@
 \name{MicroDataSNHS}
 \alias{MicroDataSNHS}
 \title{MicroData for the Spanish National Health Survey.}
-\format{A \linkS4class{data.table} with 5772 rows (statistical units) and 50 variables}
+\format{
+A \linkS4class{data.table} with 5772 rows (statistical units) and 50 variables
+}
 \source{
 \url{http://www.ine.es/}
 }
