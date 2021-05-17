@@ -32,8 +32,6 @@
 #'
 #' @import data.table
 #'
-#' @importFrom stringi stri_sub
-#'
 #' @importFrom tibble as_tibble
 #'
 #' @export

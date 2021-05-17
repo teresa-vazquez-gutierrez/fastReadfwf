@@ -1,56 +1,26 @@
-#' @title Convert FormatoR to regex
+#' @title Convert FormatoR to regex.
 #' 
 #' 
-#' @description \code{formatoR2regex} Convert FormatoR to regex
+#' @description \code{formatoR2regex} cnverts FormatoR to regex. FormatoR is a
+#' specification for a fwf schema according to an internal standard in the 
+#' Spanish National Statistics Institute (2020).
 #'
-#' This function reads an Excel file containing partially the schema of the fixed-width
-#' file to read. This file must contain the following named columns: 
+#' This standard specifies character, integer and float types by the letters A,
+#' I and F, respectively. The width of the string is specified with a number. In
+#' the case of float numbers, .d specifies the number of decimal digits after 
+#' the decimal point. See example below
 #'
+#' 
+#' @param formatoR character vector with the formatoR specification for the 
+#' string widths.
 #'
-#' \itemize{
-#'
-#'    \item \code{Variable}: the name of the variable.
-#'    \item \code{Longitud}: the number of positions which the values of
-#'    this variable occupies in the file.
-#'    \item \code{Posicion} or \code{Posición}: initial position of the field which
-#'    the values of this variable occupies in the file.
-#'    \item \code{Tipo}: type of the variable. It must be either \code{A} or \code{N}.
-#'    \item \code{FormatoR}: regular expression for the values of
-#'    this variable.
-#'    \item \code{Descripcion} or \code{Descripción}: textual description of the variable.
-#'
-#' }
-#' 
-#' The Excel file must have a header in the second row. 
-#' 
-#' @param xlsxName Path of the xlsx file containing the schema.
-#' 
-#' @param sheetToRead Name or index of the sheet of the xlsx file.
-#' 
-#' @param outputPath Path where the xml file is going to be written.
-#' 
-#' @param rowsToDelete Last rows on the sheet that don't belong to the schema data table.
-#'
-#' @return Write the generated xml file in the outputPath.
+#' @return Return a character vector with regular expressions for each component
+#' of the input vector.
 #' 
 #' @examples 
-#' xlsxName    <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xlsx')
-#' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
-#' sheetToRead  <- 'Diseño'
-#' rowsToDelete <- 2
-#' xlsxToXML(xlsxName = xlsxName, sheetToRead = sheetToRead, outputPath = outputPath, rowsToDelete = rowsToDelete)
+#' formatoR <- c('A2', 'I5', 'F5.2')
+#' formatoR2regex(formatoR)
 #' 
-#' xlsxName    <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xlsx')
-#' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
-#' sheetToRead  <- 'Diseño'
-#' rowsToDelete <- 7
-#' xlsxToXML(xlsxName = xlsxName, sheetToRead = sheetToRead, outputPath = outputPath, rowsToDelete = rowsToDelete)
-#' 
-#' @import data.table
-#' 
-#' @importFrom openxlsx read.xlsx
-#' 
-#' @importFrom XML xmlTree addTag closeTag saveXML
 #' 
 #' @export
 formatoR2regex <- function(formatoR){
