@@ -23,11 +23,14 @@ License: GPL-3
 LazyData: true
 Encoding: UTF-8
 Collate:
-    'MicroDataSNHS.R'
-    'StfwfSchema-class.R'
-    'csvToSchema.R'
-    'fastReadfwf.R'
     'formatoR2regex.R'
+    'INExlsxToXML.R'
+    'INExmlToSchema.R'
+    'MicroDataSNHS.R'
+    'StcsvToSchema.R'
+    'StfwfSchema-class.R'
+    'StxlsxToSchema.R'
+    'fastReadfwf.R'
     'getdf.R'
     'getVariables.R'
     'getTypes.R'
@@ -46,11 +49,7 @@ Collate:
     'setinitialPos.R'
     'show.R'
     'validateValues.R'
-    'xlsxToSchema.R'
-    'formatoR2regex'
-    'xlsxToXML.R'
     'xlsxToXMLToSchema.R'
-    'xmlToSchema.R'
 RoxygenNote: 7.1.1
 URL: https://github.com/david-salgado/fastReadfwf
 BugReports: https://github.com/david-salgado/fastReadfwf/issues

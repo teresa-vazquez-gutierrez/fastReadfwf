@@ -51,7 +51,7 @@
 #' @importFrom methods new
 #'
 #' @export
-csvToSchema <- function(csvname, sep = ';', header = TRUE, lang = 'en', ...){
+StcsvToSchema <- function(csvname, sep = ';', header = TRUE, lang = 'en', ...){
 
   width <- initialPos <- finalPos <- valueRegEx <- description <- NULL
 

@@ -39,8 +39,7 @@
 #' @importFrom xml2 as_list read_xml
 #' 
 #' @export
-
-xmlToSchema <- function(xmlName){
+INExmlToSchema <- function(xmlName){
   
   #Lectura del XML y construcción de la tabla
   doc <- read_xml(xmlName)

@@ -1,0 +1,3916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema>
+  <vars>
+    <var>
+      <variable>CCAA</variable>
+      <width>2</width>
+      <initialPos>1</initialPos>
+      <finalPos>2</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Comunidad Autónoma de residencia</description>
+    </var>
+    <var>
+      <variable>IDENTHOGAR</variable>
+      <width>8</width>
+      <initialPos>3</initialPos>
+      <finalPos>10</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,8}</valueRegEx>
+      <description>Número de identificación del hogar: sección + vivienda + hogar
+00000001 a 99999999</description>
+    </var>
+    <var>
+      <variable>A7_2a</variable>
+      <width>2</width>
+      <initialPos>11</initialPos>
+      <finalPos>12</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Número de orden del adulto seleccionado</description>
+    </var>
+    <var>
+      <variable>SEXOa</variable>
+      <width>1</width>
+      <initialPos>13</initialPos>
+      <finalPos>13</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Identificación del adulto seleccionado: Sexo
+01 a 15 </description>
+    </var>
+    <var>
+      <variable>EDADa</variable>
+      <width>3</width>
+      <initialPos>14</initialPos>
+      <finalPos>16</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}</valueRegEx>
+      <description>Identificación del adulto seleccionado: Edad. De 015 a 120</description>
+    </var>
+    <var>
+      <variable>PROXY_0</variable>
+      <width>1</width>
+      <initialPos>17</initialPos>
+      <finalPos>17</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿El informante es la persona seleccionada?</description>
+    </var>
+    <var>
+      <variable>PROXY_1</variable>
+      <width>1</width>
+      <initialPos>18</initialPos>
+      <finalPos>18</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Informante proxy: ¿Cuál es el motivo por el que la persona seleccionada no facilita sus datos?</description>
+    </var>
+    <var>
+      <variable>PROXY_2</variable>
+      <width>1</width>
+      <initialPos>19</initialPos>
+      <finalPos>19</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Informante proxy: ¿Es miembro del hogar el informante?</description>
+    </var>
+    <var>
+      <variable>PROXY_2b</variable>
+      <width>2</width>
+      <initialPos>20</initialPos>
+      <finalPos>21</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Informante proxy: Número de orden del miembro del hogar</description>
+    </var>
+    <var>
+      <variable>PROXY_3b</variable>
+      <width>1</width>
+      <initialPos>22</initialPos>
+      <finalPos>22</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Informante proxy: Sexo del informante</description>
+    </var>
+    <var>
+      <variable>PROXY_4</variable>
+      <width>3</width>
+      <initialPos>23</initialPos>
+      <finalPos>25</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}</valueRegEx>
+      <description>Informante proxy: Edad del informante. De 018 a 120</description>
+    </var>
+    <var>
+      <variable>PROXY_5</variable>
+      <width>1</width>
+      <initialPos>26</initialPos>
+      <finalPos>26</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Informante proxy: Relación del informante con el adulto seleccionado</description>
+    </var>
+    <var>
+      <variable>E1_1</variable>
+      <width>1</width>
+      <initialPos>27</initialPos>
+      <finalPos>27</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>País de nacimiento</description>
+    </var>
+    <var>
+      <variable>E1C</variable>
+      <width>1</width>
+      <initialPos>28</initialPos>
+      <finalPos>28</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>País de nacimiento de la madre</description>
+    </var>
+    <var>
+      <variable>E1E</variable>
+      <width>1</width>
+      <initialPos>29</initialPos>
+      <finalPos>29</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>País de nacimiento del padre</description>
+    </var>
+    <var>
+      <variable>E2_1a</variable>
+      <width>1</width>
+      <initialPos>30</initialPos>
+      <finalPos>30</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Nacionalidad: Española</description>
+    </var>
+    <var>
+      <variable>E2_1b</variable>
+      <width>1</width>
+      <initialPos>31</initialPos>
+      <finalPos>31</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Nacionalidad: Extranjera</description>
+    </var>
+    <var>
+      <variable>E2_1c</variable>
+      <width>1</width>
+      <initialPos>32</initialPos>
+      <finalPos>32</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Nacionalidad: No sabe</description>
+    </var>
+    <var>
+      <variable>E2_1d</variable>
+      <width>1</width>
+      <initialPos>33</initialPos>
+      <finalPos>33</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Nacionalidad: No contesta</description>
+    </var>
+    <var>
+      <variable>E3</variable>
+      <width>2</width>
+      <initialPos>34</initialPos>
+      <finalPos>35</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Años residiendo en España (00 a 97 años)</description>
+    </var>
+    <var>
+      <variable>E4</variable>
+      <width>1</width>
+      <initialPos>36</initialPos>
+      <finalPos>36</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Convivencia en pareja</description>
+    </var>
+    <var>
+      <variable>E4b</variable>
+      <width>1</width>
+      <initialPos>37</initialPos>
+      <finalPos>37</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado civil</description>
+    </var>
+    <var>
+      <variable>ESTUDIOS</variable>
+      <width>2</width>
+      <initialPos>38</initialPos>
+      <finalPos>39</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Nivel de estudios del adulto seleccionado</description>
+    </var>
+    <var>
+      <variable>F6</variable>
+      <width>1</width>
+      <initialPos>40</initialPos>
+      <finalPos>40</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: ¿Percibe pensión contributiva?</description>
+    </var>
+    <var>
+      <variable>F7</variable>
+      <width>1</width>
+      <initialPos>41</initialPos>
+      <finalPos>41</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: ¿Ha trabajado antes?</description>
+    </var>
+    <var>
+      <variable>F8_2</variable>
+      <width>3</width>
+      <initialPos>42</initialPos>
+      <finalPos>44</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,3}</valueRegEx>
+      <description>Persona que generó la pensión: Actividad de la empresa en la que trabajó (CNAE2009, 3 dígitos)
+000 No contesta</description>
+    </var>
+    <var>
+      <variable>F9_2</variable>
+      <width>3</width>
+      <initialPos>45</initialPos>
+      <finalPos>47</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,3}</valueRegEx>
+      <description>Persona que generó la pensión: Ocupación, profesión u oficio (CNO2011, 3 dígitos)
+000 No contesta</description>
+    </var>
+    <var>
+      <variable>F10</variable>
+      <width>1</width>
+      <initialPos>48</initialPos>
+      <finalPos>48</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Persona que generó la pensión: Situación profesional en la ocupación que desempeñó</description>
+    </var>
+    <var>
+      <variable>F11</variable>
+      <width>1</width>
+      <initialPos>49</initialPos>
+      <finalPos>49</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: Tiempo que lleva desempleado</description>
+    </var>
+    <var>
+      <variable>F12</variable>
+      <width>1</width>
+      <initialPos>50</initialPos>
+      <finalPos>50</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: ¿Ha trabajado antes?</description>
+    </var>
+    <var>
+      <variable>F13</variable>
+      <width>2</width>
+      <initialPos>51</initialPos>
+      <finalPos>52</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Adulto seleccionado: Tipo de contrato o relación laboral</description>
+    </var>
+    <var>
+      <variable>F14a</variable>
+      <width>1</width>
+      <initialPos>53</initialPos>
+      <finalPos>53</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: Duración del contrato</description>
+    </var>
+    <var>
+      <variable>F14b</variable>
+      <width>1</width>
+      <initialPos>54</initialPos>
+      <finalPos>54</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: Duración de la relación laboral</description>
+    </var>
+    <var>
+      <variable>F15</variable>
+      <width>1</width>
+      <initialPos>55</initialPos>
+      <finalPos>55</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: Número de trabajadores a su cargo</description>
+    </var>
+    <var>
+      <variable>F16</variable>
+      <width>1</width>
+      <initialPos>56</initialPos>
+      <finalPos>56</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: Trabajo a tiempo completo / tiempo parcial</description>
+    </var>
+    <var>
+      <variable>F17</variable>
+      <width>2</width>
+      <initialPos>57</initialPos>
+      <finalPos>58</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Adulto seleccionado: Tipo de jornada en su trabajo principal actual</description>
+    </var>
+    <var>
+      <variable>F18a_2</variable>
+      <width>3</width>
+      <initialPos>59</initialPos>
+      <finalPos>61</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,3}</valueRegEx>
+      <description>Adulto seleccionado: Actividad de la empresa en la que trabaja (CNAE2009, 3 dígitos)</description>
+    </var>
+    <var>
+      <variable>F18b_2</variable>
+      <width>3</width>
+      <initialPos>62</initialPos>
+      <finalPos>64</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,3}</valueRegEx>
+      <description>Adulto seleccionado: Actividad de la empresa en la que trabajó (CNAE2009, 3 dígitos)</description>
+    </var>
+    <var>
+      <variable>F19a_2</variable>
+      <width>3</width>
+      <initialPos>65</initialPos>
+      <finalPos>67</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,3}</valueRegEx>
+      <description>Adulto seleccionado: Ocupación, profesión u oficio actual (CNO2011, 3 dígitos)</description>
+    </var>
+    <var>
+      <variable>F19b_2</variable>
+      <width>3</width>
+      <initialPos>68</initialPos>
+      <finalPos>70</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,3}</valueRegEx>
+      <description>Adulto seleccionado: Última ocupación, profesión u oficio (CNO2011, 3 dígitos)</description>
+    </var>
+    <var>
+      <variable>F20</variable>
+      <width>1</width>
+      <initialPos>71</initialPos>
+      <finalPos>71</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Adulto seleccionado: Situación profesional que desempeñó en su último empleo</description>
+    </var>
+    <var>
+      <variable>G21</variable>
+      <width>1</width>
+      <initialPos>72</initialPos>
+      <finalPos>72</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de salud percibido en los últimos 12 meses</description>
+    </var>
+    <var>
+      <variable>G22</variable>
+      <width>1</width>
+      <initialPos>73</initialPos>
+      <finalPos>73</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Enfermedad o problema de salud crónicos o de larga duración</description>
+    </var>
+    <var>
+      <variable>G23</variable>
+      <width>1</width>
+      <initialPos>74</initialPos>
+      <finalPos>74</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Grado de limitación durante al menos 6 meses por un problema de salud</description>
+    </var>
+    <var>
+      <variable>G24</variable>
+      <width>1</width>
+      <initialPos>75</initialPos>
+      <finalPos>75</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de problema que causa la dificultad</description>
+    </var>
+    <var>
+      <variable>G24a</variable>
+      <width>1</width>
+      <initialPos>76</initialPos>
+      <finalPos>76</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de salud bucodental</description>
+    </var>
+    <var>
+      <variable>G25a_1</variable>
+      <width>1</width>
+      <initialPos>77</initialPos>
+      <finalPos>77</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Tensión alta</description>
+    </var>
+    <var>
+      <variable>G25b_1</variable>
+      <width>1</width>
+      <initialPos>78</initialPos>
+      <finalPos>78</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Tensión alta</description>
+    </var>
+    <var>
+      <variable>G25c_1</variable>
+      <width>1</width>
+      <initialPos>79</initialPos>
+      <finalPos>79</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Tensión alta</description>
+    </var>
+    <var>
+      <variable>G25a_2</variable>
+      <width>1</width>
+      <initialPos>80</initialPos>
+      <finalPos>80</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Infarto de miocardio</description>
+    </var>
+    <var>
+      <variable>G25b_2</variable>
+      <width>1</width>
+      <initialPos>81</initialPos>
+      <finalPos>81</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Infarto de miocardio</description>
+    </var>
+    <var>
+      <variable>G25c_2</variable>
+      <width>1</width>
+      <initialPos>82</initialPos>
+      <finalPos>82</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Infarto de miocardio</description>
+    </var>
+    <var>
+      <variable>G25d_2</variable>
+      <width>1</width>
+      <initialPos>83</initialPos>
+      <finalPos>83</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Secuelas : Ha padecido secuelas del infarto de miocardio</description>
+    </var>
+    <var>
+      <variable>G25a_3</variable>
+      <width>1</width>
+      <initialPos>84</initialPos>
+      <finalPos>84</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Angina de pecho, enfermedad coronaria</description>
+    </var>
+    <var>
+      <variable>G25b_3</variable>
+      <width>1</width>
+      <initialPos>85</initialPos>
+      <finalPos>85</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Angina de pecho, enfermedad coronaria</description>
+    </var>
+    <var>
+      <variable>G25c_3</variable>
+      <width>1</width>
+      <initialPos>86</initialPos>
+      <finalPos>86</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Angina de pecho, enfermedad coronaria</description>
+    </var>
+    <var>
+      <variable>G25a_4</variable>
+      <width>1</width>
+      <initialPos>87</initialPos>
+      <finalPos>87</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Otras enfermedades del corazón</description>
+    </var>
+    <var>
+      <variable>G25b_4</variable>
+      <width>1</width>
+      <initialPos>88</initialPos>
+      <finalPos>88</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Otras enfermedades del corazón</description>
+    </var>
+    <var>
+      <variable>G25c_4</variable>
+      <width>1</width>
+      <initialPos>89</initialPos>
+      <finalPos>89</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Otras enfermedades del corazón</description>
+    </var>
+    <var>
+      <variable>G25a_5</variable>
+      <width>1</width>
+      <initialPos>90</initialPos>
+      <finalPos>90</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Varices en las piernas</description>
+    </var>
+    <var>
+      <variable>G25b_5</variable>
+      <width>1</width>
+      <initialPos>91</initialPos>
+      <finalPos>91</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Varices en las piernas</description>
+    </var>
+    <var>
+      <variable>G25c_5</variable>
+      <width>1</width>
+      <initialPos>92</initialPos>
+      <finalPos>92</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Varices en las piernas</description>
+    </var>
+    <var>
+      <variable>G25a_6</variable>
+      <width>1</width>
+      <initialPos>93</initialPos>
+      <finalPos>93</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Artrosis (excluyendo artritis)</description>
+    </var>
+    <var>
+      <variable>G25b_6</variable>
+      <width>1</width>
+      <initialPos>94</initialPos>
+      <finalPos>94</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Artrosis (excluyendo artritis)</description>
+    </var>
+    <var>
+      <variable>G25c_6</variable>
+      <width>1</width>
+      <initialPos>95</initialPos>
+      <finalPos>95</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Artrosis (excluyendo artritis)</description>
+    </var>
+    <var>
+      <variable>G25a_7</variable>
+      <width>1</width>
+      <initialPos>96</initialPos>
+      <finalPos>96</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Dolor de espalda crónico (cervical)</description>
+    </var>
+    <var>
+      <variable>G25b_7</variable>
+      <width>1</width>
+      <initialPos>97</initialPos>
+      <finalPos>97</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Dolor de espalda crónico (cervical)</description>
+    </var>
+    <var>
+      <variable>G25c_7</variable>
+      <width>1</width>
+      <initialPos>98</initialPos>
+      <finalPos>98</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Dolor de espalda crónico (cervical)</description>
+    </var>
+    <var>
+      <variable>G25a_8</variable>
+      <width>1</width>
+      <initialPos>99</initialPos>
+      <finalPos>99</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Dolor de espalda crónico (lumbar)</description>
+    </var>
+    <var>
+      <variable>G25b_8</variable>
+      <width>1</width>
+      <initialPos>100</initialPos>
+      <finalPos>100</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Dolor de espalda crónico (lumbar)</description>
+    </var>
+    <var>
+      <variable>G25c_8</variable>
+      <width>1</width>
+      <initialPos>101</initialPos>
+      <finalPos>101</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Dolor de espalda crónico (lumbar)</description>
+    </var>
+    <var>
+      <variable>G25a_9</variable>
+      <width>1</width>
+      <initialPos>102</initialPos>
+      <finalPos>102</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Alergia crónica, como rinitis, conjuntivitis o dermatitis alérgica, alergia alimentaria o de otro tipo (asma alérgica excluida)</description>
+    </var>
+    <var>
+      <variable>G25b_9</variable>
+      <width>1</width>
+      <initialPos>103</initialPos>
+      <finalPos>103</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Alergia crónica, como rinitis, conjuntivitis o dermatitis alérgica, alergia alimentaria o de otro tipo (asma alérgica excluida)</description>
+    </var>
+    <var>
+      <variable>G25c_9</variable>
+      <width>1</width>
+      <initialPos>104</initialPos>
+      <finalPos>104</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Alergia crónica, como rinitis, conjuntivitis o dermatitis alérgica, alergia alimentaria o de otro tipo (asma alérgica excluida)</description>
+    </var>
+    <var>
+      <variable>G25a_10</variable>
+      <width>1</width>
+      <initialPos>105</initialPos>
+      <finalPos>105</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Asma (incluida asma alérgica)</description>
+    </var>
+    <var>
+      <variable>G25b_10</variable>
+      <width>1</width>
+      <initialPos>106</initialPos>
+      <finalPos>106</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Asma (incluida asma alérgica)</description>
+    </var>
+    <var>
+      <variable>G25c_10</variable>
+      <width>1</width>
+      <initialPos>107</initialPos>
+      <finalPos>107</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Asma (incluida asma alérgica)</description>
+    </var>
+    <var>
+      <variable>G25a_11</variable>
+      <width>1</width>
+      <initialPos>108</initialPos>
+      <finalPos>108</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Bronquitis crónica, enfisema, enfermedad pulmonar obstructiva crónica (EPOC)</description>
+    </var>
+    <var>
+      <variable>G25b_11</variable>
+      <width>1</width>
+      <initialPos>109</initialPos>
+      <finalPos>109</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Bronquitis crónica, enfisema, enfermedad pulmonar obstructiva crónica (EPOC)</description>
+    </var>
+    <var>
+      <variable>G25c_11</variable>
+      <width>1</width>
+      <initialPos>110</initialPos>
+      <finalPos>110</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Bronquitis crónica, enfisema, enfermedad pulmonar obstructiva crónica (EPOC)</description>
+    </var>
+    <var>
+      <variable>G25a_12</variable>
+      <width>1</width>
+      <initialPos>111</initialPos>
+      <finalPos>111</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Diabetes</description>
+    </var>
+    <var>
+      <variable>G25b_12</variable>
+      <width>1</width>
+      <initialPos>112</initialPos>
+      <finalPos>112</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Diabetes</description>
+    </var>
+    <var>
+      <variable>G25c_12</variable>
+      <width>1</width>
+      <initialPos>113</initialPos>
+      <finalPos>113</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Diabetes</description>
+    </var>
+    <var>
+      <variable>G25a_13</variable>
+      <width>1</width>
+      <initialPos>114</initialPos>
+      <finalPos>114</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Úlcera de estómago o duodeno</description>
+    </var>
+    <var>
+      <variable>G25b_13</variable>
+      <width>1</width>
+      <initialPos>115</initialPos>
+      <finalPos>115</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Úlcera de estómago o duodeno</description>
+    </var>
+    <var>
+      <variable>G25c_13</variable>
+      <width>1</width>
+      <initialPos>116</initialPos>
+      <finalPos>116</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Úlcera de estómago o duodeno</description>
+    </var>
+    <var>
+      <variable>G25a_14</variable>
+      <width>1</width>
+      <initialPos>117</initialPos>
+      <finalPos>117</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Incontinencia urinaria o problemas de control de la orina</description>
+    </var>
+    <var>
+      <variable>G25b_14</variable>
+      <width>1</width>
+      <initialPos>118</initialPos>
+      <finalPos>118</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Incontinencia urinaria o problemas de control de la orina</description>
+    </var>
+    <var>
+      <variable>G25c_14</variable>
+      <width>1</width>
+      <initialPos>119</initialPos>
+      <finalPos>119</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Incontinencia urinaria o problemas de control de la orina</description>
+    </var>
+    <var>
+      <variable>G25a_15</variable>
+      <width>1</width>
+      <initialPos>120</initialPos>
+      <finalPos>120</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Colesterol alto</description>
+    </var>
+    <var>
+      <variable>G25b_15</variable>
+      <width>1</width>
+      <initialPos>121</initialPos>
+      <finalPos>121</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Colesterol alto</description>
+    </var>
+    <var>
+      <variable>G25c_15</variable>
+      <width>1</width>
+      <initialPos>122</initialPos>
+      <finalPos>122</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Colesterol alto</description>
+    </var>
+    <var>
+      <variable>G25a_16</variable>
+      <width>1</width>
+      <initialPos>123</initialPos>
+      <finalPos>123</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Cataratas</description>
+    </var>
+    <var>
+      <variable>G25b_16</variable>
+      <width>1</width>
+      <initialPos>124</initialPos>
+      <finalPos>124</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Cataratas</description>
+    </var>
+    <var>
+      <variable>G25c_16</variable>
+      <width>1</width>
+      <initialPos>125</initialPos>
+      <finalPos>125</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Cataratas</description>
+    </var>
+    <var>
+      <variable>G25a_17</variable>
+      <width>1</width>
+      <initialPos>126</initialPos>
+      <finalPos>126</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Problemas crónicos de piel</description>
+    </var>
+    <var>
+      <variable>G25b_17</variable>
+      <width>1</width>
+      <initialPos>127</initialPos>
+      <finalPos>127</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Problemas crónicos de piel</description>
+    </var>
+    <var>
+      <variable>G25c_17</variable>
+      <width>1</width>
+      <initialPos>128</initialPos>
+      <finalPos>128</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Problemas crónicos de piel</description>
+    </var>
+    <var>
+      <variable>G25a_18</variable>
+      <width>1</width>
+      <initialPos>129</initialPos>
+      <finalPos>129</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Estreñimiento crónico</description>
+    </var>
+    <var>
+      <variable>G25b_18</variable>
+      <width>1</width>
+      <initialPos>130</initialPos>
+      <finalPos>130</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Estreñimiento crónico</description>
+    </var>
+    <var>
+      <variable>G25c_18</variable>
+      <width>1</width>
+      <initialPos>131</initialPos>
+      <finalPos>131</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Estreñimiento crónico</description>
+    </var>
+    <var>
+      <variable>G25a_19</variable>
+      <width>1</width>
+      <initialPos>132</initialPos>
+      <finalPos>132</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Cirrosis, disfunción hepática</description>
+    </var>
+    <var>
+      <variable>G25b_19</variable>
+      <width>1</width>
+      <initialPos>133</initialPos>
+      <finalPos>133</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Cirrosis, disfunción hepática</description>
+    </var>
+    <var>
+      <variable>G25c_19</variable>
+      <width>1</width>
+      <initialPos>134</initialPos>
+      <finalPos>134</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Cirrosis, disfunción hepática</description>
+    </var>
+    <var>
+      <variable>G25a_20</variable>
+      <width>1</width>
+      <initialPos>135</initialPos>
+      <finalPos>135</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Depresión</description>
+    </var>
+    <var>
+      <variable>G25b_20</variable>
+      <width>1</width>
+      <initialPos>136</initialPos>
+      <finalPos>136</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Depresión</description>
+    </var>
+    <var>
+      <variable>G25c_20</variable>
+      <width>1</width>
+      <initialPos>137</initialPos>
+      <finalPos>137</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Depresión</description>
+    </var>
+    <var>
+      <variable>G25a_21</variable>
+      <width>1</width>
+      <initialPos>138</initialPos>
+      <finalPos>138</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Ansiedad crónica </description>
+    </var>
+    <var>
+      <variable>G25b_21</variable>
+      <width>1</width>
+      <initialPos>139</initialPos>
+      <finalPos>139</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Ansiedad crónica </description>
+    </var>
+    <var>
+      <variable>G25c_21</variable>
+      <width>1</width>
+      <initialPos>140</initialPos>
+      <finalPos>140</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Ansiedad crónica </description>
+    </var>
+    <var>
+      <variable>G25a_22</variable>
+      <width>1</width>
+      <initialPos>141</initialPos>
+      <finalPos>141</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Otros problemas mentales</description>
+    </var>
+    <var>
+      <variable>G25b_22</variable>
+      <width>1</width>
+      <initialPos>142</initialPos>
+      <finalPos>142</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Otros problemas mentales</description>
+    </var>
+    <var>
+      <variable>G25c_22</variable>
+      <width>1</width>
+      <initialPos>143</initialPos>
+      <finalPos>143</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Otros problemas mentales</description>
+    </var>
+    <var>
+      <variable>G25a_23</variable>
+      <width>1</width>
+      <initialPos>144</initialPos>
+      <finalPos>144</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Ictus (embolia, infarto cerebral, hemorragia cerebral)</description>
+    </var>
+    <var>
+      <variable>G25b_23</variable>
+      <width>1</width>
+      <initialPos>145</initialPos>
+      <finalPos>145</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Ictus (embolia, infarto cerebral, hemorragia cerebral)</description>
+    </var>
+    <var>
+      <variable>G25c_23</variable>
+      <width>1</width>
+      <initialPos>146</initialPos>
+      <finalPos>146</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Ictus (embolia, infarto cerebral, hemorragia cerebral)</description>
+    </var>
+    <var>
+      <variable>G25d_23</variable>
+      <width>1</width>
+      <initialPos>147</initialPos>
+      <finalPos>147</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Secuelas: Ictus (embolia, infarto cerebral, hemorragia cerebral)</description>
+    </var>
+    <var>
+      <variable>G25a_24</variable>
+      <width>1</width>
+      <initialPos>148</initialPos>
+      <finalPos>148</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Migraña o dolor de cabeza frecuente</description>
+    </var>
+    <var>
+      <variable>G25b_24</variable>
+      <width>1</width>
+      <initialPos>149</initialPos>
+      <finalPos>149</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Migraña o dolor de cabeza frecuente</description>
+    </var>
+    <var>
+      <variable>G25c_24</variable>
+      <width>1</width>
+      <initialPos>150</initialPos>
+      <finalPos>150</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Migraña o dolor de cabeza frecuente</description>
+    </var>
+    <var>
+      <variable>G25a_25</variable>
+      <width>1</width>
+      <initialPos>151</initialPos>
+      <finalPos>151</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Hemorroides</description>
+    </var>
+    <var>
+      <variable>G25b_25</variable>
+      <width>1</width>
+      <initialPos>152</initialPos>
+      <finalPos>152</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Hemorroides</description>
+    </var>
+    <var>
+      <variable>G25c_25</variable>
+      <width>1</width>
+      <initialPos>153</initialPos>
+      <finalPos>153</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Hemorroides</description>
+    </var>
+    <var>
+      <variable>G25a_26</variable>
+      <width>1</width>
+      <initialPos>154</initialPos>
+      <finalPos>154</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Tumores malignos</description>
+    </var>
+    <var>
+      <variable>G25b_26</variable>
+      <width>1</width>
+      <initialPos>155</initialPos>
+      <finalPos>155</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Tumores malignos</description>
+    </var>
+    <var>
+      <variable>G25c_26</variable>
+      <width>1</width>
+      <initialPos>156</initialPos>
+      <finalPos>156</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Tumores malignos</description>
+    </var>
+    <var>
+      <variable>G25a_27</variable>
+      <width>1</width>
+      <initialPos>157</initialPos>
+      <finalPos>157</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Osteoporosis</description>
+    </var>
+    <var>
+      <variable>G25b_27</variable>
+      <width>1</width>
+      <initialPos>158</initialPos>
+      <finalPos>158</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Osteoporosis</description>
+    </var>
+    <var>
+      <variable>G25c_27</variable>
+      <width>1</width>
+      <initialPos>159</initialPos>
+      <finalPos>159</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Osteoporosis</description>
+    </var>
+    <var>
+      <variable>G25a_28</variable>
+      <width>1</width>
+      <initialPos>160</initialPos>
+      <finalPos>160</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Problemas de tiroides</description>
+    </var>
+    <var>
+      <variable>G25b_28</variable>
+      <width>1</width>
+      <initialPos>161</initialPos>
+      <finalPos>161</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Problemas de tiroides</description>
+    </var>
+    <var>
+      <variable>G25c_28</variable>
+      <width>1</width>
+      <initialPos>162</initialPos>
+      <finalPos>162</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Problemas de tiroides</description>
+    </var>
+    <var>
+      <variable>G25a_29</variable>
+      <width>1</width>
+      <initialPos>163</initialPos>
+      <finalPos>163</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Problemas de riñón</description>
+    </var>
+    <var>
+      <variable>G25b_29</variable>
+      <width>1</width>
+      <initialPos>164</initialPos>
+      <finalPos>164</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Problemas de riñón</description>
+    </var>
+    <var>
+      <variable>G25c_29</variable>
+      <width>1</width>
+      <initialPos>165</initialPos>
+      <finalPos>165</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Problemas de riñón</description>
+    </var>
+    <var>
+      <variable>G25a_30</variable>
+      <width>1</width>
+      <initialPos>166</initialPos>
+      <finalPos>166</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Problemas de próstata (solo hombres)</description>
+    </var>
+    <var>
+      <variable>G25b_30</variable>
+      <width>1</width>
+      <initialPos>167</initialPos>
+      <finalPos>167</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Problemas de próstata (solo hombres)</description>
+    </var>
+    <var>
+      <variable>G25c_30</variable>
+      <width>1</width>
+      <initialPos>168</initialPos>
+      <finalPos>168</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Problemas de próstata (solo hombres)</description>
+    </var>
+    <var>
+      <variable>G25a_31</variable>
+      <width>1</width>
+      <initialPos>169</initialPos>
+      <finalPos>169</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Problemas del periodo menopáusico (solo mujeres)</description>
+    </var>
+    <var>
+      <variable>G25b_31</variable>
+      <width>1</width>
+      <initialPos>170</initialPos>
+      <finalPos>170</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Problemas del periodo menopáusico (solo mujeres)</description>
+    </var>
+    <var>
+      <variable>G25c_31</variable>
+      <width>1</width>
+      <initialPos>171</initialPos>
+      <finalPos>171</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Problemas del periodo menopáusico (solo mujeres)</description>
+    </var>
+    <var>
+      <variable>G25a_32</variable>
+      <width>1</width>
+      <initialPos>172</initialPos>
+      <finalPos>172</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido alguna vez: Lesiones o defectos permanentes causados por un accidente</description>
+    </var>
+    <var>
+      <variable>G25b_32</variable>
+      <width>1</width>
+      <initialPos>173</initialPos>
+      <finalPos>173</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha padecido en los últimos 12 meses: Lesiones o defectos permanentes causados por un accidente</description>
+    </var>
+    <var>
+      <variable>G25c_32</variable>
+      <width>1</width>
+      <initialPos>174</initialPos>
+      <finalPos>174</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Diagnóstico médico: Lesiones o defectos permanentes causados por un accidente</description>
+    </var>
+    <var>
+      <variable>H26_1</variable>
+      <width>1</width>
+      <initialPos>175</initialPos>
+      <finalPos>175</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha tenido en los últimos 12 meses: Accidente de tráfico</description>
+    </var>
+    <var>
+      <variable>H26_2</variable>
+      <width>1</width>
+      <initialPos>176</initialPos>
+      <finalPos>176</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha tenido en los últimos 12 meses: Accidente en casa</description>
+    </var>
+    <var>
+      <variable>H26_3</variable>
+      <width>1</width>
+      <initialPos>177</initialPos>
+      <finalPos>177</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ha tenido en los últimos 12 meses: Accidente durante su tiempo libre</description>
+    </var>
+    <var>
+      <variable>H27</variable>
+      <width>1</width>
+      <initialPos>178</initialPos>
+      <finalPos>178</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Intervención sanitaria debida al accidente más grave</description>
+    </var>
+    <var>
+      <variable>J30</variable>
+      <width>1</width>
+      <initialPos>179</initialPos>
+      <finalPos>179</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ausencias del trabajo en los últimos 12 meses por problemas de salud</description>
+    </var>
+    <var>
+      <variable>J31</variable>
+      <width>3</width>
+      <initialPos>180</initialPos>
+      <finalPos>182</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}</valueRegEx>
+      <description>Número de días de ausencia del trabajo en los últimos 12 meses (001 al 366)</description>
+    </var>
+    <var>
+      <variable>K32</variable>
+      <width>1</width>
+      <initialPos>183</initialPos>
+      <finalPos>183</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Utiliza gafas o lentillas?</description>
+    </var>
+    <var>
+      <variable>K33</variable>
+      <width>1</width>
+      <initialPos>184</initialPos>
+      <finalPos>184</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para ver (doble enunciado)</description>
+    </var>
+    <var>
+      <variable>K34</variable>
+      <width>1</width>
+      <initialPos>185</initialPos>
+      <finalPos>185</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Utiliza audífono?</description>
+    </var>
+    <var>
+      <variable>K35</variable>
+      <width>1</width>
+      <initialPos>186</initialPos>
+      <finalPos>186</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para oir en un sitio tranquilo (doble enunciado)</description>
+    </var>
+    <var>
+      <variable>K36</variable>
+      <width>1</width>
+      <initialPos>187</initialPos>
+      <finalPos>187</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para oir en un sitio más ruidoso (doble enunciado)</description>
+    </var>
+    <var>
+      <variable>K37</variable>
+      <width>1</width>
+      <initialPos>188</initialPos>
+      <finalPos>188</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para caminar 500 metros sin ayuda</description>
+    </var>
+    <var>
+      <variable>K38</variable>
+      <width>1</width>
+      <initialPos>189</initialPos>
+      <finalPos>189</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para subir o bajar 12 escalones</description>
+    </var>
+    <var>
+      <variable>K38a</variable>
+      <width>1</width>
+      <initialPos>190</initialPos>
+      <finalPos>190</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para concentrarse</description>
+    </var>
+    <var>
+      <variable>K38b</variable>
+      <width>1</width>
+      <initialPos>191</initialPos>
+      <finalPos>191</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para morder o masticar</description>
+    </var>
+    <var>
+      <variable>L39_1</variable>
+      <width>1</width>
+      <initialPos>192</initialPos>
+      <finalPos>192</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades básicas diarias: Alimentarse sin ayuda</description>
+    </var>
+    <var>
+      <variable>L39_2</variable>
+      <width>1</width>
+      <initialPos>193</initialPos>
+      <finalPos>193</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades básicas diarias: Sentarse, levantarse de una silla o de una cama, acostarse sin ayuda</description>
+    </var>
+    <var>
+      <variable>L39_3</variable>
+      <width>1</width>
+      <initialPos>194</initialPos>
+      <finalPos>194</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades básicas diarias: Vestirse y desvestirse sin ayuda</description>
+    </var>
+    <var>
+      <variable>L39_4</variable>
+      <width>1</width>
+      <initialPos>195</initialPos>
+      <finalPos>195</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades básicas diarias: Ir al servicio sin ayuda</description>
+    </var>
+    <var>
+      <variable>L39_5</variable>
+      <width>1</width>
+      <initialPos>196</initialPos>
+      <finalPos>196</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades básicas diarias: Ducharse o bañarse sin ayuda</description>
+    </var>
+    <var>
+      <variable>L40</variable>
+      <width>1</width>
+      <initialPos>197</initialPos>
+      <finalPos>197</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Dispone habitualmente de ayuda para realizarlas?</description>
+    </var>
+    <var>
+      <variable>L41</variable>
+      <width>1</width>
+      <initialPos>198</initialPos>
+      <finalPos>198</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Necesitaría ayuda o más ayuda de la que dispone? (doble enunciado)</description>
+    </var>
+    <var>
+      <variable>L42_1</variable>
+      <width>1</width>
+      <initialPos>199</initialPos>
+      <finalPos>199</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades relacionadas con el hogar: Preparar las comidas sin ayuda</description>
+    </var>
+    <var>
+      <variable>L42_2</variable>
+      <width>1</width>
+      <initialPos>200</initialPos>
+      <finalPos>200</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades relacionadas con el hogar: Utilizar el teléfono sin ayuda</description>
+    </var>
+    <var>
+      <variable>L42_3</variable>
+      <width>1</width>
+      <initialPos>201</initialPos>
+      <finalPos>201</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades relacionadas con el hogar: Realizar compras sin ayuda</description>
+    </var>
+    <var>
+      <variable>L42_4</variable>
+      <width>1</width>
+      <initialPos>202</initialPos>
+      <finalPos>202</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades relacionadas con el hogar: Tomar sus medicamentos sin ayuda</description>
+    </var>
+    <var>
+      <variable>L42_5</variable>
+      <width>1</width>
+      <initialPos>203</initialPos>
+      <finalPos>203</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades relacionadas con el hogar: Realizar tareas domésticas ligeras sin ayuda</description>
+    </var>
+    <var>
+      <variable>L42_6</variable>
+      <width>1</width>
+      <initialPos>204</initialPos>
+      <finalPos>204</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades relacionadas con el hogar: Realizar ocasionalmente tareas domésticas que requieren un gran esfuerzo sin ayuda</description>
+    </var>
+    <var>
+      <variable>L42_7</variable>
+      <width>1</width>
+      <initialPos>205</initialPos>
+      <finalPos>205</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dificultad para actividades relacionadas con el hogar: Administrar su propio dinero sin ayuda</description>
+    </var>
+    <var>
+      <variable>L43</variable>
+      <width>1</width>
+      <initialPos>206</initialPos>
+      <finalPos>206</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Dispone habitualmente de ayuda para realizarlas?</description>
+    </var>
+    <var>
+      <variable>L44</variable>
+      <width>1</width>
+      <initialPos>207</initialPos>
+      <finalPos>207</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Necesitaría ayuda o más ayuda de la que dispone? (doble enunciado)</description>
+    </var>
+    <var>
+      <variable>L45</variable>
+      <width>1</width>
+      <initialPos>208</initialPos>
+      <finalPos>208</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Grado de dolor padecido durante las últimas 4 semanas</description>
+    </var>
+    <var>
+      <variable>L46</variable>
+      <width>1</width>
+      <initialPos>209</initialPos>
+      <finalPos>209</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Hasta qué punto el dolor afectó a sus actividades cotidianas?</description>
+    </var>
+    <var>
+      <variable>N48</variable>
+      <width>1</width>
+      <initialPos>210</initialPos>
+      <finalPos>210</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo desde la última consulta al médico general o de familia</description>
+    </var>
+    <var>
+      <variable>N49</variable>
+      <width>2</width>
+      <initialPos>211</initialPos>
+      <finalPos>212</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Número de consultas a un médico general o de familia en las cuatro últimas semanas
+00 a 28
+El valor 00 corresponde a las personas que fueron al médico general en los últimos 12 meses pero no en las últimas 4 semanas (criterio Eurostat)</description>
+    </var>
+    <var>
+      <variable>N50</variable>
+      <width>1</width>
+      <initialPos>213</initialPos>
+      <finalPos>213</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo desde la última consulta a un médico especialista</description>
+    </var>
+    <var>
+      <variable>N51</variable>
+      <width>2</width>
+      <initialPos>214</initialPos>
+      <finalPos>215</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Número de consultas a un médico especialista en las cuatro últimas semanas
+00 a 28
+El valor 00 corresponde a las personas que fueron al médico especialista en los últimos 12 meses pero no en las últimas 4 semanas (criterio Eurostat)</description>
+    </var>
+    <var>
+      <variable>N52</variable>
+      <width>1</width>
+      <initialPos>216</initialPos>
+      <finalPos>216</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Último médico consultado</description>
+    </var>
+    <var>
+      <variable>N53</variable>
+      <width>2</width>
+      <initialPos>217</initialPos>
+      <finalPos>218</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Lugar de la última consulta en estas cuatro semanas</description>
+    </var>
+    <var>
+      <variable>N54</variable>
+      <width>1</width>
+      <initialPos>219</initialPos>
+      <finalPos>219</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Motivo principal de esta última consulta</description>
+    </var>
+    <var>
+      <variable>N57</variable>
+      <width>1</width>
+      <initialPos>220</initialPos>
+      <finalPos>220</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dependencia funcional del médico</description>
+    </var>
+    <var>
+      <variable>N58_1</variable>
+      <width>1</width>
+      <initialPos>221</initialPos>
+      <finalPos>221</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Visita durante los últimos 12 meses a: Fisioterapeuta</description>
+    </var>
+    <var>
+      <variable>N58_2</variable>
+      <width>1</width>
+      <initialPos>222</initialPos>
+      <finalPos>222</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Visita durante los últimos 12 meses a: Psicólogo, psicoterapeuta o psiquiatra</description>
+    </var>
+    <var>
+      <variable>N58_3</variable>
+      <width>1</width>
+      <initialPos>223</initialPos>
+      <finalPos>223</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Visita durante los últimos 12 meses a: Enfermero/a, matrona</description>
+    </var>
+    <var>
+      <variable>N59</variable>
+      <width>1</width>
+      <initialPos>224</initialPos>
+      <finalPos>224</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Realización de análisis en los últimos 12 meses</description>
+    </var>
+    <var>
+      <variable>N60_1</variable>
+      <width>1</width>
+      <initialPos>225</initialPos>
+      <finalPos>225</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Pruebas durante los últimos 12 meses: Radiografía</description>
+    </var>
+    <var>
+      <variable>N60_2</variable>
+      <width>1</width>
+      <initialPos>226</initialPos>
+      <finalPos>226</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Pruebas durante los últimos 12 meses: TAC o escáner</description>
+    </var>
+    <var>
+      <variable>N60_3</variable>
+      <width>1</width>
+      <initialPos>227</initialPos>
+      <finalPos>227</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Pruebas durante los últimos 12 meses: Ecografía</description>
+    </var>
+    <var>
+      <variable>N60_4</variable>
+      <width>1</width>
+      <initialPos>228</initialPos>
+      <finalPos>228</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Pruebas durante los últimos 12 meses: Resonancia magnética</description>
+    </var>
+    <var>
+      <variable>N60a_1</variable>
+      <width>1</width>
+      <initialPos>229</initialPos>
+      <finalPos>229</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Visitas durante los últimos 12 meses: Homeópata</description>
+    </var>
+    <var>
+      <variable>N60a_2</variable>
+      <width>1</width>
+      <initialPos>230</initialPos>
+      <finalPos>230</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Visitas durante los últimos 12 meses: Acupuntor</description>
+    </var>
+    <var>
+      <variable>N60a_3</variable>
+      <width>1</width>
+      <initialPos>231</initialPos>
+      <finalPos>231</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Visitas durante los últimos 12 meses: Naturista</description>
+    </var>
+    <var>
+      <variable>N60a_4</variable>
+      <width>1</width>
+      <initialPos>232</initialPos>
+      <finalPos>232</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Visitas durante los últimos 12 meses: Otro profesional de medicina alternativa (osteópata, quiropráctico...)</description>
+    </var>
+    <var>
+      <variable>N61_1</variable>
+      <width>1</width>
+      <initialPos>233</initialPos>
+      <finalPos>233</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Servicios asistenciales en los últimos 12 meses: Atención domiciliaria prestada por enfermero/a o matrona</description>
+    </var>
+    <var>
+      <variable>N61_2</variable>
+      <width>1</width>
+      <initialPos>234</initialPos>
+      <finalPos>234</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Servicios asistenciales en los últimos 12 meses: Ayuda domiciliaria para las tareas domésticas o para las personas mayores</description>
+    </var>
+    <var>
+      <variable>N61_3</variable>
+      <width>1</width>
+      <initialPos>235</initialPos>
+      <finalPos>235</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Servicios asistenciales en los últimos 12 meses: Comidas a domicilio para personas mayores</description>
+    </var>
+    <var>
+      <variable>N61_4</variable>
+      <width>1</width>
+      <initialPos>236</initialPos>
+      <finalPos>236</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Servicios asistenciales en los últimos 12 meses: Servicios especiales de transporte a domicilio</description>
+    </var>
+    <var>
+      <variable>N61_5</variable>
+      <width>1</width>
+      <initialPos>237</initialPos>
+      <finalPos>237</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Servicios asistenciales en los últimos 12 meses: Otros servicios de asistencia domiciliaria</description>
+    </var>
+    <var>
+      <variable>N62</variable>
+      <width>1</width>
+      <initialPos>238</initialPos>
+      <finalPos>238</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo desde la última consulta al dentista, estomatólogo o higienista dental</description>
+    </var>
+    <var>
+      <variable>N62b</variable>
+      <width>2</width>
+      <initialPos>239</initialPos>
+      <finalPos>240</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Nº de veces que visitó al dentista, estomatólogo o higienista dental en los últimos 3 meses</description>
+    </var>
+    <var>
+      <variable>N63_1</variable>
+      <width>1</width>
+      <initialPos>241</initialPos>
+      <finalPos>241</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Revisión o chequeo</description>
+    </var>
+    <var>
+      <variable>N63_2</variable>
+      <width>1</width>
+      <initialPos>242</initialPos>
+      <finalPos>242</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Limpieza de boca</description>
+    </var>
+    <var>
+      <variable>N63_3</variable>
+      <width>1</width>
+      <initialPos>243</initialPos>
+      <finalPos>243</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Empastes (obturaciones), endodoncias </description>
+    </var>
+    <var>
+      <variable>N63_4</variable>
+      <width>1</width>
+      <initialPos>244</initialPos>
+      <finalPos>244</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Extracción de algún diente/muela</description>
+    </var>
+    <var>
+      <variable>N63_5</variable>
+      <width>1</width>
+      <initialPos>245</initialPos>
+      <finalPos>245</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Fundas, puentes u otro tipo de prótesis</description>
+    </var>
+    <var>
+      <variable>N63_6</variable>
+      <width>1</width>
+      <initialPos>246</initialPos>
+      <finalPos>246</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Tratamiento de las enfermedades de las encías</description>
+    </var>
+    <var>
+      <variable>N63_7</variable>
+      <width>1</width>
+      <initialPos>247</initialPos>
+      <finalPos>247</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Ortodoncia</description>
+    </var>
+    <var>
+      <variable>N63_8</variable>
+      <width>1</width>
+      <initialPos>248</initialPos>
+      <finalPos>248</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Aplicación de flúor</description>
+    </var>
+    <var>
+      <variable>N63_9</variable>
+      <width>1</width>
+      <initialPos>249</initialPos>
+      <finalPos>249</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Implantes</description>
+    </var>
+    <var>
+      <variable>N63_10</variable>
+      <width>1</width>
+      <initialPos>250</initialPos>
+      <finalPos>250</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de asistencia: Otro tipo</description>
+    </var>
+    <var>
+      <variable>N64</variable>
+      <width>1</width>
+      <initialPos>251</initialPos>
+      <finalPos>251</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Dependencia funcional del dentista consultado en la última visita</description>
+    </var>
+    <var>
+      <variable>N65_1</variable>
+      <width>1</width>
+      <initialPos>252</initialPos>
+      <finalPos>252</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de dientes y muelas: Tiene caries</description>
+    </var>
+    <var>
+      <variable>N65_2</variable>
+      <width>1</width>
+      <initialPos>253</initialPos>
+      <finalPos>253</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de dientes y muelas: Le han extraído dientes/muelas</description>
+    </var>
+    <var>
+      <variable>N65_3</variable>
+      <width>1</width>
+      <initialPos>254</initialPos>
+      <finalPos>254</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de dientes y muelas: Tiene dientes/muelas empastados (obturados)</description>
+    </var>
+    <var>
+      <variable>N65_4</variable>
+      <width>1</width>
+      <initialPos>255</initialPos>
+      <finalPos>255</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de dientes y muelas: Le sangran las encías al cepillarse o espontáneamente</description>
+    </var>
+    <var>
+      <variable>N65_5</variable>
+      <width>1</width>
+      <initialPos>256</initialPos>
+      <finalPos>256</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de dientes y muelas: Se le mueven los dientes/muelas</description>
+    </var>
+    <var>
+      <variable>N65_6</variable>
+      <width>1</width>
+      <initialPos>257</initialPos>
+      <finalPos>257</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de dientes y muelas: Lleva fundas (coronas), puentes, otras prótesis o dentadura postiza</description>
+    </var>
+    <var>
+      <variable>N65_7</variable>
+      <width>1</width>
+      <initialPos>258</initialPos>
+      <finalPos>258</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de dientes y muelas: Le faltan dientes/muelas que no han sido sustituidos por prótesis</description>
+    </var>
+    <var>
+      <variable>N65_8</variable>
+      <width>1</width>
+      <initialPos>259</initialPos>
+      <finalPos>259</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Estado de dientes y muelas: Tiene o conserva todos sus dientes/muelas naturales</description>
+    </var>
+    <var>
+      <variable>O66</variable>
+      <width>1</width>
+      <initialPos>260</initialPos>
+      <finalPos>260</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ingreso en hospital en los últimos 12 meses, excluyendo parto o cesárea (doble enunciado)</description>
+    </var>
+    <var>
+      <variable>O67</variable>
+      <width>2</width>
+      <initialPos>261</initialPos>
+      <finalPos>262</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Número de veces ingresado en un hospital en los últimos 12 meses, excluyendo parto o cesárea (doble enunciado)
+00 a 89
+Se permite el 00 para personas que están hospitalizadas en el momento de la entrevista y no han estado hospitalizadas más veces en los últimos 12 meses (regla Eurostat)</description>
+    </var>
+    <var>
+      <variable>O68</variable>
+      <width>3</width>
+      <initialPos>263</initialPos>
+      <finalPos>265</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}</valueRegEx>
+      <description>Número total de noches ingresado en un hospital en los últimos 12 meses, excluyendo parto o cesárea
+000 a 365
+Se permite el 000 para personas que están hospitalizadas en el momento de la entrevista y no han estado hospitalizadas más veces en los últimos 12 meses (regla Eurostat)</description>
+    </var>
+    <var>
+      <variable>O69</variable>
+      <width>1</width>
+      <initialPos>266</initialPos>
+      <finalPos>266</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ingreso en hospital en los últimos 12 meses debido a parto o cesárea</description>
+    </var>
+    <var>
+      <variable>O71</variable>
+      <width>1</width>
+      <initialPos>267</initialPos>
+      <finalPos>267</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Motivo del último ingreso en el hospital</description>
+    </var>
+    <var>
+      <variable>O74</variable>
+      <width>1</width>
+      <initialPos>268</initialPos>
+      <finalPos>268</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿A cargo de quién corrieron los gastos de hospitalización?</description>
+    </var>
+    <var>
+      <variable>O75</variable>
+      <width>1</width>
+      <initialPos>269</initialPos>
+      <finalPos>269</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ingreso en hospital de día en los últimos 12 meses</description>
+    </var>
+    <var>
+      <variable>O76</variable>
+      <width>3</width>
+      <initialPos>270</initialPos>
+      <finalPos>272</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}</valueRegEx>
+      <description>Número de ingresos en un hospital de día en los últimos 12 meses
+001 a 365</description>
+    </var>
+    <var>
+      <variable>O78</variable>
+      <width>1</width>
+      <initialPos>273</initialPos>
+      <finalPos>273</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Utilización del servicio de urgencias en los últimos 12 meses</description>
+    </var>
+    <var>
+      <variable>O79</variable>
+      <width>3</width>
+      <initialPos>274</initialPos>
+      <finalPos>276</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}</valueRegEx>
+      <description>Número de veces que utilizó el servicio de urgencias en los últimos 12 meses
+001 a 200</description>
+    </var>
+    <var>
+      <variable>O80_1</variable>
+      <width>1</width>
+      <initialPos>277</initialPos>
+      <finalPos>277</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Lugar de atención del último servicio de urgencias: Lugar donde se encontraba</description>
+    </var>
+    <var>
+      <variable>O80_2</variable>
+      <width>1</width>
+      <initialPos>278</initialPos>
+      <finalPos>278</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Lugar de atención del último servicio de urgencias: Unidad móvil</description>
+    </var>
+    <var>
+      <variable>O80_3</variable>
+      <width>1</width>
+      <initialPos>279</initialPos>
+      <finalPos>279</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Lugar de atención del último servicio de urgencias: Centro o servicio de urgencias</description>
+    </var>
+    <var>
+      <variable>O81_1</variable>
+      <width>2</width>
+      <initialPos>280</initialPos>
+      <finalPos>281</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Tiempo desde que se sintió enfermo hasta que pidió asistencia urgente (último servicio de urgencias utilizado): Días
+00 a 30</description>
+    </var>
+    <var>
+      <variable>O81_2</variable>
+      <width>2</width>
+      <initialPos>282</initialPos>
+      <finalPos>283</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Tiempo desde que se sintió enfermo hasta que pidió asistencia urgente (último servicio de urgencias utilizado): Horas
+00 a 23</description>
+    </var>
+    <var>
+      <variable>O81_3</variable>
+      <width>2</width>
+      <initialPos>284</initialPos>
+      <finalPos>285</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Tiempo desde que se sintió enfermo hasta que pidió asistencia urgente (último servicio de urgencias utilizado): Minutos
+00 a 59</description>
+    </var>
+    <var>
+      <variable>O82_1</variable>
+      <width>2</width>
+      <initialPos>286</initialPos>
+      <finalPos>287</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Tiempo desde que pidió asistencia urgente hasta que fue atendido (último servicio de urgencias utilizado): Horas
+00 a 48</description>
+    </var>
+    <var>
+      <variable>O82_2</variable>
+      <width>2</width>
+      <initialPos>288</initialPos>
+      <finalPos>289</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Tiempo desde que pidió asistencia urgente hasta que fue atendido (último servicio de urgencias utilizado): Minutos
+00 a 59</description>
+    </var>
+    <var>
+      <variable>O83</variable>
+      <width>1</width>
+      <initialPos>290</initialPos>
+      <finalPos>290</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de servicio de urgencias utilizado la última vez</description>
+    </var>
+    <var>
+      <variable>O84_1</variable>
+      <width>1</width>
+      <initialPos>291</initialPos>
+      <finalPos>291</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: Sanidad Pública (Seguridad Social)</description>
+    </var>
+    <var>
+      <variable>O84_2</variable>
+      <width>1</width>
+      <initialPos>292</initialPos>
+      <finalPos>292</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: Mutualidades del Estado (MUFACE, ISFAS, MUGEJU) acogidas a la Seguridad Social</description>
+    </var>
+    <var>
+      <variable>O84_3</variable>
+      <width>1</width>
+      <initialPos>293</initialPos>
+      <finalPos>293</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: Mutualidades del Estado (MUFACE, ISFAS, MUGEJU) acogidas a un seguro privado</description>
+    </var>
+    <var>
+      <variable>O84_4</variable>
+      <width>1</width>
+      <initialPos>294</initialPos>
+      <finalPos>294</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: Seguro médico privado, concertado individualmente (sociedades médicas, Colegios Profesionales...)</description>
+    </var>
+    <var>
+      <variable>O84_5</variable>
+      <width>1</width>
+      <initialPos>295</initialPos>
+      <finalPos>295</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: Seguro médico concertado por la empresa</description>
+    </var>
+    <var>
+      <variable>O84_6</variable>
+      <width>1</width>
+      <initialPos>296</initialPos>
+      <finalPos>296</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: No tiene seguro médico</description>
+    </var>
+    <var>
+      <variable>O84_7</variable>
+      <width>1</width>
+      <initialPos>297</initialPos>
+      <finalPos>297</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: Otras situaciones</description>
+    </var>
+    <var>
+      <variable>O84_8</variable>
+      <width>1</width>
+      <initialPos>298</initialPos>
+      <finalPos>298</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: No sabe</description>
+    </var>
+    <var>
+      <variable>O84_9</variable>
+      <width>1</width>
+      <initialPos>299</initialPos>
+      <finalPos>299</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Modalidad de seguro sanitario: No contesta</description>
+    </var>
+    <var>
+      <variable>P85</variable>
+      <width>1</width>
+      <initialPos>300</initialPos>
+      <finalPos>300</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Consumo de medicamentos recetados por un médico durante las dos últimas semanas</description>
+    </var>
+    <var>
+      <variable>P86</variable>
+      <width>1</width>
+      <initialPos>301</initialPos>
+      <finalPos>301</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Consumo de medicamentos no recetados por un médico durante las dos últimas semanas</description>
+    </var>
+    <var>
+      <variable>P87_1a</variable>
+      <width>1</width>
+      <initialPos>302</initialPos>
+      <finalPos>302</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el catarro, gripe, garganta, bronquios consumidas</description>
+    </var>
+    <var>
+      <variable>P87_1b</variable>
+      <width>1</width>
+      <initialPos>303</initialPos>
+      <finalPos>303</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el catarro, gripe, garganta, bronquios recetadas</description>
+    </var>
+    <var>
+      <variable>P87_2a</variable>
+      <width>1</width>
+      <initialPos>304</initialPos>
+      <finalPos>304</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el dolor consumidas                        </description>
+    </var>
+    <var>
+      <variable>P87_2b</variable>
+      <width>1</width>
+      <initialPos>305</initialPos>
+      <finalPos>305</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el dolor recetadas                        </description>
+    </var>
+    <var>
+      <variable>P87_3a</variable>
+      <width>1</width>
+      <initialPos>306</initialPos>
+      <finalPos>306</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para bajar la fiebre consumidas            </description>
+    </var>
+    <var>
+      <variable>P87_3b</variable>
+      <width>1</width>
+      <initialPos>307</initialPos>
+      <finalPos>307</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para bajar la fiebre recetadas              </description>
+    </var>
+    <var>
+      <variable>P87_4a</variable>
+      <width>1</width>
+      <initialPos>308</initialPos>
+      <finalPos>308</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Reconstituyentes como vitaminas, minerales, tónicos consumidos</description>
+    </var>
+    <var>
+      <variable>P87_4b</variable>
+      <width>1</width>
+      <initialPos>309</initialPos>
+      <finalPos>309</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Reconstituyentes como vitaminas, minerales, tónicos recetados</description>
+    </var>
+    <var>
+      <variable>P87_5a</variable>
+      <width>1</width>
+      <initialPos>310</initialPos>
+      <finalPos>310</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Laxantes consumidos</description>
+    </var>
+    <var>
+      <variable>P87_5b</variable>
+      <width>1</width>
+      <initialPos>311</initialPos>
+      <finalPos>311</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Laxantes recetados</description>
+    </var>
+    <var>
+      <variable>P87_6a</variable>
+      <width>1</width>
+      <initialPos>312</initialPos>
+      <finalPos>312</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Antibióticos consumidos</description>
+    </var>
+    <var>
+      <variable>P87_6b</variable>
+      <width>1</width>
+      <initialPos>313</initialPos>
+      <finalPos>313</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Antibióticos recetados</description>
+    </var>
+    <var>
+      <variable>P87_7a</variable>
+      <width>1</width>
+      <initialPos>314</initialPos>
+      <finalPos>314</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tranquilizantes, relajantes, pastillas para dormir consumidos</description>
+    </var>
+    <var>
+      <variable>P87_7b</variable>
+      <width>1</width>
+      <initialPos>315</initialPos>
+      <finalPos>315</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tranquilizantes, relajantes, pastillas para dormir recetados</description>
+    </var>
+    <var>
+      <variable>P87_8a</variable>
+      <width>1</width>
+      <initialPos>316</initialPos>
+      <finalPos>316</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para la alergia consumidos</description>
+    </var>
+    <var>
+      <variable>P87_8b</variable>
+      <width>1</width>
+      <initialPos>317</initialPos>
+      <finalPos>317</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para la alergia recetados</description>
+    </var>
+    <var>
+      <variable>P87_9a</variable>
+      <width>1</width>
+      <initialPos>318</initialPos>
+      <finalPos>318</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para la diarrea consumidos</description>
+    </var>
+    <var>
+      <variable>P87_9b</variable>
+      <width>1</width>
+      <initialPos>319</initialPos>
+      <finalPos>319</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para la diarrea recetados</description>
+    </var>
+    <var>
+      <variable>P87_10a</variable>
+      <width>1</width>
+      <initialPos>320</initialPos>
+      <finalPos>320</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el reuma consumidas</description>
+    </var>
+    <var>
+      <variable>P87_10b</variable>
+      <width>1</width>
+      <initialPos>321</initialPos>
+      <finalPos>321</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el reuma recetadas</description>
+    </var>
+    <var>
+      <variable>P87_11a</variable>
+      <width>1</width>
+      <initialPos>322</initialPos>
+      <finalPos>322</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el corazón consumidas</description>
+    </var>
+    <var>
+      <variable>P87_11b</variable>
+      <width>1</width>
+      <initialPos>323</initialPos>
+      <finalPos>323</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el corazón recetadas</description>
+    </var>
+    <var>
+      <variable>P87_12a</variable>
+      <width>1</width>
+      <initialPos>324</initialPos>
+      <finalPos>324</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para la tensión arterial consumidas</description>
+    </var>
+    <var>
+      <variable>P87_12b</variable>
+      <width>1</width>
+      <initialPos>325</initialPos>
+      <finalPos>325</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para la tensión arterial recetadas</description>
+    </var>
+    <var>
+      <variable>P87_13a</variable>
+      <width>1</width>
+      <initialPos>326</initialPos>
+      <finalPos>326</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el estómago y/o las alteraciones digestivas consumidas</description>
+    </var>
+    <var>
+      <variable>P87_13b</variable>
+      <width>1</width>
+      <initialPos>327</initialPos>
+      <finalPos>327</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicinas para el estómago y/o las alteraciones digestivas recetadas</description>
+    </var>
+    <var>
+      <variable>P87_14a</variable>
+      <width>1</width>
+      <initialPos>328</initialPos>
+      <finalPos>328</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Antidepresivos, estimulantes consumidos</description>
+    </var>
+    <var>
+      <variable>P87_14b</variable>
+      <width>1</width>
+      <initialPos>329</initialPos>
+      <finalPos>329</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Antidepresivos, estimulantes recetados</description>
+    </var>
+    <var>
+      <variable>P87_15a</variable>
+      <width>1</width>
+      <initialPos>330</initialPos>
+      <finalPos>330</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Píldoras para no quedar embarazada consumidas</description>
+    </var>
+    <var>
+      <variable>P87_15b</variable>
+      <width>1</width>
+      <initialPos>331</initialPos>
+      <finalPos>331</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Píldoras para no quedar embarazada recetadas</description>
+    </var>
+    <var>
+      <variable>P87_16a</variable>
+      <width>1</width>
+      <initialPos>332</initialPos>
+      <finalPos>332</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Hormonas para la menopausia consumidas</description>
+    </var>
+    <var>
+      <variable>P87_16b</variable>
+      <width>1</width>
+      <initialPos>333</initialPos>
+      <finalPos>333</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Hormonas para la menopausia recetadas  </description>
+    </var>
+    <var>
+      <variable>P87_17a</variable>
+      <width>1</width>
+      <initialPos>334</initialPos>
+      <finalPos>334</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para adelgazar consumidos</description>
+    </var>
+    <var>
+      <variable>P87_17b</variable>
+      <width>1</width>
+      <initialPos>335</initialPos>
+      <finalPos>335</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para adelgazar recetados</description>
+    </var>
+    <var>
+      <variable>P87_18a</variable>
+      <width>1</width>
+      <initialPos>336</initialPos>
+      <finalPos>336</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para bajar el colesterol consumidos</description>
+    </var>
+    <var>
+      <variable>P87_18b</variable>
+      <width>1</width>
+      <initialPos>337</initialPos>
+      <finalPos>337</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para bajar el colesterol recetados</description>
+    </var>
+    <var>
+      <variable>P87_19a</variable>
+      <width>1</width>
+      <initialPos>338</initialPos>
+      <finalPos>338</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para la diabetes consumidos</description>
+    </var>
+    <var>
+      <variable>P87_19b</variable>
+      <width>1</width>
+      <initialPos>339</initialPos>
+      <finalPos>339</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para la diabetes recetados</description>
+    </var>
+    <var>
+      <variable>P87_20a</variable>
+      <width>1</width>
+      <initialPos>340</initialPos>
+      <finalPos>340</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para el tiroides consumidos</description>
+    </var>
+    <var>
+      <variable>P87_20b</variable>
+      <width>1</width>
+      <initialPos>341</initialPos>
+      <finalPos>341</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medicamentos para el tiroides recetados</description>
+    </var>
+    <var>
+      <variable>P87_21a</variable>
+      <width>1</width>
+      <initialPos>342</initialPos>
+      <finalPos>342</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Productos homeopáticos consumidos</description>
+    </var>
+    <var>
+      <variable>P87_21b</variable>
+      <width>1</width>
+      <initialPos>343</initialPos>
+      <finalPos>343</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Productos homeopáticos recetados</description>
+    </var>
+    <var>
+      <variable>P87_22a</variable>
+      <width>1</width>
+      <initialPos>344</initialPos>
+      <finalPos>344</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Productos naturistas consumidos</description>
+    </var>
+    <var>
+      <variable>P87_22b</variable>
+      <width>1</width>
+      <initialPos>345</initialPos>
+      <finalPos>345</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Productos naturistas recetados</description>
+    </var>
+    <var>
+      <variable>P87_23a</variable>
+      <width>1</width>
+      <initialPos>346</initialPos>
+      <finalPos>346</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Otros medicamentos consumidos</description>
+    </var>
+    <var>
+      <variable>P87_23b</variable>
+      <width>1</width>
+      <initialPos>347</initialPos>
+      <finalPos>347</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Otros medicamentos recetados</description>
+    </var>
+    <var>
+      <variable>Q88</variable>
+      <width>1</width>
+      <initialPos>348</initialPos>
+      <finalPos>348</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Vacunación de la gripe en la última campaña</description>
+    </var>
+    <var>
+      <variable>Q89</variable>
+      <width>1</width>
+      <initialPos>349</initialPos>
+      <finalPos>349</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Toma de tensión arterial alguna vez por un profesional sanitario</description>
+    </var>
+    <var>
+      <variable>Q90</variable>
+      <width>1</width>
+      <initialPos>350</initialPos>
+      <finalPos>350</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo que hace de la última toma de tensión arterial</description>
+    </var>
+    <var>
+      <variable>Q91</variable>
+      <width>1</width>
+      <initialPos>351</initialPos>
+      <finalPos>351</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medición del nivel de colesterol en sangre</description>
+    </var>
+    <var>
+      <variable>Q92</variable>
+      <width>1</width>
+      <initialPos>352</initialPos>
+      <finalPos>352</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo que hace de la última medición de colesterol</description>
+    </var>
+    <var>
+      <variable>Q93</variable>
+      <width>1</width>
+      <initialPos>353</initialPos>
+      <finalPos>353</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Medición del nivel de azúcar en sangre por un profesional sanitario</description>
+    </var>
+    <var>
+      <variable>Q94</variable>
+      <width>1</width>
+      <initialPos>354</initialPos>
+      <finalPos>354</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo que hace de la última medición de azúcar en sangre</description>
+    </var>
+    <var>
+      <variable>Q95</variable>
+      <width>1</width>
+      <initialPos>355</initialPos>
+      <finalPos>355</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Alguna vez le han hecho una prueba de sangre oculta en heces?</description>
+    </var>
+    <var>
+      <variable>Q96</variable>
+      <width>1</width>
+      <initialPos>356</initialPos>
+      <finalPos>356</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo que hace de la última prueba de sangre oculta en heces</description>
+    </var>
+    <var>
+      <variable>Q98</variable>
+      <width>1</width>
+      <initialPos>357</initialPos>
+      <finalPos>357</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Le han realizado alguna vez una colonoscopia?</description>
+    </var>
+    <var>
+      <variable>Q99</variable>
+      <width>1</width>
+      <initialPos>358</initialPos>
+      <finalPos>358</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo que hace de la última colonoscopia</description>
+    </var>
+    <var>
+      <variable>Q100</variable>
+      <width>1</width>
+      <initialPos>359</initialPos>
+      <finalPos>359</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Alguna vez le han hecho una mamografía?</description>
+    </var>
+    <var>
+      <variable>Q101</variable>
+      <width>1</width>
+      <initialPos>360</initialPos>
+      <finalPos>360</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo que hace de la última mamografía</description>
+    </var>
+    <var>
+      <variable>Q103</variable>
+      <width>1</width>
+      <initialPos>361</initialPos>
+      <finalPos>361</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Alguna vez le han hecho una citología vaginal?</description>
+    </var>
+    <var>
+      <variable>Q104</variable>
+      <width>1</width>
+      <initialPos>362</initialPos>
+      <finalPos>362</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tiempo que hace de la última citología</description>
+    </var>
+    <var>
+      <variable>R106</variable>
+      <width>1</width>
+      <initialPos>363</initialPos>
+      <finalPos>363</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Falta de asistencia médica debido a listas de espera en los últimos 12 meses</description>
+    </var>
+    <var>
+      <variable>R107</variable>
+      <width>1</width>
+      <initialPos>364</initialPos>
+      <finalPos>364</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Falta de asistencia médica debido a problemas de transporte en los últimos 12 meses</description>
+    </var>
+    <var>
+      <variable>R108_1</variable>
+      <width>1</width>
+      <initialPos>365</initialPos>
+      <finalPos>365</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Falta de atención sanitaria debido a problemas económicos en los últimos 12 meses: Atención médica</description>
+    </var>
+    <var>
+      <variable>R108_2</variable>
+      <width>1</width>
+      <initialPos>366</initialPos>
+      <finalPos>366</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Falta de atención sanitaria debido a problemas económicos en los últimos 12 meses: Atención dental</description>
+    </var>
+    <var>
+      <variable>R108_3</variable>
+      <width>1</width>
+      <initialPos>367</initialPos>
+      <finalPos>367</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Falta de atención sanitaria debido a problemas económicos en los últimos 12 meses: Algún medicamento que le habían recetado</description>
+    </var>
+    <var>
+      <variable>R108_4</variable>
+      <width>1</width>
+      <initialPos>368</initialPos>
+      <finalPos>368</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Falta de atención sanitaria debido a problemas económicos en los últimos 12 meses: Atención de salud mental</description>
+    </var>
+    <var>
+      <variable>S109</variable>
+      <width>3</width>
+      <initialPos>369</initialPos>
+      <finalPos>371</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}</valueRegEx>
+      <description>Altura en cm (50 a 220)</description>
+    </var>
+    <var>
+      <variable>S110</variable>
+      <width>3</width>
+      <initialPos>372</initialPos>
+      <finalPos>374</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}</valueRegEx>
+      <description>Peso en kg (25 a 180)</description>
+    </var>
+    <var>
+      <variable>T111</variable>
+      <width>1</width>
+      <initialPos>375</initialPos>
+      <finalPos>375</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Tipo de actividad física que realiza en la actividad principal</description>
+    </var>
+    <var>
+      <variable>T112</variable>
+      <width>1</width>
+      <initialPos>376</initialPos>
+      <finalPos>376</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia con la que realiza alguna actividad física en su tiempo libre</description>
+    </var>
+    <var>
+      <variable>T113</variable>
+      <width>1</width>
+      <initialPos>377</initialPos>
+      <finalPos>377</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,1}</valueRegEx>
+      <description>Forma de llegar a los sitios: Número de días en que camina al menos 10 minutos seguidos
+0 a 7</description>
+    </var>
+    <var>
+      <variable>T114</variable>
+      <width>1</width>
+      <initialPos>378</initialPos>
+      <finalPos>378</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Forma de llegar a los sitios: Tiempo dedicado a caminar para desplazarse en un día habitual</description>
+    </var>
+    <var>
+      <variable>T115</variable>
+      <width>1</width>
+      <initialPos>379</initialPos>
+      <finalPos>379</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,1}</valueRegEx>
+      <description>Forma de llegar a los sitios: Número de días en que utiliza la bicicleta al menos 10 minutos seguidos
+0 a7</description>
+    </var>
+    <var>
+      <variable>T116</variable>
+      <width>1</width>
+      <initialPos>380</initialPos>
+      <finalPos>380</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Forma de llegar a los sitios: Tiempo empleado en la bicicleta para desplazarse en un día habitual</description>
+    </var>
+    <var>
+      <variable>T117</variable>
+      <width>1</width>
+      <initialPos>381</initialPos>
+      <finalPos>381</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,1}</valueRegEx>
+      <description>Ejercicio físico en tiempo de ocio: Número de días en que practica deporte al menos 10 minutos seguidos</description>
+    </var>
+    <var>
+      <variable>T118_1</variable>
+      <width>2</width>
+      <initialPos>382</initialPos>
+      <finalPos>383</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Ejercicio físico en tiempo de ocio: Tiempo (en horas) dedicado a hacer deporte en una semana habitual
+00 a 90</description>
+    </var>
+    <var>
+      <variable>T118_2</variable>
+      <width>2</width>
+      <initialPos>384</initialPos>
+      <finalPos>385</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Ejercicio físico en tiempo de ocio: Tiempo (en minutos) dedicado a hacer deporte en una semana habitual
+00 a 59</description>
+    </var>
+    <var>
+      <variable>T119</variable>
+      <width>1</width>
+      <initialPos>386</initialPos>
+      <finalPos>386</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,1}</valueRegEx>
+      <description>Ejercicio físico en tiempo de ocio: Número de días en que realiza actividades destinadas a fortalecer los músculos
+0 a 7</description>
+    </var>
+    <var>
+      <variable>T119b_1</variable>
+      <width>2</width>
+      <initialPos>387</initialPos>
+      <finalPos>388</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Sedentarismo : tiempo que permanece sentado a lo largo de un día normal. Horas </description>
+    </var>
+    <var>
+      <variable>T119b_2</variable>
+      <width>2</width>
+      <initialPos>389</initialPos>
+      <finalPos>390</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Sedentarismo : tiempo que permanece sentado a lo largo de un día normal. Minutos</description>
+    </var>
+    <var>
+      <variable>U120_1</variable>
+      <width>1</width>
+      <initialPos>391</initialPos>
+      <finalPos>391</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de fruta fresca (excluyendo zumos)</description>
+    </var>
+    <var>
+      <variable>U120_1a</variable>
+      <width>2</width>
+      <initialPos>392</initialPos>
+      <finalPos>393</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de fruta fresca (excluyendo zumos): Cantidad (01 a 10)</description>
+    </var>
+    <var>
+      <variable>U120_2</variable>
+      <width>1</width>
+      <initialPos>394</initialPos>
+      <finalPos>394</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de carne (pollo, ternera, cerdo, cordero, etc.)</description>
+    </var>
+    <var>
+      <variable>U120_3</variable>
+      <width>1</width>
+      <initialPos>395</initialPos>
+      <finalPos>395</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de huevos </description>
+    </var>
+    <var>
+      <variable>U120_4</variable>
+      <width>1</width>
+      <initialPos>396</initialPos>
+      <finalPos>396</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de pescado</description>
+    </var>
+    <var>
+      <variable>U120_5</variable>
+      <width>1</width>
+      <initialPos>397</initialPos>
+      <finalPos>397</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de pasta, arroz, patatas</description>
+    </var>
+    <var>
+      <variable>U120_6</variable>
+      <width>1</width>
+      <initialPos>398</initialPos>
+      <finalPos>398</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de pan, cereales  </description>
+    </var>
+    <var>
+      <variable>U120_7</variable>
+      <width>1</width>
+      <initialPos>399</initialPos>
+      <finalPos>399</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de verduras, ensaladas y hortalizas</description>
+    </var>
+    <var>
+      <variable>U120_7a</variable>
+      <width>2</width>
+      <initialPos>400</initialPos>
+      <finalPos>401</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de verduras, ensaladas y hortalizas: Cantidad
+01 a 10</description>
+    </var>
+    <var>
+      <variable>U120_8</variable>
+      <width>1</width>
+      <initialPos>402</initialPos>
+      <finalPos>402</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de legumbres</description>
+    </var>
+    <var>
+      <variable>U120_9</variable>
+      <width>1</width>
+      <initialPos>403</initialPos>
+      <finalPos>403</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de embutidos y fiambres</description>
+    </var>
+    <var>
+      <variable>U120_10</variable>
+      <width>1</width>
+      <initialPos>404</initialPos>
+      <finalPos>404</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de productos lácteos (leche, queso, yogur)</description>
+    </var>
+    <var>
+      <variable>U120_11</variable>
+      <width>1</width>
+      <initialPos>405</initialPos>
+      <finalPos>405</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de dulces (galletas, bollería, mermeladas, etc.)</description>
+    </var>
+    <var>
+      <variable>U120_12</variable>
+      <width>1</width>
+      <initialPos>406</initialPos>
+      <finalPos>406</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de refrescos con azúcar </description>
+    </var>
+    <var>
+      <variable>U120_13</variable>
+      <width>1</width>
+      <initialPos>407</initialPos>
+      <finalPos>407</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de comida rápida (pollo frito, bocadillos, pizzas, hamburguesas)</description>
+    </var>
+    <var>
+      <variable>U120_14</variable>
+      <width>1</width>
+      <initialPos>408</initialPos>
+      <finalPos>408</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de aperitivos o comidas saladas de picar (patatas fritas, ganchitos, galletitas saladas)</description>
+    </var>
+    <var>
+      <variable>U120_15</variable>
+      <width>1</width>
+      <initialPos>409</initialPos>
+      <finalPos>409</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de consumo de zumo natural de frutas o verduras</description>
+    </var>
+    <var>
+      <variable>U120_15a</variable>
+      <width>2</width>
+      <initialPos>410</initialPos>
+      <finalPos>411</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de zumo natural de frutas o verduras: Cantidad
+01 a 10</description>
+    </var>
+    <var>
+      <variable>U120FZ</variable>
+      <width>1</width>
+      <initialPos>412</initialPos>
+      <finalPos>412</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia diaria de consumo de fruta fresca o zumos naturales</description>
+    </var>
+    <var>
+      <variable>U120CANTFZ</variable>
+      <width>2</width>
+      <initialPos>413</initialPos>
+      <finalPos>414</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de fruta fresca o zumo natural de frutas o verduras: Cantidad
+01 a 10</description>
+    </var>
+    <var>
+      <variable>V121</variable>
+      <width>1</width>
+      <initialPos>415</initialPos>
+      <finalPos>415</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿Fuma actualmente?</description>
+    </var>
+    <var>
+      <variable>V123</variable>
+      <width>2</width>
+      <initialPos>416</initialPos>
+      <finalPos>417</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Fumadores a diario: Número de cigarrillos que fuma al día
+01 a 90</description>
+    </var>
+    <var>
+      <variable>V124</variable>
+      <width>2</width>
+      <initialPos>418</initialPos>
+      <finalPos>419</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Fumadores a diario: Edad en que comenzó a fumar
+06 a 90</description>
+    </var>
+    <var>
+      <variable>V124a</variable>
+      <width>1</width>
+      <initialPos>420</initialPos>
+      <finalPos>420</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Ex fumador diario</description>
+    </var>
+    <var>
+      <variable>V124b</variable>
+      <width>2</width>
+      <initialPos>421</initialPos>
+      <finalPos>422</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Fumador o ex fumador diario: tiempo como fumador  (doble enunciado)</description>
+    </var>
+    <var>
+      <variable>V126</variable>
+      <width>1</width>
+      <initialPos>423</initialPos>
+      <finalPos>423</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia de exposición a ambientes de humo en lugares cerrados</description>
+    </var>
+    <var>
+      <variable>V126a</variable>
+      <width>1</width>
+      <initialPos>424</initialPos>
+      <finalPos>424</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia diaria  exposición a ambientes de humo en lugares cerrados</description>
+    </var>
+    <var>
+      <variable>V126b</variable>
+      <width>1</width>
+      <initialPos>425</initialPos>
+      <finalPos>425</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Uso cigarrillos o aparatos electrónicos</description>
+    </var>
+    <var>
+      <variable>V126c</variable>
+      <width>1</width>
+      <initialPos>426</initialPos>
+      <finalPos>426</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Frecuencia uso cigarrillos electronicos o similares </description>
+    </var>
+    <var>
+      <variable>W127</variable>
+      <width>2</width>
+      <initialPos>427</initialPos>
+      <finalPos>428</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Frecuencia de consumo de alcohol en los últimos 12 meses</description>
+    </var>
+    <var>
+      <variable>W128Cer</variable>
+      <width>1</width>
+      <initialPos>429</initialPos>
+      <finalPos>429</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Consumo de cerveza con alcohol</description>
+    </var>
+    <var>
+      <variable>W128Cer_1</variable>
+      <width>2</width>
+      <initialPos>430</initialPos>
+      <finalPos>431</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de cerveza con alcohol: Lunes (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Cer_2</variable>
+      <width>2</width>
+      <initialPos>432</initialPos>
+      <finalPos>433</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de cerveza con alcohol: Martes 00 a 50</description>
+    </var>
+    <var>
+      <variable>W128Cer_3</variable>
+      <width>2</width>
+      <initialPos>434</initialPos>
+      <finalPos>435</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de cerveza con alcohol: Miércoles (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Cer_4</variable>
+      <width>2</width>
+      <initialPos>436</initialPos>
+      <finalPos>437</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de cerveza con alcohol: Jueves (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Cer_5</variable>
+      <width>2</width>
+      <initialPos>438</initialPos>
+      <finalPos>439</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de cerveza con alcohol: Viernes
+ (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Cer_6</variable>
+      <width>2</width>
+      <initialPos>440</initialPos>
+      <finalPos>441</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de cerveza con alcohol: Sábado (00 a 50) </description>
+    </var>
+    <var>
+      <variable>W128Cer_7</variable>
+      <width>2</width>
+      <initialPos>442</initialPos>
+      <finalPos>443</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de cerveza con alcohol: Domingo (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Vin</variable>
+      <width>1</width>
+      <initialPos>444</initialPos>
+      <finalPos>444</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Consumo de vinos, cava</description>
+    </var>
+    <var>
+      <variable>W128Vin_1</variable>
+      <width>2</width>
+      <initialPos>445</initialPos>
+      <finalPos>446</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vinos, cava: Lunes (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Vin_2</variable>
+      <width>2</width>
+      <initialPos>447</initialPos>
+      <finalPos>448</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vinos, cava: Martes (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Vin_3</variable>
+      <width>2</width>
+      <initialPos>449</initialPos>
+      <finalPos>450</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vinos, cava: Miércoles (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Vin_4</variable>
+      <width>2</width>
+      <initialPos>451</initialPos>
+      <finalPos>452</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vinos, cava: Jueves
+ (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Vin_5</variable>
+      <width>2</width>
+      <initialPos>453</initialPos>
+      <finalPos>454</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vinos, cava: Viernes
+ (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Vin_6</variable>
+      <width>2</width>
+      <initialPos>455</initialPos>
+      <finalPos>456</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vinos, cava: Sábado
+ (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Vin_7</variable>
+      <width>2</width>
+      <initialPos>457</initialPos>
+      <finalPos>458</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vinos, cava: Domingo
+ (00 a 50)</description>
+    </var>
+    <var>
+      <variable>W128Vermut</variable>
+      <width>1</width>
+      <initialPos>459</initialPos>
+      <finalPos>459</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Consumo de vermuts, fino, jerez</description>
+    </var>
+    <var>
+      <variable>W128Vermut_1</variable>
+      <width>2</width>
+      <initialPos>460</initialPos>
+      <finalPos>461</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vermuts, fino, jerez: Lunes
+ (00 a 30)</description>
+    </var>
+    <var>
+      <variable>W128Vermut_2</variable>
+      <width>2</width>
+      <initialPos>462</initialPos>
+      <finalPos>463</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vermuts, fino, jerez: Martes
+ (00 a 30)</description>
+    </var>
+    <var>
+      <variable>W128Vermut_3</variable>
+      <width>2</width>
+      <initialPos>464</initialPos>
+      <finalPos>465</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vermuts, fino, jerez: Miércoles
+ (00 a 30)</description>
+    </var>
+    <var>
+      <variable>W128Vermut_4</variable>
+      <width>2</width>
+      <initialPos>466</initialPos>
+      <finalPos>467</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vermuts, fino, jerez: Jueves
+ (00 a 30)</description>
+    </var>
+    <var>
+      <variable>W128Vermut_5</variable>
+      <width>2</width>
+      <initialPos>468</initialPos>
+      <finalPos>469</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vermuts, fino, jerez: Viernes
+ (00 a 30)</description>
+    </var>
+    <var>
+      <variable>W128Vermut_6</variable>
+      <width>2</width>
+      <initialPos>470</initialPos>
+      <finalPos>471</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vermuts, fino, jerez: Sábado
+ (00 a 30)</description>
+    </var>
+    <var>
+      <variable>W128Vermut_7</variable>
+      <width>2</width>
+      <initialPos>472</initialPos>
+      <finalPos>473</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de vermuts, fino, jerez: Domingo
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Lic</variable>
+      <width>1</width>
+      <initialPos>474</initialPos>
+      <finalPos>474</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Consumo de licores, anís, pacharán</description>
+    </var>
+    <var>
+      <variable>W128Lic_1</variable>
+      <width>2</width>
+      <initialPos>475</initialPos>
+      <finalPos>476</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de licores, anís, pacharán: Lunes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Lic_2</variable>
+      <width>2</width>
+      <initialPos>477</initialPos>
+      <finalPos>478</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de licores, anís, pacharán: Martes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Lic_3</variable>
+      <width>2</width>
+      <initialPos>479</initialPos>
+      <finalPos>480</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de licores, anís, pacharán: Miércoles
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Lic_4</variable>
+      <width>2</width>
+      <initialPos>481</initialPos>
+      <finalPos>482</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de licores, anís, pacharán: Jueves
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Lic_5</variable>
+      <width>2</width>
+      <initialPos>483</initialPos>
+      <finalPos>484</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de licores, anís, pacharán: Viernes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Lic_6</variable>
+      <width>2</width>
+      <initialPos>485</initialPos>
+      <finalPos>486</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de licores, anís, pacharán: Sábado
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Lic_7</variable>
+      <width>2</width>
+      <initialPos>487</initialPos>
+      <finalPos>488</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de licores, anís, pacharán: Domingo
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Comb</variable>
+      <width>1</width>
+      <initialPos>489</initialPos>
+      <finalPos>489</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Consumo de combinados, bebidas destiladas</description>
+    </var>
+    <var>
+      <variable>W128Comb_1</variable>
+      <width>2</width>
+      <initialPos>490</initialPos>
+      <finalPos>491</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de combinados, bebidas destiladas: Lunes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Comb_2</variable>
+      <width>2</width>
+      <initialPos>492</initialPos>
+      <finalPos>493</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de combinados, bebidas destiladas: Martes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Comb_3</variable>
+      <width>2</width>
+      <initialPos>494</initialPos>
+      <finalPos>495</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de combinados, bebidas destiladas: Miércoles
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Comb_4</variable>
+      <width>2</width>
+      <initialPos>496</initialPos>
+      <finalPos>497</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de combinados, bebidas destiladas: Jueves
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Comb_5</variable>
+      <width>2</width>
+      <initialPos>498</initialPos>
+      <finalPos>499</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de combinados, bebidas destiladas: Viernes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Comb_6</variable>
+      <width>2</width>
+      <initialPos>500</initialPos>
+      <finalPos>501</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de combinados, bebidas destiladas: Sábado
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Comb_7</variable>
+      <width>2</width>
+      <initialPos>502</initialPos>
+      <finalPos>503</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de combinados, bebidas destiladas: Domingo
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Sidra</variable>
+      <width>1</width>
+      <initialPos>504</initialPos>
+      <finalPos>504</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Consumo de bebidas locales, sidra, carajillo</description>
+    </var>
+    <var>
+      <variable>W128Sidra_1</variable>
+      <width>2</width>
+      <initialPos>505</initialPos>
+      <finalPos>506</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de bebidas locales, sidra, carajillo: Lunes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Sidra_2</variable>
+      <width>2</width>
+      <initialPos>507</initialPos>
+      <finalPos>508</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de bebidas locales, sidra, carajillo: Martes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Sidra_3</variable>
+      <width>2</width>
+      <initialPos>509</initialPos>
+      <finalPos>510</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de bebidas locales, sidra, carajillo: Miércoles</description>
+    </var>
+    <var>
+      <variable>W128Sidra_4</variable>
+      <width>2</width>
+      <initialPos>511</initialPos>
+      <finalPos>512</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de bebidas locales, sidra, carajillo: Jueves
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Sidra_5</variable>
+      <width>2</width>
+      <initialPos>513</initialPos>
+      <finalPos>514</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de bebidas locales, sidra, carajillo: Viernes
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Sidra_6</variable>
+      <width>2</width>
+      <initialPos>515</initialPos>
+      <finalPos>516</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de bebidas locales, sidra, carajillo: Sábado
+00 a 30</description>
+    </var>
+    <var>
+      <variable>W128Sidra_7</variable>
+      <width>2</width>
+      <initialPos>517</initialPos>
+      <finalPos>518</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,2}</valueRegEx>
+      <description>Consumo de bebidas locales, sidra, carajillo: Domingo
+00 a 30
+</description>
+    </var>
+    <var>
+      <variable>W129</variable>
+      <width>2</width>
+      <initialPos>519</initialPos>
+      <finalPos>520</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,2}</valueRegEx>
+      <description>Frecuencia de consumo de 5-6 o más bebidas alcohólicas estándar en una misma ocasión durante los últimos 12 meses (doble enunciado)</description>
+    </var>
+    <var>
+      <variable>X130</variable>
+      <width>1</width>
+      <initialPos>521</initialPos>
+      <finalPos>521</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>En caso de problema personal grave, ¿con cuántas personas podría contar?</description>
+    </var>
+    <var>
+      <variable>X131</variable>
+      <width>1</width>
+      <initialPos>522</initialPos>
+      <finalPos>522</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿En qué medida se interesan otras personas por lo que a usted le pasa?</description>
+    </var>
+    <var>
+      <variable>X132</variable>
+      <width>1</width>
+      <initialPos>523</initialPos>
+      <finalPos>523</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>¿En qué medida le resulta fácil obtener ayuda de los vecinos en caso de necesidad?</description>
+    </var>
+    <var>
+      <variable>Y133</variable>
+      <width>1</width>
+      <initialPos>524</initialPos>
+      <finalPos>524</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Cuidado de personas mayores o de alguien que tenga una dolencia crónica al menos una vez a la semana</description>
+    </var>
+    <var>
+      <variable>Y134</variable>
+      <width>1</width>
+      <initialPos>525</initialPos>
+      <finalPos>525</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Cuidado de personas: Parentesco con el cuidador</description>
+    </var>
+    <var>
+      <variable>Y135</variable>
+      <width>1</width>
+      <initialPos>526</initialPos>
+      <finalPos>526</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Cuidado de personas: Horas a la semana dedicadas en total</description>
+    </var>
+    <var>
+      <variable>FACTORADULTO</variable>
+      <width>8</width>
+      <initialPos>527</initialPos>
+      <finalPos>534</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,5}\.[0-9]{1,3}</valueRegEx>
+      <description>Factor de elevación del adulto (5 enteros, 3 decimales)</description>
+    </var>
+    <var>
+      <variable>CLASE_PR</variable>
+      <width>1</width>
+      <initialPos>535</initialPos>
+      <finalPos>535</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Variable derivada: Clase social basada en la ocupación de la persona de referencia</description>
+    </var>
+    <var>
+      <variable>IMC</variable>
+      <width>1</width>
+      <initialPos>536</initialPos>
+      <finalPos>536</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Variable derivada: Índice de masa corporal (IMC) </description>
+    </var>
+    <var>
+      <variable>CMD1</variable>
+      <width>5</width>
+      <initialPos>537</initialPos>
+      <finalPos>541</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}\.[0-9]{1,2}</valueRegEx>
+      <description>Variable derivada: Consumo medio diario de alcohol semanal (lunes a domingo)
+000 a 300 (3 enteros, 2 decimales)
+</description>
+    </var>
+    <var>
+      <variable>CMD2</variable>
+      <width>5</width>
+      <initialPos>542</initialPos>
+      <finalPos>546</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}\.[0-9]{1,2}</valueRegEx>
+      <description>Variable derivada: Consumo medio diario de alcohol entre semana (lunes a jueves)
+000 a 300 (3 enteros, 2 decimales)
+</description>
+    </var>
+    <var>
+      <variable>CMD3</variable>
+      <width>5</width>
+      <initialPos>547</initialPos>
+      <finalPos>551</finalPos>
+      <type>num</type>
+      <valueRegEx>[0-9]{1,3}\.[0-9]{1,2}</valueRegEx>
+      <description>Variable derivada: Consumo medio diario de alcohol en fin de semana (viernes a domingo)
+000 a 300 (3 enteros, 2 decimales)
+</description>
+    </var>
+    <var>
+      <variable>SEVERIDAD_DEPRESIVA</variable>
+      <width>1</width>
+      <initialPos>552</initialPos>
+      <finalPos>552</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Variable derivada: Severidad de la sintomatología depresiva</description>
+    </var>
+    <var>
+      <variable>CUADROS_DEPRESIVOS</variable>
+      <width>1</width>
+      <initialPos>553</initialPos>
+      <finalPos>553</finalPos>
+      <type>char</type>
+      <valueRegEx>[a-zA-Z]{1,1}</valueRegEx>
+      <description>Variable derivada: Prevalencia de cuadros depresivos activos</description>
+    </var>
+  </vars>
+</Schema>

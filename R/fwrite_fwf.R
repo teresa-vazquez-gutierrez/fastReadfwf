@@ -98,7 +98,7 @@ setMethod(f = "fwrite_fwf",
               data.DT_NotPresent <- data.table(variable = names(widths.NotPresentInDT), width = widths.NotPresentInDT)
               data.DT_NotPresent <- merge(data.DT_NotPresent, auxDT, by = 'width')[
                 , width := NULL][
-                  , auxID := 'auxID']
+                , auxID := 'auxID']
               data.DT_NotPresent <- dcast(data.DT_NotPresent, formula = auxID ~ variable, value.var = 'value')[
                 , auxID := NULL]
               data.DT[, names(data.DT_NotPresent) := data.DT_NotPresent]

@@ -49,7 +49,7 @@
 #' @importFrom methods new
 #'
 #' @export
-xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
+StxlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
 
   stColNames <- c('variable', 'width', 'initialPos', 'finalPos', 'type', 'valueRegEx','description')
   xlsx <- read.xlsx(xlsxname, sheet = sheetname, colNames = header, skipEmptyCols = FALSE, ...)

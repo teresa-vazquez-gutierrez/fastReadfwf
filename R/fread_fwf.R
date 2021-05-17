@@ -69,7 +69,7 @@ setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
           function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, encoding = "UTF-8", ...){
 
-            V1 <- NULL
+    V1 <- NULL
 
     supportedFormats <- c('data.table', 'tibble')
 
@@ -124,8 +124,6 @@ setMethod(f = "fread_fwf",
       return(tibble)
 
     }
-
-
 
 })
 

@@ -31,10 +31,10 @@
 #' \itemize{
 #'
 #'  \item \code{\link{fread_fwf}}, to read fixed-width files returning either
-#'  \linkS4class{data.table}s or \code{\link[tibble]{tibble}}.
+#'  \linkS4class{data.table}s or \code{\link[tibble]{tibble}}s.
 #'
 #'  \item \code{\link{validateValues}}, to validate the value of each variable in the fixed-width
-#'  file according to the regular expression specified in the standardised schema.
+#'  file according to the regular expressions specified in the standardised schema.
 #'
 #' }
 #'
