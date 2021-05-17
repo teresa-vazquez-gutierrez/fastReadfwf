@@ -30,25 +30,24 @@
 #' 
 #' @examples 
 #' 
-#' xmlName <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
+#' xmlName <- file.path(system.file('inst/extdata', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
 #' xmlToSchema(xmlName)
 #' 
 #' xmlName <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
 #' xmlToSchema(xmlName)
 #' 
-#' @importFrom xml2 as_list read_xml
 #' 
 #' @export
 INExmlToSchema <- function(xmlName){
   
   #Lectura del XML y construcción de la tabla
-  doc <- read_xml(xmlName)
-  nodes <- xml_find_all(doc, ".//vars/var")
+  doc <- xml2::read_xml(xmlName)
+  nodes <- xml2::xml_find_all(doc, ".//vars/var")
   
   vars.dt <- as.data.table(
     purrr::map_df(nodes, function(x) {
-    kids <- xml_children(x)
-    setNames(as.list(xml_text(kids)), xml_name(kids))
+    kids <- xml2::xml_children(x)
+    setNames(as.list(xml2::xml_text(kids)), xml2::xml_name(kids))
   })
   )
   vars.dt <- type.convert(vars.dt, as.is = TRUE)

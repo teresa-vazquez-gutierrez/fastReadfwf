@@ -39,10 +39,11 @@ variable of the Schema who has the following child nodes:
 }
 \examples{
 
-xmlName <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
+xmlName <- file.path(system.file('inst/extdata', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
 xmlToSchema(xmlName)
 
 xmlName <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
 xmlToSchema(xmlName)
+
 
 }

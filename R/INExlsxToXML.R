@@ -22,11 +22,6 @@
 #' sheetToRead <- 'Diseño'
 #' INExlsxToXML(xlsxName = xlsxName, sheetToRead = sheetToRead, xmlName = xmlName)
 #' 
-#' xlsxName    <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xlsx')
-#' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
-#' sheetToRead  <- 'Diseño'
-#' INExlsxToXML(xlsxName = xlsxName, sheetToRead = sheetToRead, outputPath = outputPath, rowsToDelete = rowsToDelete)
-#' 
 #' @import data.table
 #' 
 #' @include formatoR2regex.R

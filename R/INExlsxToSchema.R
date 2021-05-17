@@ -40,13 +40,13 @@
 #' @examples 
 #' inputPath    <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xlsx')
 #' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
-#' sheetToRead  <- 'Diseño'
+#' sheetToRead  <- 'Dise?o'
 #' rowsToDelete <- 2
 #' xlsxToXMLToSchema(xlsxPath = inputPath, sheetToRead = sheetToRead, xmlPath = outputPath, rowsToDelete = rowsToDelete)
 #' 
 #' inputPath    <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xlsx')
 #' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
-#' sheetToRead  <- 'Diseño'
+#' sheetToRead  <- 'Dise?o'
 #' rowsToDelete <- 7
 #' xlsxToXMLToSchema(xlsxPath = inputPath, sheetToRead = sheetToRead, xmlPath = outputPath, rowsToDelete = rowsToDelete)
 #' 
@@ -54,17 +54,14 @@
 #' 
 #' @importFrom openxlsx read.xlsx
 #' 
-#' @importFrom XML xmlTree addTag closeTag saveXML
-#' 
-#' @importFrom xml2 as_list read_xml
+#' @include INExlsxToXML.R
 #' 
 #' @export
-
-xlsxToXMLToSchema <- function(xlsxPath, sheetToRead, xmlPath, rowsToDelete){
+INExlsxToSchema <- function(xlsxPath, sheetToRead, xmlPath, rowsToDelete){
   
-  xlsxToXML(inputPath = xlsxPath, 
-            sheetToRead = sheetToRead, 
-            outputPath = xmlPath, rowsToDelete = rowsToDelete)
+  INExlsxToXML(inputPath = xlsxPath, 
+               sheetToRead = sheetToRead, 
+               outputPath = xmlPath, rowsToDelete = rowsToDelete)
   
   output <- xmlToSchema(inputPath = xmlPath)
   return(output)
