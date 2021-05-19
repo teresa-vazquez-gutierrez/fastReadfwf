@@ -25,6 +25,7 @@ Encoding: UTF-8
 Collate:
     'formatoR2regex.R'
     'INExlsxToXML.R'
+    'INExlsxToSchema.R'
     'INExmlToSchema.R'
     'MicroDataSNHS.R'
     'StcsvToSchema.R'
@@ -49,7 +50,6 @@ Collate:
     'setinitialPos.R'
     'show.R'
     'validateValues.R'
-    'xlsxToXMLToSchema.R'
 RoxygenNote: 7.1.1
 URL: https://github.com/david-salgado/fastReadfwf
 BugReports: https://github.com/david-salgado/fastReadfwf/issues
