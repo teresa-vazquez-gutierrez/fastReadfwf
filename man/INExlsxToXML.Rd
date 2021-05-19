@@ -25,9 +25,8 @@ xlsx file by the Spanish NSI standard for the fwf schema.
 The Excel file must have a header in the second row.
 }
 \examples{
-xlsxName    <- file.path(system.file('inst/extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xlsx')
-xmlName     <- file.path(system.file('inst/extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
-sheetToRead <- 'DiseÃ±o'
-INExlsxToXML(xlsxName = xlsxName, sheetToRead = sheetToRead, xmlName = xmlName)
+xlsxName    <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xlsx')
+xmlName     <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
+output <- INExlsxToXML(xlsxName = xlsxName, xmlName = xmlName)
 
 }

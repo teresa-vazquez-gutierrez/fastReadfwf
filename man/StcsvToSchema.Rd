@@ -24,7 +24,7 @@ supported.}
 Return an object of class \linkS4class{StfwfSchema}.
 }
 \description{
-\code{CSVToSchema} is a constructor of the class 
+\code{StcsvToSchema} is a constructor of the class 
 \linkS4class{StfwfSchema}.
 
 This constructor reads a csv file containing partially or totally the schema 
@@ -53,6 +53,6 @@ is assumed to be that of the list above. English only is supported so far.
 }
 \examples{
 path <- system.file('extdata', package = 'fastReadfwf')
-csvToSchema(file.path(path, 'SchemaSNHS_microdataWeb.csv'), header = TRUE)
+StcsvToSchema(file.path(path, 'SchemaSNHS_microdataWeb.csv'), header = TRUE)
 
 }

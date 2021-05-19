@@ -30,7 +30,7 @@ application of \code{\link[stringi]{stri_sub}}.
 }
 \examples{
 path <- system.file('extdata', package = 'fastReadfwf')
-stSchema <- fastReadfwf::xlsxToSchema(
+stSchema <- fastReadfwf::StxlsxToSchema(
    file.path(path, 'SchemaSNHS.xlsx'),
    sheetname = 'stSchema')
 

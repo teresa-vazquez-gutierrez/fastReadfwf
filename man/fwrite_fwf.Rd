@@ -37,8 +37,6 @@ validate the content of \code{data} before writing.}
 justify strings to the left or to the right.}
 
 \item{...}{Other parameters from \code{\link[data.table]{fwrite}}.}
-
-\item{encoding}{Character vector of length 1 with default value \code{utf8}, native is also supported.}
 }
 \value{
 Returns an invisible \code{NULL}. The dataset is written in file \code{filename}.

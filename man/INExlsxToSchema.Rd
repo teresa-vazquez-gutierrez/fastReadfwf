@@ -4,16 +4,16 @@
 \alias{INExlsxToSchema}
 \title{Create a xml file and build an object of class \linkS4class{StfwfSchema}.}
 \usage{
-INExlsxToSchema(xlsxPath, sheetToRead, xmlPath, rowsToDelete)
+INExlsxToSchema(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS")
 }
 \arguments{
-\item{xlsxPath}{Path of the xlsx file containing the schema.}
+\item{xlsxName}{Complete name of the xlsx file containing the schema.}
 
 \item{sheetToRead}{Name or index of the sheet of the xlsx file.}
 
-\item{xmlPath}{Path where the xml file is going to be written.}
+\item{xmlName}{Complete name where the xml file is going to be written.}
 
-\item{rowsToDelete}{Last rows on the sheet that don't belong to the schema data table.}
+\item{regionName}{Region from the xlsx which contains the info about the number of rows.}
 }
 \value{
 Return an object of class \linkS4class{StfwfSchema}.
@@ -47,16 +47,9 @@ variable of the Schema who has the following child nodes:
 The Excel file must have a header in the second row.
 }
 \examples{
-inputPath    <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xlsx')
-outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
-sheetToRead  <- 'Dise?o'
-rowsToDelete <- 2
-xlsxToXMLToSchema(xlsxPath = inputPath, sheetToRead = sheetToRead, xmlPath = outputPath, rowsToDelete = rowsToDelete)
-
-inputPath    <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xlsx')
-outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
-sheetToRead  <- 'Dise?o'
-rowsToDelete <- 7
-xlsxToXMLToSchema(xlsxPath = inputPath, sheetToRead = sheetToRead, xmlPath = outputPath, rowsToDelete = rowsToDelete)
+path <- 'inst/extdata'
+xlsxName    <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xlsx')
+xmlName     <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
+output <- INExlsxToSchema(xlsxName = xlsxName, xmlName = xmlName)
 
 }

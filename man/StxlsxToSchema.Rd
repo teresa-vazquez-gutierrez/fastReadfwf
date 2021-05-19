@@ -49,6 +49,6 @@ The tag must have a header in file 1. Only English is supported so far.
 }
 \examples{
 path <- system.file('extdata', package = 'fastReadfwf')
-xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
+StxlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 
 }

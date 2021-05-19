@@ -17,12 +17,11 @@
 #' @return Write the generated xml file.
 #' 
 #' @examples 
-#' xlsxName    <- file.path(system.file('inst/extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xlsx')
-#' xmlName     <- file.path(system.file('inst/extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
-#' sheetToRead <- 'Diseño'
-#' INExlsxToXML(xlsxName = xlsxName, sheetToRead = sheetToRead, xmlName = xmlName)
+#' xlsxName    <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xlsx')
+#' xmlName     <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
+#' output <- INExlsxToXML(xlsxName = xlsxName, xmlName = xmlName)
 #' 
-#' @import data.table
+#' @import data.table openxlsx xml2
 #' 
 #' @include formatoR2regex.R
 #' 
@@ -30,14 +29,16 @@
 INExlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS"){
   #Lectura del xlsx y construccion del xml#
   cat("Leyendo hoja", sheetToRead, "del xlsx:", xlsxName, "...")
-  regions_info <- getNamedRegions(xlsxName)
+  regions_info <- openxlsx::getNamedRegions(xlsxName)
   region_idx  <- which(regions_info == regionName)
   region_cells <- attr(regions_info, "position")[region_idx]
   region_rows <- as.integer(gsub("[A-Z]*", "", strsplit(region_cells, ":")[[1]]))
   
   xlsx <- openxlsx::read.xlsx(
     xlsxName, sheet=sheetToRead, rows = c(region_rows[1]:region_rows[2]))
-  names(xlsx) <- chartr("áéíóú…", "aeiou.", names(xlsx))
+  convertedNames <- iconv(names(xlsx), from = 'UTF-8', to = 'latin1')
+  names(xlsx) <- chartr(intToUtf8(c(225, 233, 237, 243, 250)),
+                        "aeiou", convertedNames)
   cat(" ok.\n")
   
   cat("Construyendo estructura del Schema...")
@@ -71,7 +72,7 @@ INExlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METAD
                        xml2::as_xml_document(list(var = lapply(x, as.list)))
                      })
   
-  for(var in vars_xml) xml2::xml_add_child(xml_child(new_xml), var)
+  for(var in vars_xml) xml2::xml_add_child(xml2::xml_child(new_xml), var)
   
   cat(" ok.\n")
   

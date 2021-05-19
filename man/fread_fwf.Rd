@@ -64,7 +64,7 @@ function \code{\link[readr]{read_fwf}}.
 }
 \examples{
 path <- system.file('extdata', package = 'fastReadfwf')
-stSchema <- fastReadfwf::xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
+stSchema <- fastReadfwf::StxlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 
 # For data.tables
 data.DT <- fread_fwf(

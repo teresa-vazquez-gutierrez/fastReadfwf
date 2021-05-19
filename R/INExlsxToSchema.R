@@ -27,42 +27,35 @@
 #' 
 #' The Excel file must have a header in the second row. 
 #' 
-#' @param xlsxPath Path of the xlsx file containing the schema.
+#' @param xlsxName Complete name of the xlsx file containing the schema.
 #' 
 #' @param sheetToRead Name or index of the sheet of the xlsx file.
 #' 
-#' @param xmlPath Path where the xml file is going to be written.
+#' @param xmlName Complete name where the xml file is going to be written.
 #' 
-#' @param rowsToDelete Last rows on the sheet that don't belong to the schema data table.
+#' @param regionName Region from the xlsx which contains the info about the number of rows.
 #' 
 #' @return Return an object of class \linkS4class{StfwfSchema}.
 #' 
 #' @examples 
-#' inputPath    <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xlsx')
-#' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
-#' sheetToRead  <- 'Dise?o'
-#' rowsToDelete <- 2
-#' xlsxToXMLToSchema(xlsxPath = inputPath, sheetToRead = sheetToRead, xmlPath = outputPath, rowsToDelete = rowsToDelete)
-#' 
-#' inputPath    <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xlsx')
-#' outputPath   <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
-#' sheetToRead  <- 'Dise?o'
-#' rowsToDelete <- 7
-#' xlsxToXMLToSchema(xlsxPath = inputPath, sheetToRead = sheetToRead, xmlPath = outputPath, rowsToDelete = rowsToDelete)
+#' path <- 'inst/extdata'
+#' xlsxName    <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xlsx')
+#' xmlName     <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
+#' output <- INExlsxToSchema(xlsxName = xlsxName, xmlName = xmlName)
 #' 
 #' @import data.table
 #' 
 #' @importFrom openxlsx read.xlsx
 #' 
-#' @include INExlsxToXML.R
+#' @include INExlsxToXML.R INExmlToSchema.R
 #' 
 #' @export
-INExlsxToSchema <- function(xlsxPath, sheetToRead, xmlPath, rowsToDelete){
+INExlsxToSchema <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS"){
   
-  INExlsxToXML(inputPath = xlsxPath, 
+  INExlsxToXML(xlsxName = xlsxName, 
                sheetToRead = sheetToRead, 
-               outputPath = xmlPath, rowsToDelete = rowsToDelete)
+               xmlName = xmlName, regionName = regionName)
   
-  output <- xmlToSchema(inputPath = xmlPath)
+  output <- INExmlToSchema(xmlName = xmlName)
   return(output)
 }
