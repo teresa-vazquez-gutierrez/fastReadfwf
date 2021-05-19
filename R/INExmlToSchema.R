@@ -29,16 +29,16 @@
 #' @return Return an object of class \linkS4class{StfwfSchema}.
 #' 
 #' @examples 
+#' xmlName <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
+#' output <- INExmlToSchema(xmlName)
 #' 
-#' xmlName <- file.path(system.file('inst/extdata', package = 'fastReadfwf'), 'disreg_enceursalud20_a.xml')
-#' xmlToSchema(xmlName)
+#' @import data.table
 #' 
-#' xmlName <- file.path(system.file('data', package = 'fastReadfwf'), 'dr_EPA_2021.xml')
-#' xmlToSchema(xmlName)
-#' 
+#' @importFrom purrr map_df
 #' 
 #' @export
 INExmlToSchema <- function(xmlName){
+  width <- finalPos <- initialPos <- NULL
   
   #Lectura del XML y construcción de la tabla
   doc <- xml2::read_xml(xmlName)
@@ -47,10 +47,10 @@ INExmlToSchema <- function(xmlName){
   vars.dt <- as.data.table(
     purrr::map_df(nodes, function(x) {
     kids <- xml2::xml_children(x)
-    setNames(as.list(xml2::xml_text(kids)), xml2::xml_name(kids))
+    stats::setNames(as.list(xml2::xml_text(kids)), xml2::xml_name(kids))
   })
   )
-  vars.dt <- type.convert(vars.dt, as.is = TRUE)
+  vars.dt <- utils::type.convert(vars.dt, as.is = TRUE)
   
   # Comprobación de coherencia de posiciones y width
   check.idx <- which(vars.dt[, width] != (vars.dt[, finalPos] - vars.dt[, initialPos] + 1))
