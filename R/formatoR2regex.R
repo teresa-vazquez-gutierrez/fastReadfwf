@@ -42,11 +42,11 @@ formatoR2regex <- function(formatoR){
   widths.regex <- sapply(widths, function(x){
     if(length(x) == 0){output <- ""}
     if(length(x) == 1){
-      output <- paste0("{1,", x, "}")
+      output <- paste0("{0,", x, "}")
     }
     if(length(x) == 2){
       a <- as.integer(x[1]) - as.integer(x[2])
-      output <- paste0("{1,", a, "}", "[\\.]?[0-9]{0,", x[2], "}")
+      output <- paste0("{0,", a, "}", "[\\.]?[0-9]{0,", x[2], "}")
     }
     if(length(x) > 2){stop("[fastReadfwf:: formatoR2regex] There exists an element in formatoR of unknown syntax.")}
     return(output)

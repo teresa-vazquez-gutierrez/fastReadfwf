@@ -89,7 +89,7 @@ setMethod(f = "fread_fwf",
                                                           posMatrix[i, 2])})][, V1 := NULL]
       dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
 
-      if (validate) fastReadfwf::validateValues(dt, schema, perl)
+      if (validate) fastReadfwf::validateValues(dt, StfwfSchema, perl)
 
       if (convert) {
 
@@ -113,7 +113,7 @@ setMethod(f = "fread_fwf",
         col_types = types, locale = readr::locale(encoding = encoding),
         ...)
 
-      if (validate) validateValues(tibble, schema, perl)
+      if (validate) validateValues(tibble, StfwfSchema, perl)
 
       if (convert) {
 
