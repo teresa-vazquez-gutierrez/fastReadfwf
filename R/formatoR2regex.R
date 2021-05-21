@@ -30,7 +30,7 @@ formatoR2regex <- function(formatoR){
   
   types.regex <- sapply(types, function(x){
     switch(x,
-           "A" = "[a-zA-Z]", 
+           "A" = "[a-zA-Z0-9]", 
            "I" = "[0-9]",
            "F" = "[0-9]",
            "[.]*")

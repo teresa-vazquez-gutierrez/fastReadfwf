@@ -1,9 +1,11 @@
 Package: fastReadfwf
 Title: Fast read of fwf files with arbitrary input schema
-Version: 0.3.1
+Version: 0.3.2
 Authors@R: c(
     person("David", "Salgado", email = "david.salgado.fernandez@gmail.com", role = c("cre", "aut")),
-    person("Jara", "Poch", email = "jarapoch@gmail.com", role = "aut"))
+    person("Jara", "Poch", email = "jarapoch@gmail.com", role = "ctb"),
+    person("Sandra", "Barragan", email = "sandra.barragan@gmail.com", role = "ctb"),
+    person("Jorge", "Fernandez Calatrava", email = "jorgeferca96@gmail.com", role = "ctb"))
 Description: This package provides a function to fast-read fixed-width files
     using an input schema. Basically it provides a wrapper for fread and readr
     returning a data.table or a tibble, respectively.
