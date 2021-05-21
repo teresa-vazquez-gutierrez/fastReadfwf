@@ -46,7 +46,7 @@ formatoR2regex <- function(formatoR){
     }
     if(length(x) == 2){
       a <- as.integer(x[1]) - as.integer(x[2])
-      output <- paste0("{1,", a, "}", "\\.[0-9]{1,", x[2], "}")
+      output <- paste0("{1,", a, "}", "[\\.]?[0-9]{0,", x[2], "}")
     }
     if(length(x) > 2){stop("[fastReadfwf:: formatoR2regex] There exists an element in formatoR of unknown syntax.")}
     return(output)
