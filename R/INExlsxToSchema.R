@@ -52,10 +52,11 @@
 #' @export
 INExlsxToSchema <- function(xlsxName, sheetToRead = 1, xmlName = NULL, regionName = "METADATOS"){
   
-  INExlsxToXML(xlsxName = xlsxName, 
-               sheetToRead = sheetToRead, 
-               xmlName = xmlName, regionName = regionName)
+  xmlSchema <- INExlsxToXML(xlsxName = xlsxName, 
+                            sheetToRead = sheetToRead, 
+                            xmlName = xmlName, regionName = regionName)
   
-  output <- INExmlToSchema(xmlName = xmlName)
+  output <- INExmlToSchema(xmlSchema = xmlSchema)
+  
   return(output)
 }
