@@ -4,10 +4,12 @@
 \alias{INExmlToSchema}
 \title{Build an object of class \linkS4class{StfwfSchema}.}
 \usage{
-INExmlToSchema(xmlName)
+INExmlToSchema(xmlName = NULL, xmlSchema = NULL)
 }
 \arguments{
 \item{xmlName}{Path of the xml file containing the schema.}
+
+\item{xmlSchema}{Object of class \code{\link[xml2]{xml_document-class}} containing the schema.}
 }
 \value{
 Return an object of class \linkS4class{StfwfSchema}.

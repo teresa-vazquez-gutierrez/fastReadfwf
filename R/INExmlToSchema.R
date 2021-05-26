@@ -26,6 +26,8 @@
 #' 
 #' @param xmlName Path of the xml file containing the schema.
 #' 
+#' @param xmlSchema Object of class \code{\link[xml2]{xml_document-class}} containing the schema.
+#' 
 #' @return Return an object of class \linkS4class{StfwfSchema}.
 #' 
 #' @examples 
@@ -37,11 +39,25 @@
 #' @importFrom purrr map_df
 #' 
 #' @export
-INExmlToSchema <- function(xmlName){
+INExmlToSchema <- function(xmlName = NULL, xmlSchema = NULL){
+  
+  if(is.null(xmlName) & is.null(xmlSchema)){
+    
+    stop(paste0('[fastReadfwf::INExmlToSchema] No xml specified. Both xmlName and xmlSchema are NULL\n.'))
+    
+  }
+  
   width <- finalPos <- initialPos <- NULL
   
-  #Lectura del XML y construcción de la tabla
-  doc <- xml2::read_xml(xmlName)
+  if(!is.null(xmlName)){
+    
+    #Lectura del XML 
+    doc <- xml2::read_xml(xmlName)
+    
+  }
+  if(is.null(xmlName)){ doc <- xmlSchema}
+  
+  # construcción de la tabla
   nodes <- xml2::xml_find_all(doc, ".//vars/var")
   
   vars.dt <- as.data.table(

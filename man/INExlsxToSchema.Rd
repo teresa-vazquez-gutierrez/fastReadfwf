@@ -4,7 +4,12 @@
 \alias{INExlsxToSchema}
 \title{Create a xml file and build an object of class \linkS4class{StfwfSchema}.}
 \usage{
-INExlsxToSchema(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS")
+INExlsxToSchema(
+  xlsxName,
+  sheetToRead = 1,
+  xmlName = NULL,
+  regionName = "METADATOS"
+)
 }
 \arguments{
 \item{xlsxName}{Complete name of the xlsx file containing the schema.}

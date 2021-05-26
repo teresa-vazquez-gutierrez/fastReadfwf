@@ -50,7 +50,7 @@
 #' @include INExlsxToXML.R INExmlToSchema.R
 #' 
 #' @export
-INExlsxToSchema <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS"){
+INExlsxToSchema <- function(xlsxName, sheetToRead = 1, xmlName = NULL, regionName = "METADATOS"){
   
   INExlsxToXML(xlsxName = xlsxName, 
                sheetToRead = sheetToRead, 

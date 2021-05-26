@@ -32,7 +32,7 @@ application of \code{\link[stringi]{stri_sub}}.
 path <- system.file('extdata', package = 'fastReadfwf')
 stSchema <- fastReadfwf::StxlsxToSchema(
    file.path(path, 'SchemaSNHS.xlsx'),
-   sheetname = 'stSchema')
+   sheetToRead = 'stSchema')
 
 # For data.tables
 data <- fread_fwf(

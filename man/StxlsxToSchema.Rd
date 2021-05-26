@@ -4,12 +4,12 @@
 \alias{StxlsxToSchema}
 \title{Build an object of class \linkS4class{StfwfSchema}.}
 \usage{
-StxlsxToSchema(xlsxname, sheetname, header = TRUE, lang = "en", ...)
+StxlsxToSchema(xlsxName, sheetToRead, header = TRUE, lang = "en", ...)
 }
 \arguments{
-\item{xlsxname}{Name of the xlsx file containing the schema.}
+\item{xlsxName}{Name of the xlsx file containing the schema.}
 
-\item{sheetname}{Name or index of the sheet of the xlsx file.}
+\item{sheetToRead}{Name or index of the sheet of the xlsx file.}
 
 \item{header}{Does the first data line contain column names? Defaults to \code{TRUE}.}
 

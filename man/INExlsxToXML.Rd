@@ -4,7 +4,12 @@
 \alias{INExlsxToXML}
 \title{Create an xml file with the contents of an INE xlsx schema file.}
 \usage{
-INExlsxToXML(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS")
+INExlsxToXML(
+  xlsxName,
+  sheetToRead = 1,
+  xmlName = NULL,
+  regionName = "METADATOS"
+)
 }
 \arguments{
 \item{xlsxName}{Name of the xlsx file containing the schema.}
@@ -16,7 +21,7 @@ INExlsxToXML(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS")
 \item{regionName}{Name of the region in the xlsx file.}
 }
 \value{
-Write the generated xml file.
+Write the generated xml file and return an object of class \code{\link[xml2]{xml_document-class}}.
 }
 \description{
 \code{xlsxToXML} creates an xml file with the contents of the

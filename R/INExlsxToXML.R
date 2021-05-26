@@ -14,7 +14,7 @@
 #' 
 #' @param regionName Name of the region in the xlsx file.
 #'
-#' @return Write the generated xml file.
+#' @return Write the generated xml file and return an object of class \code{\link[xml2]{xml_document-class}}.
 #' 
 #' @examples 
 #' xlsxName    <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xlsx')
@@ -26,7 +26,7 @@
 #' @include formatoR2regex.R
 #' 
 #' @export
-INExlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METADATOS"){
+INExlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName = NULL, regionName = "METADATOS"){
   #Lectura del xlsx y construccion del xml#
   cat("Leyendo hoja", sheetToRead, "del xlsx:", xlsxName, "...")
   regions_info <- openxlsx::getNamedRegions(xlsxName)
@@ -76,9 +76,14 @@ INExlsxToXML <- function(xlsxName, sheetToRead = 1, xmlName, regionName = "METAD
   
   cat(" ok.\n")
   
-  cat("Guardando XML en ", xmlName, "...")
-  xml2::write_xml(new_xml, file = xmlName)
-  cat(" ok.\n")
+  if(!is.null(xmlName)){
+    
+    cat("Guardando XML en ", xmlName, "...")
+    xml2::write_xml(new_xml, file = xmlName)
+    cat(" ok.\n")
+    
+  }
+  
   
   return(new_xml)
 
