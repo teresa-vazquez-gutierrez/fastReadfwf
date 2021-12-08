@@ -39,6 +39,7 @@ setMethod(
   f = "[",
   signature = c("StfwfSchema"),
   function(x, i, j, ..., drop=TRUE){
+    
     mc <- match.call()
     auxDF <- getdf(x)
     mc[[1L]] <- `[.data.frame`

@@ -17,24 +17,22 @@ Return an object of class \linkS4class{StfwfSchema}.
 \description{
 \code{xmlToSchema} is a constructor of the class \linkS4class{StfwfSchema}.
 
-This constructor reads an xml file containing totally the schema of the
-fixed-width file to read. This file contain a root node named \code{Schema},
-a secondary root node named \code{Variables} and one node \code{var} for each
-variable of the Schema who has the following child nodes:
+This constructor reads an xml file containing totally the schema of the fixed-width file to read.
+ This file contains a root node named \code{Schema}, a secondary root node named \code{Variables}
+  and one node \code{var} for each variable of the Schema who has the following child nodes:
 
 \itemize{
 
    \item \code{variable}: the name of the variable.
-   \item \code{width}: the number of positions which the values of
-   this variable occupies in the file.
-   \item \code{initialPos}: initial position of the field which
-   the values of this variable occupies in the file.
-   \item \code{finalPos}: final position of the field which the
-   values of this variable occupies in the file.
-   \item \code{type}: type of the variable. It must be either \code{log},
-   \code{integer}, \code{num} or \code{char}.
-   \item \code{valueRegEx}: regular expression for the values of
-   this variable.
+   \item \code{width}: the number of positions which the values of this variable occupy in the 
+   fwf file.
+   \item \code{initialPos}: initial position of the field which the values of this variable 
+   occupy in the fwf file.
+   \item \code{finalPos}: final position of the field which the values of this variable occupy in
+    the fwf file.
+   \item \code{type}: type of the variable. It must be either \code{log}, \code{integer}, 
+   \code{num} or \code{char}.
+   \item \code{valueRegEx}: regular expression for the values of this variable.
    \item \code{description}: textual description of the variable.
 
 }
@@ -43,4 +41,7 @@ variable of the Schema who has the following child nodes:
 xmlName <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
 output <- INExmlToSchema(xmlName)
 
+}
+\seealso{
+\code{\link{INExlsxToSchema}} \code{\link{INExlsxToXML}}
 }

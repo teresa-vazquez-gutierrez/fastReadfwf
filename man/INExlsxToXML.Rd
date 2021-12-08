@@ -2,7 +2,7 @@
 % Please edit documentation in R/INExlsxToXML.R
 \name{INExlsxToXML}
 \alias{INExlsxToXML}
-\title{Create an xml file with the contents of an INE xlsx schema file.}
+\title{Transform Spanish NSI fwf schema into an xml file.}
 \usage{
 INExlsxToXML(
   xlsxName,
@@ -12,26 +12,46 @@ INExlsxToXML(
 )
 }
 \arguments{
-\item{xlsxName}{Name of the xlsx file containing the schema.}
+\item{xlsxName}{Name of the xlsx file containing the schema according to the Spanish NSI standard}
 
-\item{sheetToRead}{Name or index of the sheet of the xlsx file.}
+\item{sheetToRead}{Name or index of the sheet in the xlsx file with the schema.}
 
-\item{xmlName}{Name of the xml file is going to be written.}
+\item{xmlName}{Name of the xml file to be written.}
 
 \item{regionName}{Name of the region in the xlsx file.}
 }
 \value{
-Write the generated xml file and return an object of class \code{\link[xml2]{xml_document-class}}.
+Write the generated xml file and return an object of class 
+\code{\link[xml2]{xml_document-class}}.
 }
 \description{
-\code{xlsxToXML} creates an xml file with the contents of the
-xlsx file by the Spanish NSI standard for the fwf schema.
+\code{xlsxToXML} transforms an xlsx file in the Spanish NSI internal standard
+for fwf schemas into an xml file with the following elements:
 
-The Excel file must have a header in the second row.
+\itemize{
+
+   \item \code{variable}: the name of the variable.
+   \item \code{width}: the number of positions which the values of this variable occupy in the 
+   fwf file.
+   \item \code{initialPos}: initial position of the field which the values of this variable 
+   occupy in the fwf file.
+   \item \code{finalPos}: final position of the field which the values of this variable occupy in
+    the fwf file.
+   \item \code{type}: type of the variable. It must be either \code{log}, \code{integer}, 
+   \code{num} or \code{char}.
+   \item \code{valueRegEx}: regular expression for the values of this variable.
+   \item \code{description}: textual description of the variable.
+
+}
+
+The Excel file must have a header in the second row (according to Spanish NSI internal standard)..
 }
 \examples{
 xlsxName    <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xlsx')
 xmlName     <- file.path(system.file('extdata', package = 'fastReadfwf'), 'dr_EESEadulto_2020.xml')
 output <- INExlsxToXML(xlsxName = xlsxName, xmlName = xmlName)
 
+}
+\seealso{
+\code{\link{INExlsxToSchema}} \code{\link{INExmlToSchema}}
 }
