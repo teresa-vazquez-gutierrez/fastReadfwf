@@ -1,7 +1,7 @@
 path <- system.file('extdata', package = 'fastReadfwf')
-stSchema <- fastReadfwf::xlsxToSchema(
+stSchema <- fastReadfwf::StxlsxToSchema(
    file.path(path, 'SchemaSNHS.xlsx'),
-   sheetname = 'stSchema')
+   sheetToRead = 'stSchema')
 
 # For data.tables
 data <- fread_fwf(

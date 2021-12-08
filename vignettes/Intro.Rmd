@@ -1,0 +1,226 @@
+---
+title: "Fast reading fixed-width files in a standardised way"
+author: "David Salgado"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Fast reading fwf}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  cache = FALSE,
+  comment = "#>"
+)
+```
+
+# Overview
+
+Fixed-width files are still of extended usage in Official Statistics to disseminate anonymised microdata in plain text files. To read this microdata file a schema must be provided, which in most cases are different for different surveys and statistical programs.
+
+This package provides a unified procedure to read these fixed-width files in a fast way using a standardised schema as an input parameter returning either a data.table or a tibble with the content of the file. The package does not provide a new reading function but only a common wrapper around the functions `fread` from the `data.table` package and `read_fwf` from the `readr` package.
+
+The motivation is to provide a high-level scripting procedure to read this sort of files for any microdata set disseminated by a statistical office. In this vignette we illustrate the usage of this package with real data coming from the 2017 edition of the Spanish National Health Survey microdata set. 
+The package also provides a format validation functionality for the values of each variable in the data set. The values are validated according to the format specified by the user in the schema through regular expressions.
+
+## Read fwf
+
+One of the two main functionalities of this package is the ability to read fixed-width files in a fast way with the funcion `fread_fwf`.
+
+## Validate values
+
+The validation of the values is done in terms of values integrity by using regular expressions that allow for evaluations of data fields. For instance, one could check to ensure that a data value belongs to a set of permitted values. But there is no rules connecting different fields or allowing operations. Regular expressions are applied over character strings, then the validation of the values must be done before converting the data to the type of each variable or after setting all variables to character class. In this package, the validation of the values can be done with the function `validateValues()` or with the argument `validate = TRUE` which execute the validation as part of the reading or writing process. 
+
+This validation of the values is different from statistical data validation which can be done with the R package [`validate`](https://cran.r-project.org/web/packages/validate/index.html). That package supports rules that are per-field, in-record, cross-record or cross-dataset.
+
+## Write fwf
+
+The another main functionality of this package is the ability to write fixed-width files in a fast way with the funcion `fwrite_fwf`.
+
+
+# An illustrative example: the Spanish National Health Survey
+The Spanish National Health Survey disseminates three anonymised microdata files together with their respective schemas corresponding to the questionnaires for adults, households, and household members under 18 years. The structure of these files and their schemas are different to those provided for other surveys. These files can be [downloaded from the Spanish NSI's website](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176783&menu=resultados&secc=1254736195295&idp=1254735573175). The schema corresponding to the microdata file for the adults for the 2017 edition is included in this package named as *SchemaSNHS_microdataWeb.xlsx*. A selection of some variables and individuals from these data has been made and included in the package, name as *MicroDataSNHS*. 
+
+
+Let us illustrate the philosophy of our proposed standardisation with the data files included in the package. Firstly, the schema for the questionnaire for adults is specified in an xlsx file with 5 sheet. Those with Spanish names contain the original schema specified in the downloaded file from the Spanish NSI's website. It is mainly for human consumption:
+
+* Sheet Diseño de registro C. Adulto (*schema for the questionnaire for adults*) specifies the name, width, initial position, final position and description of each variable contained in the microdata file. It is presented in different blocks according to the semantics of the survey.
+
+* Sheet Variables y valores (*variables and values*) specifies the core meaning of each variable and the supported values for each one.
+
+* Sheet CNAE 2009 contains a condensed description of the Spanish version (CNAE) of the classification of economic activities NACE Rev. 2.
+
+* Sheet CNO 2011 contains a condensed description of the Spanish version (CNO) of the classification of professional occupations ISCO-08.
+
+Notice that we have created a new sheet with name *stSchema* fully oriented towards computer use with the information contained in the preceding 4 sheet in the following columns:
+
+* **variable**: name of the variable.
+* **width**: width of the variable in the microdata file.
+* **initialPos**: initial position of the variable in the microdata file.
+* **finalPos**: final position of the variable in the microdata file.
+* **type**: type of the variable, with values either *char* or *num*.
+* **valueRegEx**: regular expression for the accepted values of the variable.
+* **description**: textual description of the variable.
+
+This sheet can be straightforwardly read into a data.frame:
+
+```{r Origxlsx, echo = TRUE, eval = TRUE, cache = TRUE}
+library(openxlsx)
+path <- system.file('extdata', package = 'fastReadfwf')
+origSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'),
+                        sheet = 'Diseño de Registro C. Adulto',
+                        colNames = TRUE)
+
+str(origSchema)
+```
+
+Notice that this original schema in xlsx format is almost in the standardised way. Some short ad-hoc work needs to be conducted for this survey to build the standardised schema. The largest part of the work boils down to specify the regex for each variable:
+
+```{r Stxlsx, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Origxlsx'}
+stSchema <- read.xlsx(file.path(path, 'SchemaSNHS.xlsx'), 
+                        sheet = 'stSchema', 
+                        colNames = TRUE)
+str(stSchema)
+```
+
+## `data.table` format
+
+Producing a data.table is now straightforward and fairly fast. The function `StxlsxToSchema()` is used to load the schema object. Then, the function `fread_fwf()` is used to read the file with that schema.
+
+```{r readDT, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Origxlsx'}
+library(fastReadfwf)
+library(data.table)
+stSchema <- StxlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
+system.time(
+  data.DT <- fread_fwf(file.path(path, 'MicroDataSNHS.txt'), 
+                       stSchema, outFormat = 'data.table', convert = FALSE, perl = TRUE)
+)
+str(data.DT)
+```
+
+Once data have been read, we can validate the format of the values of each variable. As regular expressions are used over character strings, validation should be done before converting the content of the file to the type of each variable. To deal with these steps inside the `fread_fwf()` the following arguments can be used:
+
+* `validate`: by default is `FALSE`, if `TRUE` the validation of the values is conducted before the convertion (setting the types).
+* `convert`: by default is `TRUE`, then the output of the function will have the variables converted to the types in the schema.
+
+The validation can be conducted also apart from the `fread_fwf()` function with the `validateValues()` function. In the case of data.table format:
+
+```{r validDT, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readDT'}
+validateValues(data.DT, stSchema)
+```
+
+Then, the values can be converted easily with the `setTypes()` function:
+
+```{r setTypes, echo = TRUE, eval = TRUE, cache = TRUE, dependson = 'readDT'}
+data.DT.Types <- setTypes(data.DT, stSchema)
+str(data.DT.Types)
+```
+
+There is another function to allow the user to validate values with the regular expressions of an schema before writing in a file. The `setChar()` function convert all variables to character to be able to validate adequately. Let see an example with the data.table object.
+
+```{r setChar, echo = TRUE, eval = TRUE, cache = TRUE, dependson = 'setTypes'}
+data.DT.Char <- setChar(data.DT.Types)
+validateValues(data.DT.Char, stSchema)
+```
+
+Now, we illustrate the other functionality of this package, writing easy and fast in a fixed-width file with the function `fwrite_fwf()`. The object in the argument `data` can be data.table or tibble and with types of the variables converted or not. 
+```{r writeDT, echo = FALSE, eval = FALSE, cache = FALSE, dependson = 'setChar'}
+system.time(
+  fwrite_fwf(data.DT.Char, file.path(path, 'MicroDataSNHS_written.txt'), 
+                       stSchema, validate = FALSE)
+)
+```
+The argument `validate` is `FALSE` by default. If `validate = TRUE`: the types are set to character, then the validation is conducted and if every variable is validated, the writing process keeps going. 
+
+## `tibble` format
+
+In the case of tibbles, we proceed in the same way:
+
+```{r readTibble, echo = TRUE, eval = TRUE, cache = TRUE, dependson= 'Origxlsx'}
+library(fastReadfwf)
+library(tibble)
+stSchema <- StxlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
+system.time(
+  data.tibble <- fread_fwf(file.path(path, 'MicroDataSNHS.txt'), 
+                       stSchema, outFormat = 'tibble', convert = FALSE)
+)
+data.tibble
+```
+
+The validation of the values inside the tibble:
+
+```{r validTibble, echo = TRUE, eval = TRUE, cache = FALSE, dependson = 'readTibble'}
+validateValues(data.tibble, stSchema)
+```
+
+
+# Some details
+
+## The S4 class `StfwfSchema` 
+An ideal situation for official statistical production and dissemination would be to have a standard for the construction and dissemination of fixed-width microdata file schemas. Our proposal is still far from being a standard since more information should be provided (e.g. reference metadata of the survey whose microdata are being disseminated). In this line of thought, the schema implemented in this package contains the core information as a simple object with just one attribute as a data matrix with the aforementioned columns. This class can be further developed to include more attributes.
+
+As constructors we have defined two functions to read the schema details from an xlsx or csv file. Since some columns are redundant, it is not necessary to provide all of them:
+
+```{r, echo = TRUE, cache = FALSE, eval = TRUE}
+library(fastReadfwf)
+library(openxlsx)
+
+# Only variable names, widths and types provided
+xlsx.df <- data.frame(variable = paste0('var', 1:3),
+                      width = c(10, 2, 4),
+                      initialPos = NA,
+                      finalPos = NA,
+                      type = c('char', 'num', 'char'),
+                      valueRegEx = '',
+                      description = '')
+write.xlsx(xlsx.df, 'exampleSchema.xlsx', sheetName = 'stSchema', colNames = TRUE)
+StxlsxToSchema('exampleSchema.xlsx', 'stSchema')
+```
+
+We have defined *getters* for this class:
+
+```{r, echo = TRUE, cache = FALSE, eval = TRUE}
+library(fastReadfwf)
+path <- system.file('extdata', package = 'fastReadfwf')
+stSchema <- StcsvToSchema(file.path(path, 'SchemaSNHS_microdataWeb.csv'))
+
+# Get the slot df
+head(getdf(stSchema))
+
+# Get variables
+head(getVariables(stSchema))
+
+# Get widths
+head(getWidths(stSchema))
+
+# Get initial position
+head(getinitialPos(stSchema))
+
+# Get final position
+head(getfinalPos(stSchema))
+
+# Get types
+head(getTypes(stSchema))
+
+# Get regex
+head(getRegEx(stSchema))
+```
+
+## Execution times
+
+The time of reading (and writing) is really fast even for large files. A summary of the execution times for some examples is shown in the following table.
+
+ Size | N. rows | N. columns | Reading time | Writing time 
+------------- | ------------- | ------------- | ------------- | -------------
+ 13.5 MB | 23089 | 445 | 3.40 sec | 19.59 sec
+  55.6 MB | 80134 | 512 | 13.32 sec | 69.23 sec
+
+These examples have been running under these system characteristics:
+
+* R version 3.5.3 (2019-03-11)
+* Platform: x86_64-w64-mingw32/x64 (64-bit)

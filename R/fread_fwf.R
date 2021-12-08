@@ -35,7 +35,7 @@
 #'
 #' @examples
 #' path <- system.file('extdata', package = 'fastReadfwf')
-#' stSchema <- fastReadfwf::xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
+#' stSchema <- fastReadfwf::StxlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 #'
 #' # For data.tables
 #' data.DT <- fread_fwf(
@@ -69,7 +69,7 @@ setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
           function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, encoding = "UTF-8", ...){
 
-            V1 <- NULL
+    V1 <- NULL
 
     supportedFormats <- c('data.table', 'tibble')
 
@@ -89,7 +89,7 @@ setMethod(f = "fread_fwf",
                                                           posMatrix[i, 2])})][, V1 := NULL]
       dt[, (varNames) := lapply(.SD, trim), .SDcols = varNames]
 
-      if (validate) fastReadfwf::validateValues(dt, schema, perl)
+      if (validate) fastReadfwf::validateValues(dt, StfwfSchema, perl)
 
       if (convert) {
 
@@ -113,7 +113,7 @@ setMethod(f = "fread_fwf",
         col_types = types, locale = readr::locale(encoding = encoding),
         ...)
 
-      if (validate) validateValues(tibble, schema, perl)
+      if (validate) validateValues(tibble, StfwfSchema, perl)
 
       if (convert) {
 
@@ -124,8 +124,6 @@ setMethod(f = "fread_fwf",
       return(tibble)
 
     }
-
-
 
 })
 

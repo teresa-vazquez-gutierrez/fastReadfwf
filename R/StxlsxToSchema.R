@@ -25,9 +25,9 @@
 #'
 #' The tag must have a header in file 1. Only English is supported so far.
 #'
-#' @param xlsxname Name of the xlsx file containing the schema.
+#' @param xlsxName Name of the xlsx file containing the schema.
 #'
-#' @param sheetname Name or index of the sheet of the xlsx file.
+#' @param sheetToRead Name or index of the sheet of the xlsx file.
 #'
 #' @param header Does the first data line contain column names? Defaults to \code{TRUE}.
 #'
@@ -40,7 +40,7 @@
 #'
 #' @examples
 #' path <- system.file('extdata', package = 'fastReadfwf')
-#' xlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
+#' StxlsxToSchema(file.path(path, 'SchemaSNHS.xlsx'), 'stSchema')
 #'
 #' @import data.table
 #'
@@ -49,16 +49,16 @@
 #' @importFrom methods new
 #'
 #' @export
-xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
+StxlsxToSchema <- function(xlsxName, sheetToRead, header = TRUE, lang = 'en', ...){
 
   stColNames <- c('variable', 'width', 'initialPos', 'finalPos', 'type', 'valueRegEx','description')
-  xlsx <- read.xlsx(xlsxname, sheet = sheetname, colNames = header, skipEmptyCols = FALSE, ...)
+  xlsx <- read.xlsx(xlsxName, sheet = sheetToRead, colNames = header, skipEmptyCols = FALSE, ...)
 
   if (header == FALSE) {
 
     if (lang == 'en') {
 
-      warning(paste0('[fastReadfwf::xlsxToSchema] No header specified. Standard names assigned in the following order: ',
+      warning(paste0('[fastReadfwf::StxlsxToSchema] No header specified. Standard names assigned in the following order: ',
                      paste0(stColNames, collapse = ', '), '\n.'))
       colnames(xlsx) <- stColNames
 
@@ -73,7 +73,7 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
       diffNames_1 <- setdiff(unique(colnames(xlsx)), stColNames)
       if (length(diffNames_1) > 0) {
 
-        stop(paste0('[StfwfSchema:: xlsxToSchema] Wrong column names:\n',
+        stop(paste0('[StfwfSchema:: StxlsxToSchema] Wrong column names:\n',
                     paste0(diffNames_1, collapse = ', '), '.\n'))
 
       }
@@ -81,7 +81,7 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
       diffNames_2 <- setdiff(stColNames, unique(colnames(xlsx)))
       if (length(diffNames_2) > 0) {
 
-        stop(paste0('[StfwfSchema:: xlsxToSchema] Missing column names:\n',
+        stop(paste0('[StfwfSchema:: StxlsxToSchema] Missing column names:\n',
                     paste0(diffNames_2, collapse = ', '), '.\n'))
 
       }
@@ -99,7 +99,7 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
     invalidWidths <- xlsx[widthNAs, 'variable']
     if (sum(widthNAs) != 0 & sum(widthNAs) != n) {
 
-      stop(paste0('[fastReadfwf::xlsxToSchema] The following variables have wrong width: ',
+      stop(paste0('[fastReadfwf::StxlsxToSchema] The following variables have wrong width: ',
                   paste0(invalidWidths, collapse = ', '), '.\n'))
     }
 
@@ -108,7 +108,7 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
     invalidinitialPos <- xlsx[initialPosNAs, 'variable']
     if (sum(initialPosNAs) != 0 & sum(initialPosNAs) != n) {
 
-      stop(paste0('[fastReadfwf::xlsxToSchema] The following variables have wrong initial positions: ',
+      stop(paste0('[fastReadfwf::StxlsxToSchema] The following variables have wrong initial positions: ',
                   paste0(invalidinitialPos, collapse = ', '), '.\n'))
     }
 
@@ -117,7 +117,7 @@ xlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
     invalidfinalPos <- xlsx[finalPosNAs, 'variable']
     if (sum(finalPosNAs) != 0 & sum(finalPosNAs) != n) {
 
-      stop(paste0('[fastReadfwf::xlsxToSchema] The following variables have wrong final positions: ',
+      stop(paste0('[fastReadfwf::StxlsxToSchema] The following variables have wrong final positions: ',
                   paste0(invalidfinalPos, collapse = ', '), '.\n'))
     }
 

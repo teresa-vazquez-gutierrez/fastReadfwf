@@ -3,7 +3,6 @@
 \docType{package}
 \name{fastReadfwf}
 \alias{fastReadfwf}
-\alias{fastReadfwf-package}
 \title{fastReadfwf: A package for fast-reading fixed-width files.}
 \description{
 The fastReadfwf package provides a standardised wrapper for functions
@@ -14,9 +13,9 @@ The fastReadfwf package provides a standardised wrapper for functions
 The premise is the construction of a standardised schema to read each file. This schema
 is essentially a data matrix with columns:
 
-\itemize{
+ \itemize{
 
-\item variable: the name of the variable.
+   \item variable: the name of the variable.
    \item width: the number of positions which the values of this variable occupies in the file.
    \item initialPos: initial position of the field whic hthe values of this variable occupies in
    the file.
@@ -26,7 +25,7 @@ is essentially a data matrix with columns:
    \item valueRegEx: regular expression for the values of this variable.
    \item description: textual description of the variable.
 
-}
+ }
 
 This standardised schema is implemented as an S4 class called \linkS4class{StfwfSchema} with
 constructors based on different input file formats (xlsx, csv, ...) specified by the user.
@@ -37,11 +36,11 @@ The core functions of the package, apart from the class management functions, ar
 
 \itemize{
 
-\item \code{\link{fread_fwf}}, to read fixed-width files returning either
- \linkS4class{data.table}s or \code{\link[tibble]{tibble}}.
+ \item \code{\link{fread_fwf}}, to read fixed-width files returning either
+ \linkS4class{data.table}s or \code{\link[tibble]{tibble}}s.
 
-\item \code{\link{validateValues}}, to validate the value of each variable in the fixed-width
- file according to the regular expression specified in the standardised schema.
+ \item \code{\link{validateValues}}, to validate the value of each variable in the fixed-width
+ file according to the regular expressions specified in the standardised schema.
 
 }
 }
