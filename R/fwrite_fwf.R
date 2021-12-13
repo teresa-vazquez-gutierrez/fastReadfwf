@@ -78,11 +78,12 @@ setMethod(f = "fwrite_fwf",
 
               width <- widths[ColNames[i]]
               variable <- ColNames[i]
-              data.DT[, (variable) := format(as.character(get(variable)),
-                                             width = width,
-                                             justify = justify,
-                                             na.encode = FALSE)][
-                                               is.na(get(variable)), (variable) := paste0(rep(' ', width), collapse = '')]
+              data.DT[
+                , (variable) := format(as.character(get(variable)),
+                                       width = width,
+                                       justify = justify,
+                                       na.encode = FALSE)][
+                is.na(get(variable)), (variable) := paste0(rep(' ', width), collapse = '')]
             }
 
             varNotPresentInDT <- names(widths)[which(!names(widths) %in% ColNames)]
@@ -104,7 +105,6 @@ setMethod(f = "fwrite_fwf",
             }
 
             setcolorder(data.DT, getVariables(StfwfSchema))
-
 
             data.DT[, row := Reduce(function(...) stri_join(...), .SD), .SDcols = ColNames][
               , .(row)]

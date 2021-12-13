@@ -25,9 +25,9 @@
 #'
 #' The tag must have a header in file 1. Only English is supported so far.
 #'
-#' @param xlsxname Name of the xlsx file containing the schema.
+#' @param xlsxName Name of the xlsx file containing the schema.
 #'
-#' @param sheetname Name or index of the sheet of the xlsx file.
+#' @param sheetToRead Name or index of the sheet of the xlsx file.
 #'
 #' @param header Does the first data line contain column names? Defaults to \code{TRUE}.
 #'
@@ -49,10 +49,10 @@
 #' @importFrom methods new
 #'
 #' @export
-StxlsxToSchema <- function(xlsxname, sheetname, header = TRUE, lang = 'en', ...){
+StxlsxToSchema <- function(xlsxName, sheetToRead, header = TRUE, lang = 'en', ...){
 
   stColNames <- c('variable', 'width', 'initialPos', 'finalPos', 'type', 'valueRegEx','description')
-  xlsx <- read.xlsx(xlsxname, sheet = sheetname, colNames = header, skipEmptyCols = FALSE, ...)
+  xlsx <- read.xlsx(xlsxName, sheet = sheetToRead, colNames = header, skipEmptyCols = FALSE, ...)
 
   if (header == FALSE) {
 
