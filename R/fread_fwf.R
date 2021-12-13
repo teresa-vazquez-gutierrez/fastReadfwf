@@ -25,7 +25,8 @@
 #' @param perl Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 #' perl or not in the application of the column \code{regexp}.
 #' 
-#' @param encoding Optional argument with the encoding to be used by fread, by default UTF-8.
+#' @param encoding Optional argument with the encoding to be used by fread, by default 'unknown' 
+#' (see \code{\link{fread}}).
 #'
 #' @param ... Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
 #' according to the value of \code{outFormat} above.
@@ -59,7 +60,7 @@
 #'
 #' @export
 setGeneric("fread_fwf",
-           function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat, perl = FALSE, ...) {
+           function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, ...) {
              standardGeneric("fread_fwf")})
 
 #' @rdname fread_fwf
@@ -67,7 +68,7 @@ setGeneric("fread_fwf",
 #' @export
 setMethod(f = "fread_fwf",
           signature = c("character", "StfwfSchema"),
-          function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, encoding = "UTF-8", ...){
+          function(filename, StfwfSchema, validate = FALSE, convert = TRUE, outFormat = 'data.table', perl = FALSE, encoding = "unknown", ...){
 
     V1 <- NULL
 
@@ -110,7 +111,7 @@ setMethod(f = "fread_fwf",
       tibble <- readr::read_fwf(
         file = filename,
         col_positions = readr::fwf_widths(widths, varNames),
-        col_types = types, locale = readr::locale(encoding = encoding),
+        col_types = types, locale = readr::locale(encoding = ifelse(encoding == 'unknown', 'UTF-8', encoding)),
         ...)
 
       if (validate) validateValues(tibble, StfwfSchema, perl)

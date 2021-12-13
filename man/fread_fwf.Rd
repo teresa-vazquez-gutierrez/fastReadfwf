@@ -10,7 +10,7 @@ fread_fwf(
   StfwfSchema,
   validate = FALSE,
   convert = TRUE,
-  outFormat,
+  outFormat = "data.table",
   perl = FALSE,
   ...
 )
@@ -22,7 +22,7 @@ fread_fwf(
   convert = TRUE,
   outFormat = "data.table",
   perl = FALSE,
-  encoding = "UTF-8",
+  encoding = "unknown",
   ...
 )
 }
@@ -47,7 +47,8 @@ perl or not in the application of the column \code{regexp}.}
 \item{...}{Other parameters from \code{\link[data.table]{fread}} or \code{\link[readr]{read_fwf}}
 according to the value of \code{outFormat} above.}
 
-\item{encoding}{Optional argument with the encoding to be used by fread, by default UTF-8.}
+\item{encoding}{Optional argument with the encoding to be used by fread, by default 'unknown' 
+(see \code{\link{fread}}).}
 }
 \value{
 Returns a \linkS4class{data.table} or a \link[tibble]{tibble} with the contents of the
