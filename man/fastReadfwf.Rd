@@ -2,6 +2,7 @@
 % Please edit documentation in R/fastReadfwf.R
 \docType{package}
 \name{fastReadfwf}
+\alias{fastReadfwf-package}
 \alias{fastReadfwf}
 \title{fastReadfwf: A package for fast-reading fixed-width files.}
 \description{
@@ -43,4 +44,23 @@ The core functions of the package, apart from the class management functions, ar
  file according to the regular expressions specified in the standardised schema.
 
 }
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/david-salgado/fastReadfwf}
+  \item Report bugs at \url{https://github.com/david-salgado/fastReadfwf/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: David Salgado \email{david.salgado.fernandez@gmail.com}
+
+Other contributors:
+\itemize{
+  \item Jara Poch \email{jarapoch@gmail.com} [contributor]
+  \item Sandra Barragan \email{sandra.barragan@gmail.com} [contributor]
+  \item Jorge Fernandez Calatrava \email{jorgeferca96@gmail.com} [contributor]
+}
+
 }

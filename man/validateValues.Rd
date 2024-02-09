@@ -5,17 +5,33 @@
 \alias{validateValues,data.frame,StfwfSchema-method}
 \title{Fast read a fixed-width file}
 \usage{
-validateValues(object, StfwfSchema, perl = FALSE)
+validateValues(
+  object,
+  StfwfSchema,
+  file = "",
+  perl = FALSE,
+  id_var = data.frame(matrix(ncol = 0, nrow = 0))
+)
 
-\S4method{validateValues}{data.frame,StfwfSchema}(object, StfwfSchema, perl = FALSE)
+\S4method{validateValues}{data.frame,StfwfSchema}(
+  object,
+  StfwfSchema,
+  file = "",
+  perl = FALSE,
+  id_var = data.frame(matrix(ncol = 0, nrow = 0))
+)
 }
 \arguments{
 \item{object}{Object with rectangular shape whose columns will be validated.}
 
 \item{StfwfSchema}{Object of class \linkS4class{StfwfSchema} with the schema of object.}
 
+\item{file}{File to print output to with default value \code{""}.}
+
 \item{perl}{Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 perl or not in the application of regexp.}
+
+\item{id_var}{Data frame with variables to identify observations with wrong values, with default value an empty matrix. If left empty, index is used instead.}
 }
 \value{
 Returns \code{TRUE}.
