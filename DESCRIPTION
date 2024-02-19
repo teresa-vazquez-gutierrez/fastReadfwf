@@ -1,10 +1,6 @@
 Package: fastReadfwf
 Title: Fast read of fwf files with arbitrary input schema
-<<<<<<< HEAD
 Version: 0.4.1
-=======
-Version: 0.4.0
->>>>>>> c76248483eb90c12a3c770f779855a355afa6a8a
 Authors@R: c(
     person("David", "Salgado", email = "david.salgado.fernandez@gmail.com", role = c("cre", "aut")),
     person("Jara", "Poch", email = "jarapoch@gmail.com", role = "ctb"),
