@@ -16,7 +16,7 @@
 #' @param perl Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 #' perl or not in the application of regexp.
 #'
-#' @param id_var Data frame with variables to identify observations with wrong values, with default value an empty matrix. If left empty, index is used instead.
+#' @param id_var Data frame with variables to identify observations with wrong values, with default value \code{NULL}. If not defined, index is used instead.
 #'
 #' @return Returns \code{TRUE}.
 #'
@@ -43,14 +43,14 @@
 #'
 #' @export
 setGeneric("validateValues",
-           function(object, StfwfSchema, file = "", perl = FALSE, id_var = data.frame(matrix(ncol = 0, nrow = 0))) {standardGeneric("validateValues")})
+           function(object, StfwfSchema, file = "", perl = FALSE, id_var = NULL) {standardGeneric("validateValues")})
 
 #' @rdname validateValues
 #'
 #' @export
 setMethod(f = "validateValues",
           signature = c("data.frame", "StfwfSchema"),
-          function(object, StfwfSchema, file = "", perl = FALSE, id_var = data.frame(matrix(ncol = 0, nrow = 0))){
+          function(object, StfwfSchema, file = "", perl = FALSE, id_var = NULL){
             
             cat("[fastReadfwf:: validateValues] Value patterns will be checked for each variable.\n\n", file = file, append = FALSE)
             varNames <- getVariables(StfwfSchema)
