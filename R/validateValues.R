@@ -13,10 +13,14 @@
 #'
 #' @param file File to print output to with default value \code{""}.
 #'
+#' @param id_var Data frame with variables to identify observations with wrong values,
+#' with default value \code{NULL}. If not defined, index is used instead.
+#'
+#' @param analyseAll Logical with default value \code{TRUE} to indicate whether to check
+#' all variables with invalid values or not (stopping at the first variable with some invalid value)
+#'
 #' @param perl Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 #' perl or not in the application of regexp.
-#'
-#' @param id_var Data frame with variables to identify observations with wrong values, with default value \code{NULL}. If not defined, index is used instead.
 #'
 #' @return Returns \code{TRUE}.
 #'
@@ -43,20 +47,25 @@
 #'
 #' @export
 setGeneric("validateValues",
-           function(object, StfwfSchema, file = "", perl = FALSE, id_var = NULL) {standardGeneric("validateValues")})
+           function(object, StfwfSchema, file = "", id_var = NULL, analyseAll = TRUE, 
+                    perl = FALSE) {standardGeneric("validateValues")})
 
 #' @rdname validateValues
+#'
+#' @import rlang
 #'
 #' @export
 setMethod(f = "validateValues",
           signature = c("data.frame", "StfwfSchema"),
-          function(object, StfwfSchema, file = "", perl = FALSE, id_var = NULL){
+          function(object, StfwfSchema, file = "", id_var = NULL, analyseAll = TRUE, 
+                   perl = FALSE){
             
             cat("[fastReadfwf:: validateValues] Value patterns will be checked for each variable.\n\n", file = file, append = FALSE)
             varNames <- getVariables(StfwfSchema)
             valueRegEx <- getRegEx(StfwfSchema)
             valid <- TRUE
             print_idvar <- is.data.frame(id_var) && ncol(id_var) > 0 && nrow(id_var) == nrow(object)
+            wrongValuesList <- list()
             
             lapply(seq(along = varNames), function(i){
               cat(paste0('Checking variable ', varNames[i], '... '), file = file, append = TRUE)
@@ -67,7 +76,6 @@ setMethod(f = "validateValues",
               if (length(wrongValuesindex) == 0) {
                 cat('OK.\n', file = file, append = TRUE)
               } else {
-                valid <<- FALSE
                 cat(paste0('\n  Please revise either the data set or the regex for this variable.\n  The following values do not follow the pattern ', valueRegEx[i], ':\n'), file = file, append = TRUE)
                 for (index in wrongValuesindex){
                   if (print_idvar){
@@ -76,9 +84,22 @@ setMethod(f = "validateValues",
                     cat(paste0('    Index: ', index, ', value: ', values[index], '\n'), file = file, append = TRUE)
                   }
                 }
+                if (print_idvar){
+                  wvlistItem <- cbind(id_var[wrongValuesindex,], values[wrongValuesindex])
+                  colnames(wvlistItem)[length(colnames(wvlistItem))] <- varNames[i]
+                  wrongValuesList[[varNames[i]]] <<- wvlistItem
+                } else{
+                  wvlistItem <- cbind(wrongValuesindex, values[wrongValuesindex])
+                  colnames(wvlistItem) <- c('Index', varNames[i])
+                  wrongValuesList[[varNames[i]]] <<- wvlistItem
+                }
+                if (valid && !analyseAll) abort(message='At least one variable has at least one wrong value',
+                                                wrongValuesList=wrongValuesList)
+                valid <<- FALSE
               }
             })
             
-            if (!valid) stop('At least one variable has at least one wrong value')
+            if (!valid) abort(message='At least one variable has at least one wrong value',
+                              wrongValuesList=wrongValuesList)
             return(TRUE)
           })

@@ -5,9 +5,23 @@
 \alias{validateValues,data.frame,StfwfSchema-method}
 \title{Fast read a fixed-width file}
 \usage{
-validateValues(object, StfwfSchema, file = "", perl = FALSE, id_var = NULL)
+validateValues(
+  object,
+  StfwfSchema,
+  file = "",
+  id_var = NULL,
+  analyseAll = TRUE,
+  perl = FALSE
+)
 
-\S4method{validateValues}{data.frame,StfwfSchema}(object, StfwfSchema, file = "", perl = FALSE, id_var = NULL)
+\S4method{validateValues}{data.frame,StfwfSchema}(
+  object,
+  StfwfSchema,
+  file = "",
+  id_var = NULL,
+  analyseAll = TRUE,
+  perl = FALSE
+)
 }
 \arguments{
 \item{object}{Object with rectangular shape whose columns will be validated.}
@@ -16,10 +30,14 @@ validateValues(object, StfwfSchema, file = "", perl = FALSE, id_var = NULL)
 
 \item{file}{File to print output to with default value \code{""}.}
 
+\item{id_var}{Data frame with variables to identify observations with wrong values,
+with default value \code{NULL}. If not defined, index is used instead.}
+
+\item{analyseAll}{Logical with default value \code{FALSE} to indicate whether to check
+all variables with invalid values or not (stopping at the first variable with some invalid value)}
+
 \item{perl}{Logical vector of length 1 with default value \code{FALSE} to indicate whether to use
 perl or not in the application of regexp.}
-
-\item{id_var}{Data frame with variables to identify observations with wrong values, with default value \code{NULL}. If not defined, index is used instead.}
 }
 \value{
 Returns \code{TRUE}.
